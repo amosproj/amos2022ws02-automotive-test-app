@@ -1,5 +1,5 @@
 # Fabulous Project 2 - InfotAiMOS (AMOS WS 2022/2023)
-![team-logo](https://user-images.githubusercontent.com/73954080/197884104-403f7ee4-dd3e-49d6-989c-faaece7dcf91.png)
+![team-logo_black_vsmall](https://user-images.githubusercontent.com/73954080/197886069-24968961-f066-41bd-a309-06e0c886dc94.png)
 
 Link to Feature Board: https://github.com/users/i315315/projects/3/views/1
 
