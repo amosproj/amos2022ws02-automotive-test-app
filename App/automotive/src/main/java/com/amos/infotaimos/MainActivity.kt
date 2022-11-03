@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        setContentView(view)
         viewModel.carData.observe(this) { car ->
             binding.activityMainCarConnected.visibility = if (car?.isConnected == true) View.VISIBLE else View.GONE
         }
