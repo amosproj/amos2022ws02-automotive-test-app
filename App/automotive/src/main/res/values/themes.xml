@@ -1,4 +1,4 @@
 <resources>
 
-    <style name="Theme.InfotAiMOS" parent="android:Theme.Material.Light.DarkActionBar" />
+    <style name="Theme.InfotAiMOS" parent="Theme.AppCompat" />
 </resources>
