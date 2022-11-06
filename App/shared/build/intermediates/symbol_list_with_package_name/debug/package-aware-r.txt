@@ -1,2 +1,0 @@
-com.amos.infotaimos.shared
-xml automotive_app_desc
