@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">InfotAiMOS</string>
     <string name="navigation">Navigation</string>
+    <string name="start_nav">Start navigation</string>
 </resources>
