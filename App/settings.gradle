@@ -13,6 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "InfotAiMOS"
-include ':mobile'
 include ':automotive'
-include ':shared'
