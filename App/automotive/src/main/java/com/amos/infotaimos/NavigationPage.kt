@@ -8,6 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
 
 class NavigationPage : Fragment() {
 
@@ -15,7 +18,13 @@ class NavigationPage : Fragment() {
         fun newInstance() = NavigationPage()
     }
 
-    private lateinit var viewModel: NavigationPageViewModel
+    private val viewModel: NavigationPageViewModel by viewModels {
+        object : ViewModelProvider.Factory {
+            override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                return context?.let { NavigationPageViewModel(it) } as T
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,10 +42,4 @@ class NavigationPage : Fragment() {
         }
         // Set another on click listener for Stop navigation
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(NavigationPageViewModel::class.java)
-    }
-
 }
