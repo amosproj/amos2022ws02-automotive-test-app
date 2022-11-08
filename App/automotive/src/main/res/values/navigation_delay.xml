@@ -2,7 +2,7 @@
 <resources>
     <string-array name="delay_array">
         <item>None</item>
-        <item>15s</item>
         <item>30s</item>
+        <item>1min</item>
     </string-array>
 </resources>

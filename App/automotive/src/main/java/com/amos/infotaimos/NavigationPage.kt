@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
+import android.widget.Spinner
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
@@ -35,10 +35,19 @@ class NavigationPage : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val startNavButton: Button = view.findViewById(R.id.start_navigation_button)
-        startNavButton.setOnClickListener{
-            println("funktioniert")
-            viewModel.startNavigation(0)
+        val startNavButton : Button = view.findViewById(R.id.start_navigation_button)
+        val delaySpinner : Spinner = view.findViewById(R.id.delay_spinner)
+
+        startNavButton.setOnClickListener {
+            //get selected Delay
+            val delayString = delaySpinner.selectedItem as String
+            var delay = 0L
+            if (delayString == "30s")
+                delay = 30000L
+            else if(delayString == "1min")
+                delay = 60000L
+            //call startNavigation
+            viewModel.startNavigation(delay)
         }
         // Set another on click listener for Stop navigation
     }
