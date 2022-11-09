@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@android:color/background_dark"
-    tools:context=".NavigationPage">
+    tools:context=".view.WheelPage">
 
     <Button
         android:id="@+id/wheel_button_skip_forward"
