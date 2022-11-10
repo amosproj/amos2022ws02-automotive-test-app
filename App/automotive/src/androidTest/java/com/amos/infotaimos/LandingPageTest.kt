@@ -8,12 +8,9 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.runners.AndroidJUnit4
-
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
-
 
 @RunWith(AndroidJUnit4::class)
 class LandingPageTest {
@@ -21,7 +18,8 @@ class LandingPageTest {
     @Test
     fun testNavigationToNavigationScreen() {
         val navController = TestNavHostController(
-            ApplicationProvider.getApplicationContext())
+            ApplicationProvider.getApplicationContext()
+        )
 
         val landingScenario = launchFragmentInContainer<LandingPage>()
 
@@ -29,7 +27,6 @@ class LandingPageTest {
             navController.setGraph(R.navigation.nav_graph)
 
             Navigation.setViewNavController(fragment.requireView(), navController)
-
         }
 
         onView(ViewMatchers.withId(R.id.Navigation)).perform(ViewActions.click())

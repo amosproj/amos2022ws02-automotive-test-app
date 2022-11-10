@@ -12,6 +12,6 @@ class WheelPage : ViewBindingFragment<FragmentWheelPageBinding>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //TODO button actions
+        // TODO button actions
     }
 }
