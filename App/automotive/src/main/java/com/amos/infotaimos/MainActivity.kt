@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         val actionBar = getSupportActionBar()
         if (actionBar != null) {
-            //actionBar.setHomeAsUpIndicator(R.drawable.mybutton)
+            // actionBar.setHomeAsUpIndicator(R.drawable.mybutton)
             actionBar.setDisplayHomeAsUpEnabled(true)
         }
     }

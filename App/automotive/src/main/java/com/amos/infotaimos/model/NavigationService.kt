@@ -3,7 +3,8 @@ package com.amos.infotaimos.model
 import android.car.Car
 import android.car.CarAppFocusManager
 import android.util.Log
-import java.util.*
+import java.util.Timer
+import java.util.TimerTask
 import kotlin.concurrent.schedule
 
 object NavigationService {
@@ -18,21 +19,23 @@ object NavigationService {
 
         startTask?.cancel()
         startTask = Timer().schedule(delay) {
-            Log.d(TAG,"Start navigation timer fired")
+            Log.d(TAG, "Start navigation timer fired")
             try {
-                when(carAppFocusManager.requestAppFocus(
-                    CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION,
-                    navCallback
-                )) {
+                when (
+                    carAppFocusManager.requestAppFocus(
+                        CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION,
+                        navCallback
+                    )
+                ) {
                     CarAppFocusManager.APP_FOCUS_REQUEST_FAILED -> {
-                        Log.d(TAG,"Requesting navigation focus failed")
+                        Log.d(TAG, "Requesting navigation focus failed")
                     }
                     CarAppFocusManager.APP_FOCUS_REQUEST_SUCCEEDED -> {
-                        Log.d(TAG,"Successfully requested navigation focus")
+                        Log.d(TAG, "Successfully requested navigation focus")
                     }
                 }
-            } catch (e : SecurityException) {
-                Log.d(TAG,"Couldnt request focus due to $e")
+            } catch (e: SecurityException) {
+                Log.d(TAG, "Couldnt request focus due to $e")
             }
             startTask = null
         }
@@ -43,14 +46,17 @@ object NavigationService {
         Log.d(TAG, "Requested navigation stop in $delay ms")
         stopTask?.cancel()
         stopTask = Timer().schedule(delay) {
-            Log.d(TAG,"Stop navigation timer fired")
-            if (carAppFocusManager.isOwningFocus(navCallback,
-                CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION)) {
+            Log.d(TAG, "Stop navigation timer fired")
+            if (carAppFocusManager.isOwningFocus(
+                    navCallback,
+                    CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION
+                )
+            ) {
                 carAppFocusManager.abandonAppFocus(
                     navCallback,
                     CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION
                 )
-                Log.d(TAG,"Navigation focus released")
+                Log.d(TAG, "Navigation focus released")
             } else {
                 Log.d(TAG, "App doesnt own navigation focus anymore")
             }
@@ -60,14 +66,13 @@ object NavigationService {
 
     class NavCallback : CarAppFocusManager.OnAppFocusOwnershipCallback {
         override fun onAppFocusOwnershipLost(appType: Int) {
-            Log.d(TAG,"Navigation focus lost")
+            Log.d(TAG, "Navigation focus lost")
             if (appType == CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION)
                 return
-
         }
 
         override fun onAppFocusOwnershipGranted(appType: Int) {
-            Log.d(TAG,"Navigation focus granted")
+            Log.d(TAG, "Navigation focus granted")
             if (appType == CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION)
                 return
         }
