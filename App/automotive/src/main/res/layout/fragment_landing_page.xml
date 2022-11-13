@@ -65,7 +65,8 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="450dp"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:onClick="@{() -> landingPage.goToWheelScreen()}">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="450dp"

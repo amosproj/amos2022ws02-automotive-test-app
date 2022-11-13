@@ -32,4 +32,8 @@ class LandingPage : Fragment() {
     fun goToNavigationScreen() {
         findNavController().navigate(R.id.action_landingPage_to_navigationPage)
     }
+
+    fun goToWheelScreen() {
+        findNavController().navigate(R.id.action_landingPage_to_wheelPage)
+    }
 }
