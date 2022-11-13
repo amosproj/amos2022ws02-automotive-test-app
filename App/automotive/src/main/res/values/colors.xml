@@ -2,4 +2,5 @@
 <resources>
     <color name="white">#FFFFFF</color>
     <color name="landing_green">#194A45</color>
+    <color name="landing_blue">#04344A</color>
 </resources>
