@@ -56,7 +56,7 @@
         android:layout_weight="1"
         android:backgroundTint="@color/landing_green"
         android:textColor="@color/white"
-        android:text="Stop navigation"
+        android:text="@string/stop_nav"
         android:textSize="30sp"/>
 
     <Button
