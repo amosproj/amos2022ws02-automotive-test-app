@@ -7,11 +7,17 @@
             type="com.amos.infotaimos.LandingPage" />
     </data>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="14sp"
+        android:scrollbarSize="15dp"
+        android:background="@android:color/background_dark"
+        >
     <LinearLayout
         android:id="@+id/Navigation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/background_dark"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
@@ -19,7 +25,7 @@
             android:layout_height="200dp">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="450dp"
+                android:layout_width="430dp"
                 android:layout_height="match_parent"
                 android:onClick="@{() -> landingPage.goToNavigationScreen()}">
 
@@ -63,7 +69,7 @@
                 android:layout_weight="1" />
 
             <androidx.cardview.widget.CardView
-                android:layout_width="450dp"
+                android:layout_width="430dp"
                 android:layout_height="match_parent"
                 android:onClick="@{() -> landingPage.goToWheelScreen()}">
 
@@ -103,7 +109,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="20dp"
             android:layout_weight="1" />
 
         <LinearLayout
@@ -112,7 +118,7 @@
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="450dp"
+                android:layout_width="430dp"
                 android:layout_height="match_parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -151,7 +157,8 @@
         </LinearLayout>
         <Space
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="20dp"
             android:layout_weight="1" />
     </LinearLayout>
+    </ScrollView>
 </layout>
