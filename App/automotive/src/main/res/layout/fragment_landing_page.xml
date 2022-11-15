@@ -7,27 +7,38 @@
             type="com.amos.infotaimos.LandingPage" />
     </data>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:scrollbarSize="15dp"
+        android:background="@android:color/background_dark"
+        >
     <LinearLayout
         android:id="@+id/Navigation"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/background_dark"
-        >
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/row1"
             android:layout_width="match_parent"
-            android:layout_height="248dp">
+            android:layout_height="200dp">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="450dp"
+                android:id="@+id/cardViewNavigation"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:onClick="@{() -> landingPage.goToNavigationScreen()}">
+
+                android:onClick="@{() -> landingPage.goToNavigationScreen()}"
+                app:layout_constraintEnd_toStartOf="@+id/spaceVertical1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="450dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#194A45">
+                    android:background="@color/landing_green">
 
                     <ImageView
                         android:id="@+id/NavigationImage"
@@ -45,8 +56,8 @@
 
                     <TextView
                         android:id="@+id/NavigationText"
-                        android:layout_width="144dp"
-                        android:layout_height="46dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginEnd="24dp"
                         android:layout_marginBottom="24dp"
                         android:text="@string/navigation"
@@ -59,19 +70,28 @@
             </androidx.cardview.widget.CardView>
 
             <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
+                android:id="@+id/spaceVertical1"
+                android:layout_width="10dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/cardViewNavigation"
+                app:layout_constraintEnd_toStartOf="@+id/cardViewWheel"
+                app:layout_constraintStart_toEndOf="@+id/cardViewNavigation"
+                app:layout_constraintTop_toTopOf="@+id/cardViewNavigation" />
 
             <androidx.cardview.widget.CardView
-                android:layout_width="450dp"
+                android:id="@+id/cardViewWheel"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:onClick="@{() -> landingPage.goToWheelScreen()}">
+                android:onClick="@{() -> landingPage.goToWheelScreen()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/spaceVertical1"
+                app:layout_constraintTop_toTopOf="@+id/spaceVertical1">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="450dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#04344A">
+                    android:background="@color/landing_blue">
+
                     <ImageView
                         android:id="@+id/WheelImage"
                         android:layout_width="149dp"
@@ -84,10 +104,11 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/steering_wheel_icon"
                         app:tint="@android:color/background_light" />
+
                     <TextView
                         android:id="@+id/WheelText"
-                        android:layout_width="227dp"
-                        android:layout_height="46dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_marginEnd="24dp"
                         android:layout_marginBottom="24dp"
                         android:text="Steering Wheel"
@@ -98,6 +119,64 @@
                         app:layout_constraintEnd_toEndOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_weight="1" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/row2"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewMedia"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/landing_purpel">
+
+                    <ImageView
+                        android:id="@+id/MediaImage"
+                        android:layout_width="149dp"
+                        android:layout_height="133dp"
+                        android:layout_marginStart="38dp"
+                        android:layout_marginTop="45dp"
+                        android:layout_marginBottom="45dp"
+                        android:contentDescription="Media Play"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/media_play"
+                        app:tint="@android:color/background_light" />
+
+                    <TextView
+                        android:id="@+id/MediaText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="24dp"
+                        android:text="@string/media_play"
+                        android:textColor="@android:color/background_light"
+                        android:textSize="30sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_weight="1" />
     </LinearLayout>
+    </ScrollView>
 </layout>
