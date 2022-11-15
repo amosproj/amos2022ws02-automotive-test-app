@@ -3,9 +3,14 @@ package com.amos.infotaimos
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.DecelerateInterpolator
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.cardview.widget.CardView
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -71,4 +76,28 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    fun displayToast(text: String) {
+        val toastCard = findViewById<CardView>(R.id.custom_toast)
+        val textView = toastCard.findViewById<TextView>(R.id.custom_toast_text)
+        textView.text = text
+        toastCard
+            .animate()
+            .alpha(1f)
+            .setDuration(500)
+            .setInterpolator(DecelerateInterpolator())
+            .withStartAction {
+                toastCard.visibility = View.VISIBLE
+            }
+            .withEndAction {
+                toastCard.animate()
+                    .alpha(0f)
+                    .setDuration(1000)
+                    .setInterpolator(
+                    AccelerateInterpolator()
+                ).withEndAction {
+                    toastCard.visibility = View.GONE
+                }.start()
+            }
+            .start()
+    }
 }
