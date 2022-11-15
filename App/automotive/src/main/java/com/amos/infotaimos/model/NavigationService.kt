@@ -3,6 +3,9 @@ package com.amos.infotaimos.model
 import android.car.Car
 import android.car.CarAppFocusManager
 import android.util.Log
+import android.view.MenuItem
+import androidx.activity.viewModels
+import com.amos.infotaimos.NavigationPageViewModel
 import java.util.Timer
 import java.util.TimerTask
 import kotlin.concurrent.schedule
@@ -12,6 +15,14 @@ object NavigationService {
     private var navCallback = NavCallback()
     private var startTask: TimerTask? = null
     private var stopTask: TimerTask? = null
+    private lateinit var navigationActiveMenuItem: MenuItem
+    private lateinit var navigationNotActiveMenuItem: MenuItem
+
+
+    fun setMenuItems(navActiveMenuItem: MenuItem, navNotActiveMenuItem: MenuItem){
+        navigationActiveMenuItem = navActiveMenuItem
+        navigationNotActiveMenuItem = navNotActiveMenuItem
+    }
 
     fun startNavigation(car: Car, delay: Long) {
         val carAppFocusManager = car.getCarManager(Car.APP_FOCUS_SERVICE) as CarAppFocusManager
@@ -37,8 +48,13 @@ object NavigationService {
             } catch (e: SecurityException) {
                 Log.d(TAG, "Couldnt request focus due to $e")
             }
+
             startTask = null
         }
+        navigationActiveMenuItem.isVisible = true
+        navigationNotActiveMenuItem.isVisible = false
+
+
     }
 
     fun stopNavigation(car: Car, delay: Long) {
@@ -60,21 +76,28 @@ object NavigationService {
             } else {
                 Log.d(TAG, "App doesnt own navigation focus anymore")
             }
+
             stopTask = null
         }
+        navigationActiveMenuItem.isVisible = false
+        navigationNotActiveMenuItem.isVisible = true
     }
 
     class NavCallback : CarAppFocusManager.OnAppFocusOwnershipCallback {
         override fun onAppFocusOwnershipLost(appType: Int) {
             Log.d(TAG, "Navigation focus lost")
-            if (appType == CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION)
-                return
+            //TODO
+            //navigationActiveMenuItem.isVisible = false
+            //navigationNotActiveMenuItem.isVisible = true
+
         }
 
         override fun onAppFocusOwnershipGranted(appType: Int) {
             Log.d(TAG, "Navigation focus granted")
-            if (appType == CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION)
-                return
+            //TODO
+            //navigationActiveMenuItem.isVisible = true
+            //navigationNotActiveMenuItem.isVisible = false
+
         }
     }
 }
