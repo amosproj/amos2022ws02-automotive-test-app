@@ -5,7 +5,10 @@ import android.car.CarAppFocusManager
 import android.util.Log
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.lifecycle.MutableLiveData
 import com.amos.infotaimos.NavigationPageViewModel
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 import java.util.Timer
 import java.util.TimerTask
 import kotlin.concurrent.schedule
@@ -15,14 +18,8 @@ object NavigationService {
     private var navCallback = NavCallback()
     private var startTask: TimerTask? = null
     private var stopTask: TimerTask? = null
-    private lateinit var navigationActiveMenuItem: MenuItem
-    private lateinit var navigationNotActiveMenuItem: MenuItem
+    val navIndicatorLiveData: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
 
-
-    fun setMenuItems(navActiveMenuItem: MenuItem, navNotActiveMenuItem: MenuItem){
-        navigationActiveMenuItem = navActiveMenuItem
-        navigationNotActiveMenuItem = navNotActiveMenuItem
-    }
 
     fun startNavigation(car: Car, delay: Long) {
         val carAppFocusManager = car.getCarManager(Car.APP_FOCUS_SERVICE) as CarAppFocusManager
@@ -40,9 +37,11 @@ object NavigationService {
                 ) {
                     CarAppFocusManager.APP_FOCUS_REQUEST_FAILED -> {
                         Log.d(TAG, "Requesting navigation focus failed")
+                        MainScope().launch { navIndicatorLiveData.value = false }
                     }
                     CarAppFocusManager.APP_FOCUS_REQUEST_SUCCEEDED -> {
                         Log.d(TAG, "Successfully requested navigation focus")
+                        MainScope().launch { navIndicatorLiveData.value = true }
                     }
                 }
             } catch (e: SecurityException) {
@@ -51,8 +50,6 @@ object NavigationService {
 
             startTask = null
         }
-        navigationActiveMenuItem.isVisible = true
-        navigationNotActiveMenuItem.isVisible = false
 
 
     }
@@ -73,30 +70,33 @@ object NavigationService {
                     CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION
                 )
                 Log.d(TAG, "Navigation focus released")
+                MainScope().launch { navIndicatorLiveData.value = false }
             } else {
                 Log.d(TAG, "App doesnt own navigation focus anymore")
             }
 
             stopTask = null
         }
-        navigationActiveMenuItem.isVisible = false
-        navigationNotActiveMenuItem.isVisible = true
+
+    }
+
+    fun updateNavigationLiveData(car: Car) {
+        val carAppFocusManager = car.getCarManager(Car.APP_FOCUS_SERVICE) as CarAppFocusManager
+        navIndicatorLiveData.value = carAppFocusManager.isOwningFocus(
+            navCallback,
+            CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION
+        )
+        Log.d(TAG, "Updated Navigation LiveData")
     }
 
     class NavCallback : CarAppFocusManager.OnAppFocusOwnershipCallback {
         override fun onAppFocusOwnershipLost(appType: Int) {
             Log.d(TAG, "Navigation focus lost")
-            //TODO
-            //navigationActiveMenuItem.isVisible = false
-            //navigationNotActiveMenuItem.isVisible = true
 
         }
 
         override fun onAppFocusOwnershipGranted(appType: Int) {
             Log.d(TAG, "Navigation focus granted")
-            //TODO
-            //navigationActiveMenuItem.isVisible = true
-            //navigationNotActiveMenuItem.isVisible = false
 
         }
     }
