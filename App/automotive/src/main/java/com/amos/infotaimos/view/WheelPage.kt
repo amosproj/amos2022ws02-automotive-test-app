@@ -26,6 +26,11 @@ class WheelPage : ViewBindingFragment<FragmentWheelPageBinding>() {
             (requireActivity() as? MainActivity)?.displayToast("SKIP FORWARD")
             Log.d(TAG, "SKIP FORWARD pressed")
         }
+        binding.wheelButtonVoiceControl.setOnClickListener {
+            viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_VOICE_ASSIST)
+            (requireActivity() as? MainActivity)?.displayToast("VOICE CONTROL")
+            Log.d(TAG,"VOICE CONTROL pressed")
+        }
     }
     companion object {
         const val TAG = "WHEEL_PAGE"

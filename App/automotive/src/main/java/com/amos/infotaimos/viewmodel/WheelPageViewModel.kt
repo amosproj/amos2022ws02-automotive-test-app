@@ -1,5 +1,6 @@
 package com.amos.infotaimos.viewmodel
 
+import android.app.Instrumentation
 import android.content.Context
 import android.media.AudioManager
 import android.view.KeyEvent
@@ -14,6 +15,9 @@ class WheelPageViewModel : ViewModel() {
                     action
                 )
             }
+            KeyEvent.KEYCODE_VOICE_ASSIST -> {
+                executeVoiceControlButtonPress(action)
+            }
             else -> {
                 TODO("Implement other actions")
             }
@@ -23,5 +27,12 @@ class WheelPageViewModel : ViewModel() {
     private fun executeMediaButtonPress(audioManager: AudioManager, keyEvent: Int) {
         audioManager.dispatchMediaKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, keyEvent))
         audioManager.dispatchMediaKeyEvent(KeyEvent(KeyEvent.ACTION_UP, keyEvent))
+    }
+
+    private fun executeVoiceControlButtonPress(keyEvent: Int) {
+        Thread(kotlinx.coroutines.Runnable {
+            val inst = Instrumentation()
+            inst.sendKeyDownUpSync(keyEvent)
+        }).start()
     }
 }
