@@ -56,7 +56,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun goToNavigation() {
-        navController.navigate(R.id.navigationPage)
+        val currentFragment = navController.currentDestination?.id
+        if (currentFragment != R.id.navigationPage)
+            navController.navigate(R.id.navigationPage)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
