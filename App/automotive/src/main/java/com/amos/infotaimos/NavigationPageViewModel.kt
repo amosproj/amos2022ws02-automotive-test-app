@@ -1,7 +1,6 @@
 package com.amos.infotaimos
 
 import android.content.Context
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.amos.infotaimos.model.CarInstanceManager
 import com.amos.infotaimos.model.NavigationService
@@ -15,5 +14,4 @@ class NavigationPageViewModel : ViewModel() {
     fun stopNavigation(context: Context, delay: Long) {
         NavigationService.stopNavigation(CarInstanceManager.getCarInstance(context), delay)
     }
-
 }
