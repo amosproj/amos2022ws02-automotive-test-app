@@ -3,10 +3,7 @@ package com.amos.infotaimos.model
 import android.car.Car
 import android.car.CarAppFocusManager
 import android.util.Log
-import android.view.MenuItem
-import androidx.activity.viewModels
 import androidx.lifecycle.MutableLiveData
-import com.amos.infotaimos.NavigationPageViewModel
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import java.util.Timer
@@ -19,7 +16,6 @@ object NavigationService {
     private var startTask: TimerTask? = null
     private var stopTask: TimerTask? = null
     val navIndicatorLiveData: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
-
 
     fun startNavigation(car: Car, delay: Long) {
         val carAppFocusManager = car.getCarManager(Car.APP_FOCUS_SERVICE) as CarAppFocusManager
@@ -50,8 +46,6 @@ object NavigationService {
 
             startTask = null
         }
-
-
     }
 
     fun stopNavigation(car: Car, delay: Long) {
@@ -77,7 +71,6 @@ object NavigationService {
 
             stopTask = null
         }
-
     }
 
     fun updateNavigationLiveData(car: Car) {
@@ -92,12 +85,10 @@ object NavigationService {
     class NavCallback : CarAppFocusManager.OnAppFocusOwnershipCallback {
         override fun onAppFocusOwnershipLost(appType: Int) {
             Log.d(TAG, "Navigation focus lost")
-
         }
 
         override fun onAppFocusOwnershipGranted(appType: Int) {
             Log.d(TAG, "Navigation focus granted")
-
         }
     }
 }

@@ -19,12 +19,12 @@ class WheelPage : ViewBindingFragment<FragmentWheelPageBinding>() {
         binding.wheelButtonPlayPause.setOnClickListener {
             viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE)
             (requireActivity() as? MainActivity)?.displayToast("PLAY / PAUSE")
-            Log.d(TAG,"PLAY / PAUSE pressed")
+            Log.d(TAG, "PLAY / PAUSE pressed")
         }
         binding.wheelButtonSkipForward.setOnClickListener {
             viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_MEDIA_NEXT)
             (requireActivity() as? MainActivity)?.displayToast("SKIP FORWARD")
-            Log.d(TAG,"SKIP FORWARD pressed")
+            Log.d(TAG, "SKIP FORWARD pressed")
         }
     }
     companion object {

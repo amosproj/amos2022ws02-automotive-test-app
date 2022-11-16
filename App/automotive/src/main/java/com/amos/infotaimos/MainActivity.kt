@@ -9,13 +9,12 @@ import android.view.animation.DecelerateInterpolator
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.cardview.widget.CardView
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -54,15 +53,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
         viewModel.navIndicatorLiveData.observe(this, navigationObserver)
+    }
 
+    fun goToNavigation() {
+        navController.navigate(R.id.navigationPage)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> onBackPressed()
-            // TODO somehow call goToNavigationScreen (Issue #41)
-            // R.id.navigation_active_indicator -> TODO()
-            // R.id.navigation_not_active_indicator -> TODO()
+            R.id.navigation_active_indicator -> goToNavigation()
+            R.id.navigation_not_active_indicator -> goToNavigation()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -93,10 +94,10 @@ class MainActivity : AppCompatActivity() {
                     .alpha(0f)
                     .setDuration(1000)
                     .setInterpolator(
-                    AccelerateInterpolator()
-                ).withEndAction {
-                    toastCard.visibility = View.GONE
-                }.start()
+                        AccelerateInterpolator()
+                    ).withEndAction {
+                        toastCard.visibility = View.GONE
+                    }.start()
             }
             .start()
     }
