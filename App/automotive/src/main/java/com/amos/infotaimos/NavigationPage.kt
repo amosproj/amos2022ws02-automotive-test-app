@@ -12,14 +12,14 @@ class NavigationPage : ViewBindingFragment<FragmentNavigationPageBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.startNavigationButton.setOnClickListener {
-            //get selected Delay
+            // get selected Delay
             val delayString = binding.delaySpinner.selectedItem as String
             var delay = 0L
             if (delayString == "30s")
                 delay = 30000L
-            else if(delayString == "1min")
+            else if (delayString == "1min")
                 delay = 60000L
-            //call startNavigation
+            // call startNavigation
             viewModel.startNavigation(requireContext(), delay)
         }
         binding.stopNavigationButton.setOnClickListener {

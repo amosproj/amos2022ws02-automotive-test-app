@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/background_dark"
+    tools:context=".view.WheelPage">
+
+    <Button
+        android:id="@+id/wheel_button_skip_forward"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/landing_green"
+        android:text="@string/button_skip_forward"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/wheel_button_seek_forward"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/landing_green"
+        android:textColor="@color/white"
+        android:text="@string/button_seek_forward"
+        android:textSize="30sp"/>
+
+    <Button
+        android:id="@+id/wheel_button_play_pause"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/landing_green"
+        android:textColor="@color/white"
+        android:text="@string/button_play_pause"
+        android:textSize="30sp"/>
+    <Button
+        android:id="@+id/wheel_button_voice_control"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/landing_green"
+        android:textColor="@color/white"
+        android:text="@string/button_voice_control"
+        android:textSize="30sp"/>
+    <Button
+        android:id="@+id/wheel_button_phone"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/landing_green"
+        android:textColor="@color/white"
+        android:text="@string/button_phone"
+        android:textSize="30sp"/>
+</LinearLayout>

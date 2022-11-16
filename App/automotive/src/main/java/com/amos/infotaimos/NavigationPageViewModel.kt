@@ -5,7 +5,8 @@ import androidx.lifecycle.ViewModel
 import com.amos.infotaimos.model.CarInstanceManager
 import com.amos.infotaimos.model.NavigationService
 
-class NavigationPageViewModel: ViewModel() {
+class NavigationPageViewModel : ViewModel() {
+
     fun startNavigation(context: Context, delay: Long) {
         NavigationService.startNavigation(CarInstanceManager.getCarInstance(context), delay)
     }
