@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.PowerManagementPage"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/fragment_power_button_display_off"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Theme.InfotAiMOS.Button"
+        android:text="@string/button_display_off" />
+
+    <Button
+        android:id="@+id/fragment_power_button_stand_by"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Theme.InfotAiMOS.Button"
+        android:text="@string/button_stand_by" />
+</LinearLayout>
