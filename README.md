@@ -4,3 +4,25 @@
 Link to Feature Board: https://github.com/orgs/amosproj/projects/5
 
 Link to Impediments Backlog: https://github.com/orgs/amosproj/projects/6
+
+
+# Installation
+## 1. Prepare Git and Android Studio
+
+### Windows:
+
+- Install Android Studio
+- Install GitForWindows/cmder or another terminal capable of executing bash scripts and git
+
+### Mac:
+#### M1 or newer:
+- Install Android Studio Electric Eel Preview
+
+####otherwise:
+- Install stable Android Studio
+
+## 2. Clone git
+- git clone git@github.com:amosproj/amos2022ws02-automotive-test-app.git
+
+## 3. Execute setup and deploy script
+sh ./setup_and_deploy.sh
