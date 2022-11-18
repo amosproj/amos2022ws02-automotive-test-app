@@ -30,9 +30,11 @@ class WheelPageViewModel : ViewModel() {
     }
 
     private fun executeVoiceControlButtonPress(keyEvent: Int) {
-        Thread(kotlinx.coroutines.Runnable {
-            val inst = Instrumentation()
-            inst.sendKeyDownUpSync(keyEvent)
-        }).start()
+        Thread(
+            kotlinx.coroutines.Runnable {
+                val inst = Instrumentation()
+                inst.sendKeyDownUpSync(keyEvent)
+            }
+        ).start()
     }
 }

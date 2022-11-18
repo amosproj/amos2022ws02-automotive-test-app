@@ -29,7 +29,7 @@ class WheelPage : ViewBindingFragment<FragmentWheelPageBinding>() {
         binding.wheelButtonVoiceControl.setOnClickListener {
             viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_VOICE_ASSIST)
             (requireActivity() as? MainActivity)?.displayToast("VOICE CONTROL")
-            Log.d(TAG,"VOICE CONTROL pressed")
+            Log.d(TAG, "VOICE CONTROL pressed")
         }
     }
     companion object {
