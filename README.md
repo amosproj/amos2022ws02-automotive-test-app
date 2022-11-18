@@ -18,11 +18,12 @@ Link to Impediments Backlog: https://github.com/orgs/amosproj/projects/6
 #### M1 or newer:
 - Install Android Studio Electric Eel Preview
 
-####otherwise:
+#### otherwise:
 - Install stable Android Studio
 
 ## 2. Clone git
 - git clone git@github.com:amosproj/amos2022ws02-automotive-test-app.git
 
 ## 3. Execute setup and deploy script
-sh ./setup_and_deploy.sh
+sh ./setup_and_deploy.sh 
+add --full parameter if confirmation steps should be skipped
