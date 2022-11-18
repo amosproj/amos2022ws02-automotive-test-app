@@ -27,7 +27,7 @@
                 android:orientation="horizontal">
 
                 <com.amos.infotaimos.view.LandingPageTile
-                    android:id="@+id/cardViewNavigation2"
+                    android:id="@+id/cardViewNavigation"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="8dp"
@@ -61,7 +61,7 @@
                     android:layout_margin="8dp"
                     android:layout_weight="1"
                     android:onClick="@{() -> false}"
-                    app:tileColor="@color/landing_purpel"
+                    app:tileColor="@color/landing_purple"
                     app:tileIcon="@drawable/media_play"
                     app:tileText="Media Play" />
 
@@ -75,6 +75,24 @@
                     app:tileColor="@color/landing_red"
                     app:tileIcon="@drawable/vehicle_properties_icon"
                     app:tileText="Vehicle Properties" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:orientation="horizontal">
+
+                <com.amos.infotaimos.view.LandingPageTile
+                    android:id="@+id/cardViewPowerManagement"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:onClick="@{() -> false}"
+                    app:tileColor="@color/landing_olive"
+                    app:tileIcon="@drawable/power_management_icon"
+                    app:tileText="Power Management" />
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

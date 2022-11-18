@@ -3,6 +3,7 @@
     <color name="white">#FFFFFF</color>
     <color name="landing_green">#194A45</color>
     <color name="landing_blue">#04344A</color>
-    <color name="landing_purpel">#4B2098</color>
+    <color name="landing_purple">#4B2098</color>
     <color name="landing_red">#A41111</color>
+    <color name="landing_olive">#808000</color>
 </resources>
