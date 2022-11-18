@@ -9,6 +9,8 @@
     <string name="button_seek_forward">Seek Forward</string>
     <string name="button_play_pause">Play / Pause</string>
     <string name="button_voice_control">Voice Control</string>
+    <string name="button_display_off">Turn Display Off</string>
+    <string name="button_stand_by">Enable Standby</string>
     <string name="button_phone">Phone</string>
     <string name="media_play">Media Play</string>
 </resources>
