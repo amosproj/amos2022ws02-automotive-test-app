@@ -13,25 +13,42 @@ import com.amos.infotaimos.viewmodel.WheelPageViewModel
 
 class WheelPage : ViewBindingFragment<FragmentWheelPageBinding>() {
     private val viewModel: WheelPageViewModel by viewModels()
+    private var description: Boolean = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // TODO button actions
         binding.wheelButtonPlayPause.setOnClickListener {
-            viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE)
-            (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.play_pause_button))
+            if(!description){
+                viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE)
+            }
+            else{
+                (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.play_pause_button))
+            }
             Log.d(TAG, "PLAY / PAUSE pressed")
         }
         binding.wheelButtonSkipForward.setOnClickListener {
-            viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_MEDIA_NEXT)
-            (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.skip_forward_button))
+            if(!description){
+                viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_MEDIA_NEXT)
+            }
+            else{
+                (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.skip_forward_button))
+            }
             Log.d(TAG, "SKIP FORWARD pressed")
         }
         binding.wheelButtonVoiceControl.setOnClickListener {
-            viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_VOICE_ASSIST)
-            (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.voice_control_button))
+            if(!description){
+                viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_VOICE_ASSIST)
+            }
+            else{
+                (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.voice_control_button))
+            }
             Log.d(TAG, "VOICE CONTROL pressed")
         }
+        binding.toggleButton.setOnCheckedChangeListener { buttonView, isChecked ->
+            description = isChecked
+            Log.d(TAG, "ToggleButton pressed")
+            }
     }
     companion object {
         const val TAG = "WHEEL_PAGE"

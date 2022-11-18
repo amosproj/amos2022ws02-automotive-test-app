@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
             .withEndAction {
                 toastCard.animate()
                     .alpha(0f)
-                    .setDuration(100000)
+                    .setDuration(10000)
                     .setInterpolator(
                         AccelerateInterpolator()
                     ).withEndAction {
