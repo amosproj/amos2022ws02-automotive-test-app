@@ -63,7 +63,7 @@
                     android:onClick="@{() -> false}"
                     app:tileColor="@color/landing_purpel"
                     app:tileIcon="@drawable/media_play"
-                    app:tileText="Steering Wheel" />
+                    app:tileText="Media Play" />
 
                 <com.amos.infotaimos.view.LandingPageTile
                     android:id="@+id/cardViewVehicleProperties"
