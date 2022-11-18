@@ -1,58 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/background_dark"
-    tools:context=".view.WheelPage">
+    tools:conext=".view.WheelPage">
 
-    <Button
-        android:id="@+id/wheel_button_skip_forward"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:backgroundTint="@color/landing_green"
-        android:text="@string/button_skip_forward"
-        android:textColor="@color/white"
-        android:textSize="30sp" />
 
-    <Button
-        android:id="@+id/wheel_button_seek_forward"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:backgroundTint="@color/landing_green"
-        android:textColor="@color/white"
-        android:text="@string/button_seek_forward"
-        android:textSize="30sp"/>
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/wheel_button_play_pause"
+        <Button
+            android:id="@+id/wheel_button_skip_forward"
+            android:layout_width="28dp"
+            android:layout_height="57dp"
+            android:layout_marginEnd="373dp"
+            android:layout_marginBottom="439dp"
+            android:text="@string/button_skip_forward"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <Button
+            android:id="@+id/wheel_button_voice_control"
+            android:layout_width="69dp"
+            android:layout_height="41dp"
+            android:layout_marginEnd="376dp"
+            android:layout_marginBottom="504dp"
+            android:text="@string/button_voice_control"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="TouchTargetSizeCheck" />
+
+        <Button
+            android:id="@+id/wheel_button_phone"
+            android:layout_width="57dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="404dp"
+            android:layout_marginTop="503dp"
+            android:text="Button"
+            android:visibility="invisible"
+            app:layout_constraintStart_toEndOf="@+id/wheel_button_play_pause"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/wheel_button_play_pause"
+            android:layout_width="51dp"
+            android:layout_height="54dp"
+            android:layout_marginStart="464dp"
+            android:layout_marginTop="500dp"
+
+            android:backgroundTint="#DD3131"
+            android:text="@string/button_play_pause"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/steering_wheel"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:backgroundTint="@color/landing_green"
-        android:textColor="@color/white"
-        android:text="@string/button_play_pause"
-        android:textSize="30sp"/>
-    <Button
-        android:id="@+id/wheel_button_voice_control"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:backgroundTint="@color/landing_green"
-        android:textColor="@color/white"
-        android:text="@string/button_voice_control"
-        android:textSize="30sp"/>
-    <Button
-        android:id="@+id/wheel_button_phone"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:backgroundTint="@color/landing_green"
-        android:textColor="@color/white"
-        android:text="@string/button_phone"
-        android:textSize="30sp"/>
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="steering_wheel"
+        app:srcCompat="@drawable/steering_wheel"
+        />
+
+
+
+</RelativeLayout>
