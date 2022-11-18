@@ -6,6 +6,7 @@ import android.view.KeyEvent
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.amos.infotaimos.MainActivity
+import com.amos.infotaimos.R
 import com.amos.infotaimos.ViewBindingFragment
 import com.amos.infotaimos.databinding.FragmentWheelPageBinding
 import com.amos.infotaimos.viewmodel.WheelPageViewModel
@@ -18,17 +19,17 @@ class WheelPage : ViewBindingFragment<FragmentWheelPageBinding>() {
         // TODO button actions
         binding.wheelButtonPlayPause.setOnClickListener {
             viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE)
-            (requireActivity() as? MainActivity)?.displayToast("PLAY / PAUSE")
+            (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.play_pause_button))
             Log.d(TAG, "PLAY / PAUSE pressed")
         }
         binding.wheelButtonSkipForward.setOnClickListener {
             viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_MEDIA_NEXT)
-            (requireActivity() as? MainActivity)?.displayToast("SKIP FORWARD")
+            (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.skip_forward_button))
             Log.d(TAG, "SKIP FORWARD pressed")
         }
         binding.wheelButtonVoiceControl.setOnClickListener {
             viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_VOICE_ASSIST)
-            (requireActivity() as? MainActivity)?.displayToast("VOICE CONTROL")
+            (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.voice_control_button))
             Log.d(TAG, "VOICE CONTROL pressed")
         }
     }

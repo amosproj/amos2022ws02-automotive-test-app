@@ -86,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         toastCard
             .animate()
             .alpha(1f)
-            .setDuration(500)
+            .setDuration(100)
             .setInterpolator(DecelerateInterpolator())
             .withStartAction {
                 toastCard.visibility = View.VISIBLE
@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
             .withEndAction {
                 toastCard.animate()
                     .alpha(0f)
-                    .setDuration(1000)
+                    .setDuration(100000)
                     .setInterpolator(
                         AccelerateInterpolator()
                     ).withEndAction {

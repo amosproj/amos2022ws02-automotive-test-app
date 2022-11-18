@@ -14,4 +14,15 @@
     <string name="button_phone">Phone</string>
     <string name="media_play">Media Play</string>
     <string name="landingpagetile">LandingPageTile</string>
+    <string name="play_pause_button">Play/pause button:\n The button owns two functions. If you do not play media yet, press the button to start simulation of media playback.
+        If simulation of media playback has already been started, press the button to stop playback.</string>
+    <string name="phone_button">Phone button:\nThis button functions to accept or end a call.
+        When there is an incoming call,  press this button to accept it. The radio or media playback is going to be muted throughout the call.
+        During a phone call press the button to end the call.</string>
+    <string name="skip_forward_button">Skip/seek forward button:\n
+        This button owns two functions.
+        Briefly press the button to select the next track or station. For seeking forward, press and hold this button until the desired playback position is reached.</string>
+    <string name="voice_control_button">Voice control button:\n
+        This is the button for switching voice operation on or off.
+        Switch the voice recognition on by briefly pressing the button. To switch the voice recognition system off, press and hold the button.</string>
 </resources>
