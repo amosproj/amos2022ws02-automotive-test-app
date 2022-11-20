@@ -36,4 +36,8 @@ class LandingPage : Fragment() {
     fun goToWheelScreen() {
         findNavController().navigate(R.id.action_landingPage_to_wheelPage)
     }
+
+    fun goToPowerManagementScreen() {
+        findNavController().navigate(R.id.action_landingPage_to_powerManagementPage)
+    }
 }

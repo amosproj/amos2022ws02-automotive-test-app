@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_landingPage_to_wheelPage"
             app:destination="@id/wheelPage" />
+        <action
+            android:id="@+id/action_landingPage_to_powerManagementPage"
+            app:destination="@id/powerManagementPage" />
     </fragment>
 
     <fragment
@@ -29,4 +32,9 @@
         android:name="com.amos.infotaimos.view.WheelPage"
         android:label="fragment_wheel_page"
         tools:layout="@layout/fragment_wheel_page" />
+    <fragment
+        android:id="@+id/powerManagementPage"
+        android:name="com.amos.infotaimos.view.PowerManagementPage"
+        android:label="fragment_power_management_page"
+        tools:layout="@layout/fragment_power_management_page" />
 </navigation>
