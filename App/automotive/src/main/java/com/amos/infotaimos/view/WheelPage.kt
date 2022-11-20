@@ -45,6 +45,15 @@ class WheelPage : ViewBindingFragment<FragmentWheelPageBinding>() {
             }
             Log.d(TAG, "VOICE CONTROL pressed")
         }
+        binding.wheelButtonPhone.setOnClickListener{
+            if(!description){
+                //TODO phone button action
+            }
+            else{
+                (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.phone_button))
+            }
+            Log.d(TAG, "PHONE pressed")
+        }
         binding.toggleButton.setOnCheckedChangeListener { buttonView, isChecked ->
             description = isChecked
             Log.d(TAG, "ToggleButton pressed")

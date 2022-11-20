@@ -14,6 +14,8 @@
     <string name="button_phone">Phone</string>
     <string name="media_play">Media Play</string>
     <string name="landingpagetile">LandingPageTile</string>
+    <string name="description">Description</string>
+    <string name="functionality">Functionality</string>
     <string name="play_pause_button">Play/pause button:\n The button owns two functions. If you do not play media yet, press the button to start simulation of media playback.
         If simulation of media playback has already been started, press the button to stop playback.</string>
     <string name="phone_button">Phone button:\nThis button functions to accept or end a call.
