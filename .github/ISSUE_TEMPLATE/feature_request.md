@@ -18,9 +18,13 @@ assignees: ''
 * ...
 
 ## Definition of done (DoD)
-* Added only after week 5
-* The same for all features
-* Here goes the project specific part
+* Code compiles and builds 
+* Acceptance criteria are met
+* Feature tests have been written and were passed at/above 75% test coverage
+* Code is peer-reviewed 
+* Feature is merged into development branch
+* Documentation is updated 
+* Bill of Materials is updated
 
 ## DoD general criteria
 * Feature has been fully implemented
