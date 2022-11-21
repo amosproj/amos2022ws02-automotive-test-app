@@ -12,7 +12,8 @@ Link to Impediments Backlog: https://github.com/orgs/amosproj/projects/6
 ### Windows:
 
 - Install Android Studio
-- Install GitForWindows/cmder or another terminal capable of executing bash scripts and git
+- Install cmder (other terminals capable of executing bash scripts and git on windows are not supported)
+- MAKE SURE JAVA_HOME IS SET UP IN YOUR PATH
 
 ### Mac:
 #### M1 or newer:
@@ -25,5 +26,7 @@ Link to Impediments Backlog: https://github.com/orgs/amosproj/projects/6
 - git clone git@github.com:amosproj/amos2022ws02-automotive-test-app.git
 
 ## 3. Execute setup and deploy script
+
+cd amos2022ws02-automotive-test-app.git
 sh ./setup_and_deploy.sh 
 add --full parameter if confirmation steps should be skipped

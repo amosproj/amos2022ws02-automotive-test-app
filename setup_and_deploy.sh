@@ -14,7 +14,6 @@ detect_os() {
 	  msys*)
 	    export os=windows
 	    export user="$(cut -d "\\" -f2 <<< $(whoami))" 
-	    export JAVA_HOME=C:/Program\ Files/Android/Android\ Studio/jre
 		export path_android_sdk=C:/Users/$user/AppData/Local/Android/sdk
 		export ANDROID_HOME=$path_android_sdk
 		export path_cmd_tools=${path_android_sdk}/cmdline-tools
@@ -63,7 +62,10 @@ install_cmd_line_tools() {
 copy_repo_cfg() {
 	echo "Copy custom url config into android folder"
 	if [ "$os" == "windows" ]; then
-		cp setup_files/repositories.cfg C:/Users/$user/AppData/Local/Android/
+		if [ ! -d "C:/Users/$user/.android/" ]; then
+			mkdir C:/Users/$user/.android/
+		fi
+		cp setup_files/repositories.cfg C:/Users/$user/.android/
 	else
 		cp setup_files/repositories.cfg ${HOME}/.android/
 	fi
@@ -77,9 +79,11 @@ install_automotive_system_image() {
 		echo "setting up custom url for x86_64 polestar automotive image"
 		confirm "This will overwrite all previously set up custom sdk urls!" && copy_repo_cfg
 		echo "download x86_64 polestar system image"
-		export sys_image="system-images;android-28;polestar_emulator;x86_64"
+		export sys_image="system-images;android-29;polestar_emulator;x86_64"
 	fi
 	$sdkmanager --install $sys_image
+	$sdkmanager --install "extras;google;auto"
+	$sdkmanager --install "extras;google;simulators"
 	$sdkmanager --licenses
 }
 
