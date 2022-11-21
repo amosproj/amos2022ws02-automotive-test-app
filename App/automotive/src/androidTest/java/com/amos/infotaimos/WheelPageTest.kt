@@ -15,7 +15,6 @@ class WheelPageTest {
     fun testLayoutFunctionality() {
         launchFragmentInContainer<WheelPage>()
         onView(withId(R.id.toggleButton)).check(matches(withText(R.string.description)))
-        onView(withId(R.id.toggleButton)).perform(click()).check(matches(withText(R.string.functionality)))
         onView(withId(R.id.imageView)).check(matches(isDisplayed()))
         onView(withId(R.id.wheel_button_phone)).perform(click()).check(matches(isDisplayed()))
         onView(withId(R.id.wheel_button_skip_forward)).perform(click()).check(matches(isDisplayed()))
