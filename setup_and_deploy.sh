@@ -14,6 +14,7 @@ detect_os() {
 	  msys*)
 	    export os=windows
 	    export user="$(cut -d "\\" -f2 <<< $(whoami))" 
+		export JAVA_HOME=C:/Program\ Files/Android/Android\ Studio/jre
 		export path_android_sdk=C:/Users/$user/AppData/Local/Android/sdk
 		export ANDROID_HOME=$path_android_sdk
 		export path_cmd_tools=${path_android_sdk}/cmdline-tools
@@ -52,8 +53,7 @@ install_cmd_line_tools() {
 		curl https://dl.google.com/android/repository/commandlinetools-mac-9123335_latest.zip -J -o tools.zip
 	fi
 	unzip tools.zip
-	mkdir $path_cmd_tools
-	mkdir $path_cmd_tools/latest/
+	mkdir -p $path_cmd_tools/latest/
 	cp -r cmdline-tools/* $path_cmd_tools/latest/
 	rm -rf cmdline-tools
 	rm tools.zip
@@ -78,9 +78,12 @@ install_automotive_system_image() {
 	else
 		echo "setting up custom url for x86_64 polestar automotive image"
 		confirm "This will overwrite all previously set up custom sdk urls!" && copy_repo_cfg
-		echo "download x86_64 polestar system image"
+		echo "using x86_64 polestar system image"
 		export sys_image="system-images;android-29;polestar_emulator;x86_64"
 	fi
+	$sdkmanager --install "platforms;android-32"
+	$sdkmanager --install "build-tools;32.1.0-rc1"
+	$sdkmanager --install "sources;android-32"
 	$sdkmanager --install $sys_image
 	$sdkmanager --install "extras;google;auto"
 	$sdkmanager --install "extras;google;simulators"
@@ -103,8 +106,6 @@ build_and_deploy() {
 	chmod +x gradlew
 	./gradlew assembleDebug
 	echo "start emulator"
-	echo $emulator
-	echo $emulator_device_name
 	$emulator -avd $emulator_device_name  &
 	echo "wait for device boot"
 	$adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed) ]]; do sleep 1; done; input keyevent 82'

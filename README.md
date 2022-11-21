@@ -12,8 +12,7 @@ Link to Impediments Backlog: https://github.com/orgs/amosproj/projects/6
 ### Windows:
 
 - Install Android Studio
-- Install cmder (other terminals capable of executing bash scripts and git on windows are not supported)
-- MAKE SURE JAVA_HOME IS SET UP IN YOUR PATH
+- Install cmder (other terminals capable of executing bash scripts and git on windows are not recommended)
 
 ### Mac:
 #### M1 or newer:
