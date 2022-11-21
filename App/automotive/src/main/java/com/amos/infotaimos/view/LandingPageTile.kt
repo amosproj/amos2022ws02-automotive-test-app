@@ -1,12 +1,9 @@
 package com.amos.infotaimos.view
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.cardview.widget.CardView
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.getColorOrThrow
 import com.amos.infotaimos.R
 import com.amos.infotaimos.databinding.LandingPageTileBinding
 

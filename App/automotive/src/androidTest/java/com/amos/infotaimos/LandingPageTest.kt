@@ -17,26 +17,34 @@ class LandingPageTest {
     @Test
     fun testNavigationToNavigationScreen() {
         val navController = prepareScreen()
-        onView(ViewMatchers.withId(R.id.cardViewNavigation)).perform(ViewActions.scrollTo())
-        onView(ViewMatchers.withId(R.id.cardViewNavigation)).perform(ViewActions.click())
+        scrollAndClickOn(R.id.cardViewNavigation)
         assertEquals(navController.currentDestination?.id, R.id.navigationPage)
     }
 
     @Test
     fun testNavigationToSteeringWheelScreen() {
         val navController = prepareScreen()
-        onView(ViewMatchers.withId(R.id.cardViewWheel)).perform(ViewActions.scrollTo())
-        onView(ViewMatchers.withId(R.id.cardViewWheel)).perform(ViewActions.click())
+        scrollAndClickOn(R.id.cardViewWheel)
         assertEquals(navController.currentDestination?.id, R.id.wheelPage)
     }
 
     @Test
     fun testNavigationToPowerManagementScreen() {
         val navController = prepareScreen()
-        onView(ViewMatchers.withId(R.id.cardViewPowerManagement)).perform(ViewActions.scrollTo())
-        onView(ViewMatchers.withId(R.id.cardViewPowerManagement)).perform(ViewActions.click())
-
+        scrollAndClickOn(R.id.cardViewPowerManagement)
         assertEquals(navController.currentDestination?.id, R.id.powerManagementPage)
+    }
+
+    @Test
+    fun testNavigationToVehiclePropertiesScreen() {
+        val navController = prepareScreen()
+        scrollAndClickOn(R.id.cardViewVehicleProperties)
+        assertEquals(navController.currentDestination?.id, R.id.vehiclePropertiesPage)
+    }
+
+    private fun scrollAndClickOn(id: Int) {
+        onView(ViewMatchers.withId(id)).perform(ViewActions.scrollTo())
+        onView(ViewMatchers.withId(id)).perform(ViewActions.click())
     }
 
     private fun prepareScreen(): TestNavHostController {
