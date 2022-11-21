@@ -22,7 +22,7 @@
         android:id="@+id/wheel_button_phone"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:text="Button"
+        android:text="@string/button_phone"
         android:alpha="0.0"
         app:layout_constraintBottom_toBottomOf="@id/imageView"
         app:layout_constraintEnd_toEndOf="@id/imageView"
