@@ -14,9 +14,40 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class LandingPageTest {
-
     @Test
     fun testNavigationToNavigationScreen() {
+        val navController = prepareScreen()
+        scrollAndClickOn(R.id.cardViewNavigation)
+        assertEquals(navController.currentDestination?.id, R.id.navigationPage)
+    }
+
+    @Test
+    fun testNavigationToSteeringWheelScreen() {
+        val navController = prepareScreen()
+        scrollAndClickOn(R.id.cardViewWheel)
+        assertEquals(navController.currentDestination?.id, R.id.wheelPage)
+    }
+
+    @Test
+    fun testNavigationToPowerManagementScreen() {
+        val navController = prepareScreen()
+        scrollAndClickOn(R.id.cardViewPowerManagement)
+        assertEquals(navController.currentDestination?.id, R.id.powerManagementPage)
+    }
+
+    @Test
+    fun testNavigationToVehiclePropertiesScreen() {
+        val navController = prepareScreen()
+        scrollAndClickOn(R.id.cardViewVehicleProperties)
+        assertEquals(navController.currentDestination?.id, R.id.vehiclePropertiesPage)
+    }
+
+    private fun scrollAndClickOn(id: Int) {
+        onView(ViewMatchers.withId(id)).perform(ViewActions.scrollTo())
+        onView(ViewMatchers.withId(id)).perform(ViewActions.click())
+    }
+
+    private fun prepareScreen(): TestNavHostController {
         val navController = TestNavHostController(
             ApplicationProvider.getApplicationContext()
         )
@@ -28,8 +59,6 @@ class LandingPageTest {
 
             Navigation.setViewNavController(fragment.requireView(), navController)
         }
-
-        onView(ViewMatchers.withId(R.id.Navigation)).perform(ViewActions.click())
-        assertEquals(navController.currentDestination?.id, R.id.navigationPage)
+        return navController
     }
 }
