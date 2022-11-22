@@ -23,7 +23,7 @@ class WheelPage : ViewBindingFragment<FragmentWheelPageBinding>() {
                 viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE)
             }
             else{
-                (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.play_pause_button_description))
+                (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.play_pause_button_description), 100, 20000)
             }
             Log.d(TAG, "PLAY / PAUSE pressed")
         }
@@ -32,7 +32,7 @@ class WheelPage : ViewBindingFragment<FragmentWheelPageBinding>() {
                 viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_MEDIA_NEXT)
             }
             else{
-                (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.skip_forward_button_description))
+                (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.skip_forward_button_description), 100, 20000)
             }
             Log.d(TAG, "SKIP FORWARD pressed")
         }
@@ -41,7 +41,7 @@ class WheelPage : ViewBindingFragment<FragmentWheelPageBinding>() {
                 viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_VOICE_ASSIST)
             }
             else{
-                (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.voice_control_button_description))
+                (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.voice_control_button_description), 100, 20000)
             }
             Log.d(TAG, "VOICE CONTROL pressed")
         }
@@ -50,7 +50,7 @@ class WheelPage : ViewBindingFragment<FragmentWheelPageBinding>() {
                 //TODO phone button action
             }
             else{
-                (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.phone_button_description))
+                (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.phone_button_description), 100, 20000)
             }
             Log.d(TAG, "PHONE pressed")
         }
