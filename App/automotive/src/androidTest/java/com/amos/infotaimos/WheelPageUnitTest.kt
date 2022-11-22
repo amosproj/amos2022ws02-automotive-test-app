@@ -35,12 +35,6 @@ class WheelPageUnitTest {
     }
 
     @Test
-    fun testSeekForwardButtonClickable() {
-        prepareScreen()
-        clickable(R.id.wheel_button_seek_forward)
-    }
-
-    @Test
     fun testSkipForwardButtonClickable() {
         prepareScreen()
         clickable(R.id.wheel_button_skip_forward)
