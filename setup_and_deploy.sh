@@ -16,7 +16,6 @@ detect_os() {
 	    export user="$(cut -d "\\" -f2 <<< $(whoami))" 
 		export JAVA_HOME=C:/Program\ Files/Android/Android\ Studio/jre
 		export path_android_sdk=C:/Users/$user/AppData/Local/Android/sdk
-		export ANDROID_HOME=$path_android_sdk
 		export path_cmd_tools=${path_android_sdk}/cmdline-tools
 		export emulator=$path_android_sdk/emulator/emulator.exe	
 		export sdkmanager=${path_cmd_tools}/latest/bin/sdkmanager.bat
@@ -26,6 +25,7 @@ detect_os() {
 	    export os=notimplemented
 	    ;;
 	esac
+	export ANDROID_HOME=$path_android_sdk
 	export adb=$path_android_sdk/platform-tools/adb		
 }
 
