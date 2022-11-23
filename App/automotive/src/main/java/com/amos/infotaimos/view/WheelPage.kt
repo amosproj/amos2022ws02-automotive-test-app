@@ -19,37 +19,33 @@ class WheelPage : ViewBindingFragment<FragmentWheelPageBinding>() {
         super.onViewCreated(view, savedInstanceState)
         // TODO button actions
         binding.wheelButtonPlayPause.setOnClickListener {
-            if(!description){
+            if (!description) {
                 viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE)
-            }
-            else{
+            } else {
                 (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.play_pause_button_description), 100, 20000)
             }
             Log.d(TAG, "PLAY / PAUSE pressed")
         }
         binding.wheelButtonSkipForward.setOnClickListener {
-            if(!description){
+            if (!description) {
                 viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_MEDIA_NEXT)
-            }
-            else{
+            } else {
                 (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.skip_forward_button_description), 100, 20000)
             }
             Log.d(TAG, "SKIP FORWARD pressed")
         }
         binding.wheelButtonVoiceControl.setOnClickListener {
-            if(!description){
+            if (!description) {
                 viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_VOICE_ASSIST)
-            }
-            else{
+            } else {
                 (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.voice_control_button_description), 100, 20000)
             }
             Log.d(TAG, "VOICE CONTROL pressed")
         }
-        binding.wheelButtonPhone.setOnClickListener{
-            if(!description){
-                //TODO phone button action
-            }
-            else{
+        binding.wheelButtonPhone.setOnClickListener {
+            if (!description) {
+                // TODO phone button action
+            } else {
                 (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.phone_button_description), 100, 20000)
             }
             Log.d(TAG, "PHONE pressed")
@@ -57,7 +53,7 @@ class WheelPage : ViewBindingFragment<FragmentWheelPageBinding>() {
         binding.toggleButton.setOnCheckedChangeListener { buttonView, isChecked ->
             description = isChecked
             Log.d(TAG, "ToggleButton pressed")
-            }
+        }
     }
     companion object {
         const val TAG = "WHEEL_PAGE"

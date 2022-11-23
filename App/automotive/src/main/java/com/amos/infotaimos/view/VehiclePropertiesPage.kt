@@ -14,9 +14,5 @@ class VehiclePropertiesPage : ViewBindingFragment<FragmentVehiclePropertiesPageB
         super.onViewCreated(view, savedInstanceState)
 
         binding.themeModeTile.root.setOnClickListener { viewModel.changeThemeMode() }
-
     }
-
-
 }
-

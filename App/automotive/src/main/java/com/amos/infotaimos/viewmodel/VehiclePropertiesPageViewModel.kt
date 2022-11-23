@@ -1,10 +1,7 @@
 package com.amos.infotaimos.viewmodel
 
-import android.app.UiModeManager
-import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModel
-
 
 class VehiclePropertiesPageViewModel : ViewModel() {
 

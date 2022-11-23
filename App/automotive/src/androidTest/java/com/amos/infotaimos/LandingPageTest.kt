@@ -44,12 +44,12 @@ class LandingPageTest {
         assertEquals(navController.currentDestination?.id, R.id.vehiclePropertiesPage)
     }
 
-    //@Test
-    //fun testNavigationToMediaScreen() {
+    // @Test
+    // fun testNavigationToMediaScreen() {
     //    val navController = prepareScreen()
     //    scrollAndClickOn(R.id.cardViewMedia)
     //    assertEquals(navController.currentDestination?.id, R.id.mediaPage)
-    //}
+    // }
 
     private fun scrollAndClickOn(id: Int) {
         onView(ViewMatchers.withId(id)).perform(ViewActions.scrollTo())
