@@ -14,6 +14,8 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class LandingPageTest {
+
+    // Navigation Tests based on https://developer.android.com/guide/navigation/navigation-testing
     @Test
     fun testNavigationToNavigationScreen() {
         val navController = prepareScreen()
@@ -41,6 +43,13 @@ class LandingPageTest {
         scrollAndClickOn(R.id.cardViewVehicleProperties)
         assertEquals(navController.currentDestination?.id, R.id.vehiclePropertiesPage)
     }
+
+    //@Test
+    //fun testNavigationToMediaScreen() {
+    //    val navController = prepareScreen()
+    //    scrollAndClickOn(R.id.cardViewMedia)
+    //    assertEquals(navController.currentDestination?.id, R.id.mediaPage)
+    //}
 
     private fun scrollAndClickOn(id: Int) {
         onView(ViewMatchers.withId(id)).perform(ViewActions.scrollTo())
