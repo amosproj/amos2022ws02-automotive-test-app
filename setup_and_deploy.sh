@@ -75,16 +75,18 @@ install_automotive_system_image() {
 	if [ $(uname -m) == "arm64" ]; then
 		echo "using arm64 automotive image"
 		export sys_image="system-images;android-32;android-automotive-playstore;arm64-v8a"
+		$sdkmanager --install $sys_image --channel=3
+
 	else
 		echo "setting up custom url for x86_64 polestar automotive image"
 		confirm "This will overwrite all previously set up custom sdk urls!" && copy_repo_cfg
 		echo "using x86_64 polestar system image"
 		export sys_image="system-images;android-29;polestar_emulator;x86_64"
+		$sdkmanager --install $sys_image
 	fi
 	$sdkmanager --install "platforms;android-32"
 	$sdkmanager --install "build-tools;32.1.0-rc1"
 	$sdkmanager --install "sources;android-32"
-	$sdkmanager --install $sys_image
 	$sdkmanager --install "extras;google;auto"
 	$sdkmanager --install "extras;google;simulators"
 	$sdkmanager --licenses
