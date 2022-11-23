@@ -21,7 +21,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/tile_vehicle_range_guideline"
-            app:layout_constraintHorizontal_weight="1" />
+            app:layout_constraintHorizontal_weight="1"
+            app:tint="@color/accent" />
 
         <TextView
             android:id="@+id/tile_vehicle_range_header_text"

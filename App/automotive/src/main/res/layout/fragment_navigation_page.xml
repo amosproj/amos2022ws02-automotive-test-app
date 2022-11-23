@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/background_dark"
     tools:context=".NavigationPage">
 
     <LinearLayout
@@ -20,8 +19,8 @@
             android:layout_weight="0.7"
             android:backgroundTint="@color/landing_green"
             android:drawableStart="@drawable/navigation_place"
+            android:drawableTint="@color/accent"
             android:text="@string/start_nav"
-            android:textColor="@color/white"
             android:textSize="30sp" />
 
         <LinearLayout
@@ -36,7 +35,6 @@
                 android:text="@string/nav_delay"
                 android:layout_weight="0.4"
                 android:textSize="30sp"
-                android:textColor="@color/white"
                 android:gravity="center"/>
 
             <Spinner
@@ -55,7 +53,6 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:backgroundTint="@color/landing_green"
-        android:textColor="@color/white"
         android:text="@string/stop_nav"
         android:textSize="30sp"/>
 
@@ -65,7 +62,6 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:backgroundTint="@color/landing_green"
-        android:textColor="#ffffff"
         android:text="weitere buttons"
         android:textSize="30sp"/>
 
