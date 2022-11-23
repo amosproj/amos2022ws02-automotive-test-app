@@ -12,7 +12,7 @@ import kotlin.concurrent.schedule
 
 object NavigationService {
     private const val TAG = "NAVIGATION_SERVICE"
-    private var navCallback = NavCallback()
+    val navCallback = NavCallback()
     private var startTask: TimerTask? = null
     private var stopTask: TimerTask? = null
     val navIndicatorLiveData: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
