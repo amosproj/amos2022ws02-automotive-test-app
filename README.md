@@ -22,9 +22,15 @@ Link to Impediments Backlog: https://github.com/orgs/amosproj/projects/6
 - Install stable Android Studio
 
 ## 2. Clone git
+
+<video src='setup_files/clone.mov' width=1080/>
+
 - git clone git@github.com:amosproj/amos2022ws02-automotive-test-app.git
 
+
 ## 3. Execute setup and deploy script
+
+<video src='setup_files/setup.mov' width=1080/>
 
 cd amos2022ws02-automotive-test-app.git
 sh ./setup_and_deploy.sh 
