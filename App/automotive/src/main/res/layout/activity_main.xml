@@ -36,12 +36,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:src="@drawable/ic_launcher_foreground"
-                android:layout_gravity="center"/>
-
             <TextView
                 android:id="@+id/custom_toast_text"
                 android:layout_width="wrap_content"

@@ -71,7 +71,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="8dp"
                     android:layout_weight="1"
-                    android:onClick="@{() -> false}"
+                    android:onClick="@{() -> landingPage.goToVehiclePropertiesScreen()}"
                     app:tileColor="@color/landing_red"
                     app:tileIcon="@drawable/vehicle_properties_icon"
                     app:tileText="Vehicle Properties" />
@@ -88,7 +88,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="8dp"
                     android:layout_weight="1"
-                    android:onClick="@{() -> false}"
+                    android:onClick="@{() -> landingPage.goToPowerManagementScreen()}"
                     app:tileColor="@color/landing_olive"
                     app:tileIcon="@drawable/power_management_icon"
                     app:tileText="Power Management" />

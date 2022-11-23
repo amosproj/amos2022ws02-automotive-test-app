@@ -14,11 +14,48 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
 class LandingPageTest {
+<<<<<<< HEAD
 
     // https://developer.android.com/guide/navigation/navigation-testing
     @Test
     fun testNavigationToNavigationPage() {
         // Create a TestNavHostController
+=======
+    @Test
+    fun testNavigationToNavigationScreen() {
+        val navController = prepareScreen()
+        scrollAndClickOn(R.id.cardViewNavigation)
+        assertEquals(navController.currentDestination?.id, R.id.navigationPage)
+    }
+
+    @Test
+    fun testNavigationToSteeringWheelScreen() {
+        val navController = prepareScreen()
+        scrollAndClickOn(R.id.cardViewWheel)
+        assertEquals(navController.currentDestination?.id, R.id.wheelPage)
+    }
+
+    @Test
+    fun testNavigationToPowerManagementScreen() {
+        val navController = prepareScreen()
+        scrollAndClickOn(R.id.cardViewPowerManagement)
+        assertEquals(navController.currentDestination?.id, R.id.powerManagementPage)
+    }
+
+    @Test
+    fun testNavigationToVehiclePropertiesScreen() {
+        val navController = prepareScreen()
+        scrollAndClickOn(R.id.cardViewVehicleProperties)
+        assertEquals(navController.currentDestination?.id, R.id.vehiclePropertiesPage)
+    }
+
+    private fun scrollAndClickOn(id: Int) {
+        onView(ViewMatchers.withId(id)).perform(ViewActions.scrollTo())
+        onView(ViewMatchers.withId(id)).perform(ViewActions.click())
+    }
+
+    private fun prepareScreen(): TestNavHostController {
+>>>>>>> development
         val navController = TestNavHostController(
             ApplicationProvider.getApplicationContext())
 
@@ -32,10 +69,14 @@ class LandingPageTest {
             // Make the NavController available via the findNavController() APIs
             Navigation.setViewNavController(fragment.requireView(), navController)
         }
+<<<<<<< HEAD
 
         // Verify that performing a click changes the NavController’s state
         onView(ViewMatchers.withId(R.id.cardViewNavigation)).perform(ViewActions.click())
         assertEquals(navController.currentDestination?.id, R.id.navigationPage)
+=======
+        return navController
+>>>>>>> development
     }
 
     @Test

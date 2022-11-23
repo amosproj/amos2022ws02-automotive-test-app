@@ -37,6 +37,7 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.test.ext:junit-ktx:1.1.4'
     def sdkDir = project.android.sdkDirectory.canonicalPath
     def androidCarJar = "$sdkDir/platforms/android-32/optional/android.car.jar"
     implementation(files(androidCarJar))
