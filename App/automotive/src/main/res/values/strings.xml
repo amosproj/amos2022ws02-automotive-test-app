@@ -11,6 +11,7 @@
     <string name="button_voice_control">Voice Control</string>
     <string name="button_display_off">Turn Display Off</string>
     <string name="button_stand_by">Enable Standby</string>
+    <string name="button_mute_system">Mute System</string>
     <string name="button_phone">Phone</string>
     <string name="media_play">Media Play</string>
     <string name="landingpagetile">LandingPageTile</string>
