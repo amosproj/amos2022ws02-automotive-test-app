@@ -26,6 +26,13 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <service android:enabled="true"
+            android:name=".model.MediaService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
