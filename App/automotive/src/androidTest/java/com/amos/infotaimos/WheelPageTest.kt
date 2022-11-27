@@ -47,6 +47,13 @@ class WheelPageTest {
         checkMediaKeyPressed(R.id.wheel_button_skip_forward, KeyEvent.KEYCODE_MEDIA_NEXT)
     }
 
+    @Test
+    fun testPlayPause() {
+        launchFragmentInContainer<WheelPage>()
+        checkMediaKeyPressed(R.id.wheel_button_play_pause, KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE)
+        checkMediaKeyPressed(R.id.wheel_button_play_pause, KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE)
+    }
+
     /**
      * Starts a media service and plays a dummy track, media service will return first received key event via LiveData and CompletableFuture objects
      * @param buttonID ID of button inside view
