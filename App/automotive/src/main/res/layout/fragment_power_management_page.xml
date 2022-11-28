@@ -1,36 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.PowerManagementPage"
-    android:orientation="vertical">
-
-    <Button
-        android:id="@+id/fragment_power_button_display_off"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Theme.InfotAiMOS.Button"
-        android:text="@string/button_display_off" />
-
-    <Button
-        android:id="@+id/fragment_power_button_stand_by"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Theme.InfotAiMOS.Button"
-        android:text="@string/button_stand_by" />
+    android:backgroundTint="#553030"
+    android:clickable="true"
+    android:contextClickable="false"
+    android:orientation="vertical"
+    tools:context=".view.PowerManagementPage">
 
     <LinearLayout
         android:id="@+id/fragment_power_button_delay"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.3"
+        android:layout_height="100dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="match_parent"
             android:layout_weight="0.4"
             android:gravity="center"
             android:text="@string/delay"
@@ -38,11 +25,27 @@
             android:textSize="30sp" />
 
         <Spinner
-            android:id="@+id/new_delay_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_weight="0.6"
-            android:textSize="30sp"
-            android:entries="@array/delay_array" />
+            android:id="@+id/delay_spinner_power_management_page"
+            android:layout_width="500dp"
+            android:layout_height="match_parent"
+            android:entries="@array/delay_array"
+           />
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/fragment_power_button_display_off"
+        style="@style/Theme.InfotAiMOS.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_display_off" />
+
+    <Button
+        android:id="@+id/fragment_power_button_stand_by"
+        style="@style/Theme.InfotAiMOS.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_stand_by" />
+
+
 </LinearLayout>

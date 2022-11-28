@@ -2,7 +2,7 @@
 
     <style name="Theme.InfotAiMOS" parent="Theme.AppCompat" />
     <style name="Theme.InfotAiMOS.Button" parent="Widget.AppCompat.Button">
-        <item name="android:backgroundTint">@color/landing_green</item>
+        <item name="android:backgroundTint">@color/landing_olive</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">30sp</item>
     </style>
