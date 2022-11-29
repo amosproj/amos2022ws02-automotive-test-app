@@ -7,11 +7,14 @@ import androidx.lifecycle.Observer
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
+import com.amos.infotaimos.view.WheelPage
 import androidx.test.platform.app.InstrumentationRegistry
 import com.amos.infotaimos.model.MediaService
-import com.amos.infotaimos.view.WheelPage
 import junit.framework.Assert.assertTrue
+
 import org.junit.Test
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.TimeUnit
@@ -30,7 +33,8 @@ class WheelPageTest {
     }
 
     @Test
-    fun testLayoutDescription(){
+    fun testLayoutDescription() {
+        launchFragmentInContainer<WheelPage>()
         onView(withId(R.id.toggleButton)).check(matches(withText(R.string.description)))
         onView(withId(R.id.toggleButton)).perform(click()).check(matches(withText(R.string.functionality)))
         onView(withId(R.id.imageView)).check(matches(isDisplayed()))

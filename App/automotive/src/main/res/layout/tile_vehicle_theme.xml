@@ -15,18 +15,19 @@
             android:id="@+id/tile_vehicle_theme_status_icon"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/ic_baseline_dark_mode_24"
+            android:src="@drawable/theme_icon"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="@id/tile_vehicle_theme_guideline"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tint="@color/accent" />
 
         <TextView
             android:id="@+id/tile_vehicle_theme_status_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Darkmode enabled"
+            android:text="@string/darkmode_enabled"
             style="@style/TextAppearance.AppCompat.Display2"
             app:layout_constraintStart_toEndOf="@id/tile_vehicle_theme_guideline"
             app:layout_constraintEnd_toEndOf="parent"

@@ -5,39 +5,36 @@ import android.car.CarAppFocusManager
 import android.content.Context
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.onData
-import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isClickable
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
-
 import com.amos.infotaimos.model.CarInstanceManager
 import com.amos.infotaimos.model.NavigationService
-
-import org.hamcrest.Matchers.*
-
-import org.junit.Assert.*
+import org.hamcrest.Matchers.allOf
+import org.hamcrest.Matchers.instanceOf
+import org.hamcrest.Matchers.`is`
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
-
 
 @RunWith(AndroidJUnit4::class)
 class NavigationPageTest {
 
     @Test
-    fun testStartNavigationClickable(){
+    fun testStartNavigationClickable() {
         launchFragmentInContainer<NavigationPage>()
         onView(withId(R.id.start_navigation_button)).perform(click()).check(matches(isClickable()))
-
     }
     @Test
-    fun testStopNavigationClickable(){
+    fun testStopNavigationClickable() {
         launchFragmentInContainer<NavigationPage>()
         onView(withId(R.id.stop_navigation_button)).perform(click()).check(matches(isClickable()))
     }
-
 
     @Test
     fun startStopNavigation() {
@@ -48,8 +45,7 @@ class NavigationPageTest {
 
         launchFragmentInContainer<NavigationPage>()
 
-
-        //test start with delay 0s
+        // test start with delay 0s
         onView(withId(R.id.start_navigation_button)).perform(click())
         assertTrue(
             carAppFocusManager.isOwningFocus(
@@ -58,8 +54,7 @@ class NavigationPageTest {
             )
         )
 
-
-        //test stop with delay 0s
+        // test stop with delay 0s
         onView(withId(R.id.stop_navigation_button)).perform(click())
         assertFalse(
             carAppFocusManager.isOwningFocus(
@@ -67,8 +62,6 @@ class NavigationPageTest {
                 CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION
             )
         )
-
-
     }
 
     @Test
@@ -80,7 +73,7 @@ class NavigationPageTest {
 
         launchFragmentInContainer<NavigationPage>()
 
-        //test start with delay 30s
+        // test start with delay 30s
         onView(withId(R.id.delay_spinner)).perform(click())
         onData(
             allOf(
@@ -111,7 +104,7 @@ class NavigationPageTest {
             )
         )
 
-        //test stop with delay 30s
+        // test stop with delay 30s
         onView(withId(R.id.stop_navigation_button)).perform(click())
         assertTrue(
             carAppFocusManager.isOwningFocus(
@@ -133,7 +126,6 @@ class NavigationPageTest {
                 CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION
             )
         )
-
     }
 
     @Test
@@ -144,7 +136,7 @@ class NavigationPageTest {
 
         launchFragmentInContainer<NavigationPage>()
 
-        //test start with delay 1min
+        // test start with delay 1min
         onView(withId(R.id.delay_spinner)).perform(click())
         onData(
             allOf(
@@ -176,7 +168,7 @@ class NavigationPageTest {
             )
         )
 
-        //test stop with delay 1min
+        // test stop with delay 1min
         onView(withId(R.id.stop_navigation_button)).perform(click())
         assertTrue(
             carAppFocusManager.isOwningFocus(
@@ -198,7 +190,5 @@ class NavigationPageTest {
                 CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION
             )
         )
-
     }
-
 }

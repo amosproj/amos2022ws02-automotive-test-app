@@ -5,7 +5,6 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.matcher.ViewMatchers
 import com.amos.infotaimos.view.PowerManagementPage
-
 import org.junit.Test
 
 class PowerManagementPageTest {
