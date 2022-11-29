@@ -12,6 +12,13 @@ class LandingPage : Fragment() {
 
     private var binding: FragmentLandingPageBinding? = null
 
+    /**
+     * Construct landing page fragment
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return landing page view
+     */
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -22,6 +29,11 @@ class LandingPage : Fragment() {
         return bindingObject.root
     }
 
+    /**
+     * Applies binding to the landing page
+     * @param view
+     * @param savedInstanceState
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -29,22 +41,38 @@ class LandingPage : Fragment() {
             landingPage = this@LandingPage
         }
     }
+
+    /**
+     * Navigate to the navigation page via the nav_graph
+     */
     fun goToNavigationScreen() {
         findNavController().navigate(R.id.action_landingPage_to_navigationPage)
     }
 
+    /**
+     * Navigate to the wheel page via the nav_graph
+     */
     fun goToWheelScreen() {
         findNavController().navigate(R.id.action_landingPage_to_wheelPage)
     }
 
+    /**
+     * Navigate to the power management page via the nav_graph
+     */
     fun goToPowerManagementScreen() {
         findNavController().navigate(R.id.action_landingPage_to_powerManagementPage)
     }
 
+    /**
+     * Navigate to the vehicle properties page via the nav_graph
+     */
     fun goToVehiclePropertiesScreen() {
         findNavController().navigate(R.id.action_landingPage_to_vehiclePropertiesPage)
     }
 
+    /**
+     * Navigate to the media page via the nav_graph
+     */
     fun goToMediaPageScreen() {
         findNavController().navigate(R.id.action_landingPage_to_mediaPage)
     }
