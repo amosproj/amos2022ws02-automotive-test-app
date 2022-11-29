@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFF</color>
+    <color name="accent">#FFFFFF</color>
+    <color name="landing_green">#00b22b</color>
+    <color name="landing_blue">#0075a9</color>
+    <color name="landing_purple">#9e00ff</color>
+    <color name="landing_red">#d50000</color>
+    <color name="landing_olive">#d8db00</color>
+</resources>

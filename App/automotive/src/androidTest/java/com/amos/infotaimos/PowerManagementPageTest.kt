@@ -9,7 +9,6 @@ import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import com.amos.infotaimos.view.PowerManagementPage
 import com.amos.infotaimos.view.WheelPage
-
 import org.junit.Test
 
 class PowerManagementPageTest {

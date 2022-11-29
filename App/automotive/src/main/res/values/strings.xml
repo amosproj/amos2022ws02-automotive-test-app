@@ -26,4 +26,5 @@
         Briefly press the button to select the next track or station. For seeking forward, press and hold this button until the desired playback position is reached.</string>
     <string name="voice_control_button_description">Voice control button:\nThis is the button for switching voice operation on or off.
         Switch the voice recognition on by briefly pressing the button. To switch the voice recognition system off, press and hold the button.</string>
+    <string name="darkmode_enabled">Nightmode enabled</string>
 </resources>
