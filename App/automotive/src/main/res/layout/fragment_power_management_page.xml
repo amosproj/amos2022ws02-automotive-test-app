@@ -46,6 +46,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_stand_by" />
-
-
+        
+    <Button
+        android:id="@+id/fragment_power_button_mute_system"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Theme.InfotAiMOS.Button"
+        android:text="@string/button_mute_system" />
 </LinearLayout>

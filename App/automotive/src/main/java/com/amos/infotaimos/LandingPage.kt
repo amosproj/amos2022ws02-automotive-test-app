@@ -44,4 +44,8 @@ class LandingPage : Fragment() {
     fun goToVehiclePropertiesScreen() {
         findNavController().navigate(R.id.action_landingPage_to_vehiclePropertiesPage)
     }
+
+    fun goToMediaPageScreen() {
+        findNavController().navigate(R.id.action_landingPage_to_mediaPage)
+    }
 }
