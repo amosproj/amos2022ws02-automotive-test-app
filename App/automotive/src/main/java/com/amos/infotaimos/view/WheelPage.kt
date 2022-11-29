@@ -34,6 +34,16 @@ class WheelPage : ViewBindingFragment<FragmentWheelPageBinding>() {
             }
             Log.d(TAG, "SKIP FORWARD pressed")
         }
+        binding.wheelButtonSkipForward.setOnLongClickListener {
+            if(!description){
+                viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_MEDIA_FAST_FORWARD)
+            }
+            else{
+                (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.skip_forward_button_description), 100, 20000)
+            }
+            Log.d(TAG, "SEEK FORWARD pressed")
+            true
+        }
         binding.wheelButtonVoiceControl.setOnClickListener {
             if (!description) {
                 viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_VOICE_ASSIST)

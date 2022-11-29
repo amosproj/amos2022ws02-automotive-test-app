@@ -14,5 +14,6 @@ class PowerManagementPageTest {
         launchFragmentInContainer<PowerManagementPage>()
         onView(ViewMatchers.withId(R.id.fragment_power_button_display_off)).perform(click())
         onView(ViewMatchers.withId(R.id.fragment_power_button_stand_by)).perform(click())
+        onView(ViewMatchers.withId(R.id.fragment_power_button_mute_system)).perform(click())
     }
 }
