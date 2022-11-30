@@ -103,9 +103,12 @@ create_emulator_device() {
 }
 
 build_and_deploy() {
-	echo "build apk"
 	cd App/
 	chmod +x gradlew
+	echo "prepare test"
+	./gradlew test
+	echo "test complete"
+	echo "build apk for install"
 	./gradlew assembleDebug
 	echo "start emulator"
 	$emulator -avd $emulator_device_name  &
