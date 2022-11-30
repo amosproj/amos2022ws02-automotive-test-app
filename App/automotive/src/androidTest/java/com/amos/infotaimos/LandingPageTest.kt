@@ -15,7 +15,9 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class LandingPageTest {
 
-    // Navigation Tests based on https://developer.android.com/guide/navigation/navigation-testing
+    /**
+     * Test navigation to the navigation page via the nav_graph
+     */
     @Test
     fun testNavigationToNavigationScreen() {
         val navController = prepareScreen()
@@ -23,6 +25,9 @@ class LandingPageTest {
         assertEquals(navController.currentDestination?.id, R.id.navigationPage)
     }
 
+    /**
+     * Test navigation to the steering wheel page via the nav_graph
+     */
     @Test
     fun testNavigationToSteeringWheelScreen() {
         val navController = prepareScreen()
@@ -30,6 +35,9 @@ class LandingPageTest {
         assertEquals(navController.currentDestination?.id, R.id.wheelPage)
     }
 
+    /**
+     * Test navigation to the power management page via the nav_graph
+     */
     @Test
     fun testNavigationToPowerManagementScreen() {
         val navController = prepareScreen()
@@ -37,6 +45,9 @@ class LandingPageTest {
         assertEquals(navController.currentDestination?.id, R.id.powerManagementPage)
     }
 
+    /**
+     * Test navigation to the vehicle properties page via the nav_graph
+     */
     @Test
     fun testNavigationToVehiclePropertiesScreen() {
         val navController = prepareScreen()
@@ -44,6 +55,9 @@ class LandingPageTest {
         assertEquals(navController.currentDestination?.id, R.id.vehiclePropertiesPage)
     }
 
+    /**
+     * Test navigation to the media page via the nav_graph
+     */
     @Test
     fun testNavigationToMediaScreen() {
         val navController = prepareScreen()
@@ -51,11 +65,19 @@ class LandingPageTest {
         assertEquals(navController.currentDestination?.id, R.id.mediaPage)
     }
 
+    /**
+     * Scrolls and clicks on the element specified by [id]
+     * @param id ID of the element to be clicked
+     */
     private fun scrollAndClickOn(id: Int) {
         onView(ViewMatchers.withId(id)).perform(ViewActions.scrollTo())
         onView(ViewMatchers.withId(id)).perform(ViewActions.click())
     }
 
+    /**
+     * Construct the navigation controller to be tested.
+     * @return navController that controls the context switching as defined in the nav_graph
+     */
     private fun prepareScreen(): TestNavHostController {
         val navController = TestNavHostController(
             ApplicationProvider.getApplicationContext()
