@@ -79,14 +79,14 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    fun displayToast(text: String) {
+    fun displayToast(text: String, durationStart: Long, durationEnd: Long) {
         val toastCard = findViewById<CardView>(R.id.custom_toast)
         val textView = toastCard.findViewById<TextView>(R.id.custom_toast_text)
         textView.text = text
         toastCard
             .animate()
             .alpha(1f)
-            .setDuration(500)
+            .setDuration(durationStart)
             .setInterpolator(DecelerateInterpolator())
             .withStartAction {
                 toastCard.visibility = View.VISIBLE
@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity() {
             .withEndAction {
                 toastCard.animate()
                     .alpha(0f)
-                    .setDuration(1000)
+                    .setDuration(durationEnd)
                     .setInterpolator(
                         AccelerateInterpolator()
                     ).withEndAction {

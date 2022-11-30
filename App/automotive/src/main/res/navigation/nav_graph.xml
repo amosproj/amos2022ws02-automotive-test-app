@@ -16,6 +16,15 @@
         <action
             android:id="@+id/action_landingPage_to_wheelPage"
             app:destination="@id/wheelPage" />
+        <action
+            android:id="@+id/action_landingPage_to_powerManagementPage"
+            app:destination="@id/powerManagementPage" />
+        <action
+            android:id="@+id/action_landingPage_to_vehiclePropertiesPage"
+            app:destination="@id/vehiclePropertiesPage" />
+        <action
+            android:id="@+id/action_landingPage_to_mediaPage"
+            app:destination="@id/mediaPage" />
     </fragment>
 
     <fragment
@@ -23,10 +32,24 @@
         android:name="com.amos.infotaimos.NavigationPage"
         android:label="fragment_navigation_page"
         tools:layout="@layout/fragment_navigation_page" />
-
     <fragment
         android:id="@+id/wheelPage"
         android:name="com.amos.infotaimos.view.WheelPage"
         android:label="fragment_wheel_page"
         tools:layout="@layout/fragment_wheel_page" />
+    <fragment
+        android:id="@+id/powerManagementPage"
+        android:name="com.amos.infotaimos.view.PowerManagementPage"
+        android:label="fragment_power_management_page"
+        tools:layout="@layout/fragment_power_management_page" />
+    <fragment
+        android:id="@+id/vehiclePropertiesPage"
+        android:name="com.amos.infotaimos.view.VehiclePropertiesPage"
+        android:label="fragment_vehicle_properties_page"
+        tools:layout="@layout/fragment_vehicle_properties_page" />
+    <fragment
+        android:id="@+id/mediaPage"
+        android:name="com.amos.infotaimos.view.MediaPage"
+        android:label="fragment_media_page"
+        tools:layout="@layout/fragment_media_page" />
 </navigation>

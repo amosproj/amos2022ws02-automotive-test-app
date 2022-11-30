@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel
 class WheelPageViewModel : ViewModel() {
     fun handleButtonPress(context: Context, action: Int) {
         when (action) {
-            KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE, KeyEvent.KEYCODE_MEDIA_NEXT -> {
+            KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE, KeyEvent.KEYCODE_MEDIA_NEXT, KeyEvent.KEYCODE_MEDIA_FAST_FORWARD -> {
                 executeMediaButtonPress(
                     (context.getSystemService(Context.AUDIO_SERVICE) as AudioManager),
                     action
@@ -30,9 +30,11 @@ class WheelPageViewModel : ViewModel() {
     }
 
     private fun executeVoiceControlButtonPress(keyEvent: Int) {
-        Thread(kotlinx.coroutines.Runnable {
-            val inst = Instrumentation()
-            inst.sendKeyDownUpSync(keyEvent)
-        }).start()
+        Thread(
+            kotlinx.coroutines.Runnable {
+                val inst = Instrumentation()
+                inst.sendKeyDownUpSync(keyEvent)
+            }
+        ).start()
     }
 }
