@@ -14,7 +14,7 @@ import androidx.lifecycle.MutableLiveData
 /**
  * Service class currently only used for tests as we dont handle media events inside app for now
  */
-class MediaService: Service() {
+class MediaService : Service() {
     private lateinit var mediaSession: MediaSession
 
     @Override
@@ -29,7 +29,7 @@ class MediaService: Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         mediaSession.setCallback(object : MediaSession.Callback() {
             override fun onMediaButtonEvent(mediaButtonIntent: Intent): Boolean {
-                val keyEvent : KeyEvent? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                val keyEvent: KeyEvent? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     mediaButtonIntent.getParcelableExtra(Intent.EXTRA_KEY_EVENT, KeyEvent::class.java)
                 } else {
                     mediaButtonIntent.getParcelableExtra(Intent.EXTRA_KEY_EVENT)
@@ -42,7 +42,7 @@ class MediaService: Service() {
             }
         })
         mediaSession.isActive = true
-        //deprecated but its just a dummy anyways
+        // deprecated but its just a dummy anyways
         AudioTrack(
             AudioManager.STREAM_MUSIC,
             48000,
@@ -56,8 +56,7 @@ class MediaService: Service() {
             AudioTrack.MODE_STREAM
         ).play()
 
-
-        return START_STICKY;
+        return START_STICKY
     }
 
     companion object {

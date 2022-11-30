@@ -39,7 +39,7 @@ class WheelPageUnitTest {
         prepareScreen()
         clickable(R.id.wheel_button_skip_forward)
     }
-    
+
     private fun clickable(id: Int) {
         onView(ViewMatchers.withId(id)).perform(ViewActions.click()).check(matches(ViewMatchers.isClickable()))
     }
