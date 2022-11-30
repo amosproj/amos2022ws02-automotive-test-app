@@ -6,6 +6,7 @@ import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.Observer
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.longClick
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
@@ -51,6 +52,19 @@ class WheelPageTest {
         checkMediaKeyPressed(R.id.wheel_button_skip_forward, KeyEvent.KEYCODE_MEDIA_NEXT)
     }
 
+    @Test
+    fun testPlayPause() {
+        launchFragmentInContainer<WheelPage>()
+        checkMediaKeyPressed(R.id.wheel_button_play_pause, KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE)
+        checkMediaKeyPressed(R.id.wheel_button_play_pause, KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE)
+    }
+
+    @Test
+    fun testSeekForward() {
+        launchFragmentInContainer<WheelPage>()
+        checkMediaKeyPressed(R.id.wheel_button_skip_forward, KeyEvent.KEYCODE_MEDIA_FAST_FORWARD)
+    }
+
     /**
      * Starts a media service and plays a dummy track, media service will return first received key event via LiveData and CompletableFuture objects
      * @param buttonID ID of button inside view
@@ -71,7 +85,11 @@ class WheelPageTest {
         InstrumentationRegistry.getInstrumentation().runOnMainSync {
             MediaService.LAST_MEDIA_KEY.observeForever(keyObserver)
         }
-        onView(withId(buttonID)).perform(click())
+        if (expectedKeyEventCode == KeyEvent.KEYCODE_MEDIA_FAST_FORWARD) {
+            onView(withId(buttonID)).perform(longClick())
+        } else {
+            onView(withId(buttonID)).perform(click())
+        }
         val keyEventCode = future.get(timeout, timeoutUnit)
         InstrumentationRegistry.getInstrumentation().runOnMainSync {
             MediaService.LAST_MEDIA_KEY.removeObserver(keyObserver)
