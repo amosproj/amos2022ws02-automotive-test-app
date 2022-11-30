@@ -32,6 +32,8 @@ https://user-images.githubusercontent.com/2084016/203499650-adcb48e5-83e8-430a-9
 
 https://user-images.githubusercontent.com/2084016/203500400-9e7a2615-174f-42ec-b2e5-1e506f4d6c42.mov
 
-- cd amos2022ws02-automotive-test-app.git
+- cd amos2022ws02-automotive-test-app
 - sh ./setup_and_deploy.sh 
 - add --full parameter if confirmation steps should be skipped
+
+Due to file size limitations a narrated version of the video can only be found inside the setup_files folder
