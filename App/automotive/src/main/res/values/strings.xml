@@ -4,7 +4,7 @@
     <string name="start_nav">Start navigation</string>
     <string name="nav_running">Running</string>
     <string name="stop_nav">Stop navigation</string>
-    <string name="nav_delay">Delay</string>
+    <string name="delay">Delay</string>
     <string name="button_skip_forward">Skip Forward</string>
     <string name="button_seek_forward">Seek Forward</string>
     <string name="button_play_pause">Play / Pause</string>

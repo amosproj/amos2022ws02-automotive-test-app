@@ -1,26 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.PowerManagementPage"
-    android:orientation="vertical">
+    android:clickable="true"
+    android:contextClickable="false"
+    android:orientation="vertical"
+    tools:context=".view.PowerManagementPage">
+
+    <LinearLayout
+        android:id="@+id/fragment_power_button_delay"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.4"
+            android:gravity="center"
+            android:text="@string/delay"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+        <Spinner
+            android:id="@+id/delay_spinner_power_management_page"
+            android:layout_width="500dp"
+            android:layout_height="match_parent"
+            android:entries="@array/delay_array"
+           />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/fragment_power_button_display_off"
+        style="@style/Theme.InfotAiMOS.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Theme.InfotAiMOS.Button"
         android:text="@string/button_display_off" />
 
     <Button
         android:id="@+id/fragment_power_button_stand_by"
+        style="@style/Theme.InfotAiMOS.Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Theme.InfotAiMOS.Button"
         android:text="@string/button_stand_by" />
-
+        
     <Button
         android:id="@+id/fragment_power_button_mute_system"
         android:layout_width="match_parent"
