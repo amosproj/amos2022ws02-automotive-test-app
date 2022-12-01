@@ -27,11 +27,11 @@
             tools:layout_editor_absoluteY="110dp">
 
             <TextView
-                android:id="@+id/actionId"
-                android:layout_width="150dp"
+                android:id="@+id/actionId_and_duration"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="3567287"
+                android:text="3567287 - 00:12:19"
                 android:textAlignment="center"
                 android:textSize="22sp"
                 android:textStyle="bold"
@@ -52,7 +52,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/actionId" />
+                app:layout_constraintStart_toEndOf="@+id/actionId_and_duration" />
 
             <TextView
                 android:id="@+id/time"
@@ -60,24 +60,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="15dp"
-                android:text="14:27:29-14:29:01"
+                android:text="14:27:29 - 14:29:01"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/actionId"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/duration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:text="00:05:24"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.2"
-                app:layout_constraintStart_toEndOf="@+id/time"
+                app:layout_constraintStart_toEndOf="@+id/actionId_and_duration"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,9 +17,8 @@ class TimerRecyclerViewAdapter(private val context: Context, private val timerIt
     }
 
     override fun onBindViewHolder(holder: TimerItemViewHolder, position: Int) {
-        holder.actionId.text = timerItems[position].actionId
+        holder.actionIdAndDuration.text = timerItems[position].actionIdAndDuration
         holder.time.text = timerItems[position].time
-        holder.duration.text = timerItems[position].duration
         holder.description.text = timerItems[position].description
     }
 
@@ -27,10 +26,9 @@ class TimerRecyclerViewAdapter(private val context: Context, private val timerIt
         return timerItems.size
     }
 
-    class TimerItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class TimerItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val time: TextView = itemView.findViewById(R.id.time)
-        val duration: TextView = itemView.findViewById(R.id.duration)
+        val actionIdAndDuration: TextView = itemView.findViewById(R.id.actionId_and_duration)
         val description: TextView = itemView.findViewById(R.id.description)
-        val actionId: TextView = itemView.findViewById(R.id.actionId)
     }
 }

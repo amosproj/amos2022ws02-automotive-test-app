@@ -1,12 +1,12 @@
 package com.amos.infotaimos.model
 
 class TimerItem() {
-    var actionId: String = ""
+    private var actionId: String = ""
     private var start: String = ""
     private var end: String = ""
     val time: String
         get() = "$start - $end"
-    val duration: String
+    private val duration: String
         get() {
             val totalSeconds = getSeconds(end) - getSeconds(start)
             val hours = totalSeconds / 3600
@@ -14,6 +14,8 @@ class TimerItem() {
             val seconds = totalSeconds % 60
             return String.format("%02d:%02d:%02d", hours, minutes, seconds)
         }
+    var actionIdAndDuration: String = ""
+        get() = "$actionId - $duration"
     var description: String = ""
 
     constructor(actionId: String, start: String, end: String, description: String) : this() {
