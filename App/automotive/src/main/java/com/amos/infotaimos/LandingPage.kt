@@ -76,4 +76,11 @@ class LandingPage : Fragment() {
     fun goToMediaPageScreen() {
         findNavController().navigate(R.id.action_landingPage_to_mediaPage)
     }
+
+    /**
+     * Navigate to the app settings via the nav_graph
+     */
+    fun goToAppSettingsScreen(){
+        findNavController().navigate(R.id.action_langingPage_to_appSettings)
+    }
 }

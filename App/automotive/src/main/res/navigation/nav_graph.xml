@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_landingPage_to_mediaPage"
             app:destination="@id/mediaPage" />
+        <action
+            android:id="@+id/action_langingPage_to_appSettings"
+            app:destination="@id/appSettings"/>
     </fragment>
 
     <fragment
@@ -52,4 +55,9 @@
         android:name="com.amos.infotaimos.view.MediaPage"
         android:label="fragment_media_page"
         tools:layout="@layout/fragment_media_page" />
+    <fragment
+        android:id="@+id/appSettings"
+        android:name="com.amos.infotaimos.view.AppSettings"
+        android:label="fragment_app_settings"
+        tools:layout="@layout/fragment_app_settings" />
 </navigation>

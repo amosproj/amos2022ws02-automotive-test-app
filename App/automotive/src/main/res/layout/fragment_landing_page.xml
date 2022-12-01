@@ -98,6 +98,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="8dp"
                     android:layout_weight="1"
+                    android:onClick="@{() -> landingPage.goToAppSettingsScreen()}"
                     app:tileColor="@color/landing_pink"
                     app:tileIcon="@drawable/settings_gear_icon"
                     app:tileText= "@string/app_settings" />
