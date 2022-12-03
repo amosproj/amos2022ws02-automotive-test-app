@@ -13,6 +13,8 @@
     <string name="button_stand_by">Enable Standby</string>
     <string name="button_mute_system">Mute System</string>
     <string name="button_phone">Phone</string>
+    <string name="button_speech_announcement">Speech Announcement</string>
+    <string name="button_ptt">Push-to-talk (PTT)</string>
     <string name="media_play">Media Play</string>
     <string name="landingpagetile">LandingPageTile</string>
     <string name="description">Description</string>
@@ -27,4 +29,5 @@
     <string name="voice_control_button_description">Voice control button:\nThis is the button for switching voice operation on or off.
         Switch the voice recognition on by briefly pressing the button. To switch the voice recognition system off, press and hold the button.</string>
     <string name="darkmode_enabled">Nightmode enabled</string>
+    <string name="button_ttt">Tap-to-talk (TTT)</string>
 </resources>

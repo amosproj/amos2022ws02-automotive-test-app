@@ -14,6 +14,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.amos.infotaimos.model.CarInstanceManager
 import com.amos.infotaimos.model.NavigationService
+import com.amos.infotaimos.view.NavigationPage
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.instanceOf
 import org.hamcrest.Matchers.`is`

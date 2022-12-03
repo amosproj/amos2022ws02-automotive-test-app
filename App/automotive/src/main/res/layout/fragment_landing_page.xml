@@ -6,7 +6,7 @@
 
         <variable
             name="landingPage"
-            type="com.amos.infotaimos.LandingPage" />
+            type="com.amos.infotaimos.view.LandingPage" />
     </data>
 
     <ScrollView
@@ -92,6 +92,16 @@
                     app:tileIcon="@drawable/power_management_icon"
                     app:tileText="Power Management" />
 
+                <com.amos.infotaimos.view.LandingPageTile
+                    android:id="@+id/cardViewSpeechAssistant"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    android:onClick="@{() -> landingPage.goToSpeechAssistantPageScreen()}"
+                    app:tileColor="@color/landing_yellow"
+                    app:tileIcon="@drawable/speech_assistant_icon_24"
+                    app:tileText="Speech Assistant" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

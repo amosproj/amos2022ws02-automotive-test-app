@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:contextClickable="false"
+    android:orientation="vertical"
+    tools:context=".view.SpeechAssistantPage">
+
+    <Button
+        android:id="@+id/fragment_speech_announcement_button"
+        style="@style/Theme.InfotAiMOS.Button"
+        android:backgroundTint="@color/landing_yellow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_speech_announcement" />
+
+    <Button
+        android:id="@+id/fragment_ptt_button"
+        style="@style/Theme.InfotAiMOS.Button"
+        android:backgroundTint="@color/landing_yellow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_ptt" />
+
+    <Button
+        android:id="@+id/fragment_ttt_button"
+        style="@style/Theme.InfotAiMOS.Button"
+        android:backgroundTint="@color/landing_yellow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_ttt" />
+</LinearLayout>
