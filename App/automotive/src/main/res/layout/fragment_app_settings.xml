@@ -13,6 +13,7 @@
             android:layout_height="wrap_content">
 
             <include
+                android:id="@+id/theme_mode_tile"
                 layout="@layout/tile_vehicle_theme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

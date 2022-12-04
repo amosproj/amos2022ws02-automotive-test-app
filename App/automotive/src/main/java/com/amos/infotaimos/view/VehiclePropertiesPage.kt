@@ -9,10 +9,4 @@ import com.amos.infotaimos.viewmodel.VehiclePropertiesPageViewModel
 
 class VehiclePropertiesPage : ViewBindingFragment<FragmentVehiclePropertiesPageBinding>() {
     private val viewModel: VehiclePropertiesPageViewModel by viewModels()
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.themeModeTile.root.setOnClickListener { viewModel.changeThemeMode() }
-    }
 }
