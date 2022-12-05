@@ -44,7 +44,6 @@
                 android:layout_weight="0.6"
                 android:entries="@array/delay_array" />
         </LinearLayout>
-
     </LinearLayout>
 
     <Button
