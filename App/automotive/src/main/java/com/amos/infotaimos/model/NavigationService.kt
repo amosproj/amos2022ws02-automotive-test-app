@@ -2,6 +2,12 @@ package com.amos.infotaimos.model
 
 import android.car.Car
 import android.car.CarAppFocusManager
+import android.car.media.CarAudioManager
+import android.content.Intent
+import android.media.AudioAttributes
+import android.media.AudioManager
+import android.media.AudioTrack
+import android.media.MediaPlayer
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.MainScope
@@ -80,6 +86,21 @@ object NavigationService {
             CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION
         )
         Log.d(TAG, "Updated Navigation LiveData")
+    }
+
+    fun speechAnnouncement(mediaPlayer: MediaPlayer, delay: Long){
+        // val audioSession = audioManager.generateAudioSessionId()
+        //mediaPlayer.setDataSource()
+        mediaPlayer.start()
+        /*val track = AudioTrack(
+            AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_ASSISTANCE_NAVIGATION_GUIDANCE)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                .build(),
+            ,a,5,AudioTrack.MODE_STREAM, audioSession)
+        )
+         */
+
     }
 
     class NavCallback : CarAppFocusManager.OnAppFocusOwnershipCallback {
