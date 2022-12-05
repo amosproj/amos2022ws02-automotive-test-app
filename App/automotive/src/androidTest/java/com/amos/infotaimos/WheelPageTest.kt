@@ -11,11 +11,10 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
-import com.amos.infotaimos.view.WheelPage
 import androidx.test.platform.app.InstrumentationRegistry
 import com.amos.infotaimos.model.MediaService
+import com.amos.infotaimos.view.WheelPage
 import junit.framework.Assert.assertTrue
-
 import org.junit.Test
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.TimeUnit
@@ -77,7 +76,7 @@ class WheelPageTest {
         context.startService(Intent(context, MediaService::class.java))
 
         val future: CompletableFuture<Int> = CompletableFuture()
-        val keyObserver:Observer<Int?> = Observer<Int?> {
+        val keyObserver: Observer<Int?> = Observer<Int?> {
             it?.let {
                 future.complete(it)
             }
