@@ -1,29 +1,19 @@
 package com.amos.infotaimos.model
 
-class TimerItem() {
-    var actionId: String = ""
-    var start: String = ""
-    var end: String = ""
+data class TimerItem(var actionId: String="", var start: String = "", var end: String = "", var description: String="") {
     val time: String
         get() = "$start" + if (end != "") " - $end" else ""
     private val duration: String
         get() {
+            if(end == "") return "unfinished"
             val totalSeconds = getSeconds(end) - getSeconds(start)
             val hours = totalSeconds / 3600
             val minutes = (totalSeconds % 3600) / 60
             val seconds = totalSeconds % 60
             return String.format("%02d:%02d:%02d", hours, minutes, seconds)
         }
-    var actionIdAndDuration: String = ""
+    val actionIdAndDuration: String
         get() = "$actionId - $duration"
-    var description: String = ""
-
-    constructor(actionId: String, start: String, end: String, description: String) : this() {
-        this.actionId = actionId
-        this.start = start
-        this.end = end
-        this.description = description
-    }
 }
 
 private fun getSeconds(time: String): Int {

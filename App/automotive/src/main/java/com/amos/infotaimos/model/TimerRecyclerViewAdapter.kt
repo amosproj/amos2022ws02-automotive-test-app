@@ -1,34 +1,46 @@
 package com.amos.infotaimos.model
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.amos.infotaimos.R
+import com.amos.infotaimos.databinding.TimerListItemBinding
 
-class TimerRecyclerViewAdapter(private val context: Context, private val timerItems: List<TimerItem>) : RecyclerView.Adapter<TimerRecyclerViewAdapter.TimerItemViewHolder>() {
+class TimerRecyclerViewAdapter() :
+    RecyclerView.Adapter<TimerRecyclerViewAdapter.TimerItemViewHolder>() {
+
+    private val differ = AsyncListDiffer(this, object : DiffUtil.ItemCallback<TimerItem>() {
+        override fun areItemsTheSame(oldItem: TimerItem, newItem: TimerItem) =
+            oldItem.actionId == newItem.actionId && oldItem.start == newItem.start
+
+        override fun areContentsTheSame(oldItem: TimerItem, newItem: TimerItem) = oldItem == newItem
+    })
+
+    fun submitList(list: List<TimerItem>) = differ.submitList(list.toList())
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TimerItemViewHolder {
-        val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.timer_list_item, parent, false)
-        return TimerItemViewHolder(view)
+        val itemBinding =
+            TimerListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return TimerItemViewHolder(itemBinding)
     }
 
     override fun onBindViewHolder(holder: TimerItemViewHolder, position: Int) {
-        holder.actionIdAndDuration.text = timerItems[position].actionIdAndDuration
-        holder.time.text = timerItems[position].time
-        holder.description.text = timerItems[position].description
+        holder.actionIdAndDuration.text = differ.currentList[position].actionIdAndDuration
+        holder.time.text = differ.currentList[position].time
+        holder.description.text = differ.currentList[position].description
     }
 
     override fun getItemCount(): Int {
-        return timerItems.size
+        return differ.currentList.size
     }
 
-    class TimerItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val time: TextView = itemView.findViewById(R.id.time)
-        val actionIdAndDuration: TextView = itemView.findViewById(R.id.actionId_and_duration)
-        val description: TextView = itemView.findViewById(R.id.description)
+
+    class TimerItemViewHolder(private val itemBinding: TimerListItemBinding) :
+        RecyclerView.ViewHolder(itemBinding.root) {
+        val time: TextView = itemBinding.time
+        val actionIdAndDuration: TextView = itemBinding.actionIdAndDuration
+        val description: TextView = itemBinding.description
     }
 }
