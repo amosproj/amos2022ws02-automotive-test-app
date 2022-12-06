@@ -1,4 +1,4 @@
-package com.amos.infotaimos
+package com.amos.infotaimos.viewmodel
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
