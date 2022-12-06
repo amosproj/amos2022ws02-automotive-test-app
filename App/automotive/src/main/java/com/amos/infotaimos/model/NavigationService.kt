@@ -2,11 +2,6 @@ package com.amos.infotaimos.model
 
 import android.car.Car
 import android.car.CarAppFocusManager
-import android.car.media.CarAudioManager
-import android.content.Intent
-import android.media.AudioAttributes
-import android.media.AudioManager
-import android.media.AudioTrack
 import android.media.MediaPlayer
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -88,18 +83,21 @@ object NavigationService {
         Log.d(TAG, "Updated Navigation LiveData")
     }
 
-    fun speechAnnouncement(mediaPlayer: MediaPlayer, delay: Long){
-        // val audioSession = audioManager.generateAudioSessionId()
-        //mediaPlayer.setDataSource()
-        mediaPlayer.start()
-        /*val track = AudioTrack(
-            AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_ASSISTANCE_NAVIGATION_GUIDANCE)
-                .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
-                .build(),
-            ,a,5,AudioTrack.MODE_STREAM, audioSession)
-        )
-         */
+    fun speechAnnouncement(mediaPlayer: MediaPlayer, delay: Long) {
+
+        Log.d(TAG, "Requested navigation announcement in $delay ms")
+
+        startTask?.cancel()
+        startTask = Timer().schedule(delay) {
+            Log.d(TAG, "Navigation announcement timer fired")
+            mediaPlayer.start()
+            Timer().schedule(3000) {
+                mediaPlayer.release()
+                Log.d(TAG, "mediaPlayer released")
+            }
+
+            startTask = null
+        }
 
     }
 
