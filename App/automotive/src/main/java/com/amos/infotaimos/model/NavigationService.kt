@@ -16,6 +16,7 @@ object NavigationService {
     val navCallback = NavCallback()
     private var startTask: TimerTask? = null
     private var stopTask: TimerTask? = null
+    private var announcementTask: TimerTask? = null
     val navIndicatorLiveData: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
 
     fun startNavigation(car: Car, delay: Long) {
@@ -87,16 +88,16 @@ object NavigationService {
 
         Log.d(TAG, "Requested navigation announcement in $delay ms")
 
-        startTask?.cancel()
-        startTask = Timer().schedule(delay) {
+        announcementTask?.cancel()
+        announcementTask = Timer().schedule(delay) {
             Log.d(TAG, "Navigation announcement timer fired")
             mediaPlayer.start()
-            Timer().schedule(3000) {
-                mediaPlayer.release()
-                Log.d(TAG, "mediaPlayer released")
-            }
 
-            startTask = null
+            Thread.sleep(3000)
+            mediaPlayer.release()
+            Log.d(TAG, "mediaPlayer released")
+
+            announcementTask = null
         }
 
     }
