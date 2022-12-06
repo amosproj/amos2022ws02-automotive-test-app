@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/navigationPage"
-        android:name="com.amos.infotaimos.NavigationPage"
+        android:name="com.amos.infotaimos.view.NavigationPage"
         android:label="fragment_navigation_page"
         tools:layout="@layout/fragment_navigation_page" />
     <fragment

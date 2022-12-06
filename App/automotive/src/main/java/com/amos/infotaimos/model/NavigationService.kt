@@ -3,6 +3,7 @@ package com.amos.infotaimos.model
 import android.car.Car
 import android.car.CarAppFocusManager
 import android.media.MediaPlayer
+import android.nfc.Tag
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.MainScope
@@ -88,17 +89,22 @@ object NavigationService {
 
         Log.d(TAG, "Requested navigation announcement in $delay ms")
 
-        announcementTask?.cancel()
-        announcementTask = Timer().schedule(delay) {
-            Log.d(TAG, "Navigation announcement timer fired")
-            mediaPlayer.start()
+        //announcementTask?.cancel()
+        if (announcementTask == null) {
+            announcementTask = Timer().schedule(delay) {
+                Log.d(TAG, "Navigation announcement timer fired")
+                mediaPlayer.start()
 
-            Thread.sleep(3000)
-            mediaPlayer.release()
-            Log.d(TAG, "mediaPlayer released")
+                Thread.sleep(3000)
+                mediaPlayer.release()
+                Log.d(TAG, "mediaPlayer released")
 
-            announcementTask = null
+                announcementTask = null
+            }
+        }else{
+            Log.d(TAG, "Navigation announcement already scheduled, new announcement will be discarded")
         }
+
 
     }
 
