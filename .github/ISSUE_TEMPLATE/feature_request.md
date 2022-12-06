@@ -20,7 +20,7 @@ assignees: ''
 ## Definition of done (DoD)
 * Code compiles and builds 
 * Acceptance criteria are met
-* Feature tests have been written and were passed at/above 75% test coverage
+* Tests have been written and were passed 
 * Code is peer-reviewed 
 * Feature is merged into development branch
 * Documentation is updated 

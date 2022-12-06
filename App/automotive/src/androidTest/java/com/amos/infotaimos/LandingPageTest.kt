@@ -66,13 +66,23 @@ class LandingPageTest {
     }
 
     /**
-     * Test navigation to the media page via the nav_graph
+     * Test navigation to the app setting page via the nav_graph
      */
     @Test
     fun testNavigationToAppSettings() {
         val navController = prepareScreen()
         scrollAndClickOn(R.id.cardViewAppSettings)
         assertEquals(navController.currentDestination?.id, R.id.appSettings)
+    }
+
+    /**
+     * Test navigation to the timer page via the nav_graph
+     */
+    @Test
+    fun testNavigationToTimerPage() {
+        val navController = prepareScreen()
+        scrollAndClickOn(R.id.cardViewTimer)
+        assertEquals(navController.currentDestination?.id, R.id.timerPage)
     }
 
     /**
