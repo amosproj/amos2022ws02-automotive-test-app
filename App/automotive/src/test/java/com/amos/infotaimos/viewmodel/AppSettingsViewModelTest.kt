@@ -1,13 +1,15 @@
 package com.amos.infotaimos.viewmodel
-
 import androidx.appcompat.app.AppCompatDelegate
 import org.junit.Test
 
-class VehiclePropertiesViewModelTest {
+class AppSettingsViewModelTest {
 
+    /**
+     * Test the ability to change between light and dark mode.
+     */
     @Test
     fun changeThemeMode() {
-        val viewModel = VehiclePropertiesPageViewModel()
+        val viewModel = AppSettingsViewModel()
         viewModel.changeThemeMode()
         val theme1 = AppCompatDelegate.getDefaultNightMode()
         viewModel.changeThemeMode()
