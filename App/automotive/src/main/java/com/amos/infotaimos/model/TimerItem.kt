@@ -1,11 +1,11 @@
 package com.amos.infotaimos.model
 
 class TimerItem() {
-    private var actionId: String = ""
-    private var start: String = ""
-    private var end: String = ""
+    var actionId: String = ""
+    var start: String = ""
+    var end: String = ""
     val time: String
-        get() = "$start - $end"
+        get() = "$start" + if (end != "") " - $end" else ""
     private val duration: String
         get() {
             val totalSeconds = getSeconds(end) - getSeconds(start)
