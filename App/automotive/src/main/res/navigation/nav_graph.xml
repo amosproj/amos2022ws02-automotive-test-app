@@ -26,12 +26,14 @@
             android:id="@+id/action_landingPage_to_mediaPage"
             app:destination="@id/mediaPage" />
         <action
-
             android:id="@+id/action_landingPage_to_speechAssistantPage"
             app:destination="@id/speechAssistantPage" />
         <action
-            android:id="@+id/action_langingPage_to_appSettings"
+            android:id="@+id/action_landingPage_to_appSettings"
             app:destination="@id/appSettings"/>
+        <action
+            android:id="@+id/action_landingPage_to_timerPage"
+            app:destination="@id/timerPage"/>
     </fragment>
 
     <fragment
@@ -69,4 +71,9 @@
         android:name="com.amos.infotaimos.view.AppSettings"
         android:label="fragment_app_settings"
         tools:layout="@layout/fragment_app_settings" />
+    <fragment
+        android:id="@+id/timerPage"
+        android:name="com.amos.infotaimos.view.TimerPage"
+        android:label="fragment_timer_page"
+        tools:layout="@layout/fragment_timer_page"/>
 </navigation>

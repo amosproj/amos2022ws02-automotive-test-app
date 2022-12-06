@@ -17,6 +17,7 @@
     <string name="button_ptt">Push-to-talk (PTT)</string>
     <string name="media_play">Media Play</string>
     <string name="app_settings">App Settings</string>
+    <string name="timer">Timer</string>
     <string name="landingpagetile">LandingPageTile</string>
     <string name="description">Description</string>
     <string name="functionality">Functionality</string>
