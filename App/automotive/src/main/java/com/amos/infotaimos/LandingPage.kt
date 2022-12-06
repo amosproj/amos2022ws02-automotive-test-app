@@ -85,7 +85,7 @@ class LandingPage : Fragment() {
     }
 
     /**
-     * Navigate to the app settings via the nav_graph
+     * Navigate to the timer page via the nav_graph
      */
     fun goToTimerScreen(){
         findNavController().navigate(R.id.action_landingPage_to_timerPage)
