@@ -12,6 +12,10 @@ import org.junit.Test
 
 
 class SpeechAssistantTest {
+
+    /**
+     * Test all gui components of the speech assistant page
+     */
     @Test
     fun testLayoutCompleteness() {
         launchFragmentInContainer<SpeechAssistantPage>()
