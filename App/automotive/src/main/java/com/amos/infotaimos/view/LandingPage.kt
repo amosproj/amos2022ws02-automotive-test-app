@@ -1,4 +1,4 @@
-package com.amos.infotaimos
+package com.amos.infotaimos.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.amos.infotaimos.R
 import com.amos.infotaimos.databinding.FragmentLandingPageBinding
 
 class LandingPage : Fragment() {
@@ -78,9 +79,23 @@ class LandingPage : Fragment() {
     }
 
     /**
+     * Navigate to the speech assistant page via the nav_graph
+     */
+    fun goToSpeechAssistantPageScreen() {
+        findNavController().navigate(R.id.action_landingPage_to_speechAssistantPage)
+    }
+
+    /**
      * Navigate to the app settings via the nav_graph
      */
     fun goToAppSettingsScreen(){
-        findNavController().navigate(R.id.action_langingPage_to_appSettings)
+        findNavController().navigate(R.id.action_landingPage_to_appSettings)
+    }
+
+    /**
+     * Navigate to the timer page via the nav_graph
+     */
+    fun goToTimerScreen(){
+        findNavController().navigate(R.id.action_landingPage_to_timerPage)
     }
 }

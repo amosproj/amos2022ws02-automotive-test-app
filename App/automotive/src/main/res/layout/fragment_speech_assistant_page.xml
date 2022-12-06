@@ -6,10 +6,10 @@
     android:clickable="true"
     android:contextClickable="false"
     android:orientation="vertical"
-    tools:context=".view.PowerManagementPage">
+    tools:context=".view.SpeechAssistantPage">
 
     <LinearLayout
-        android:id="@+id/fragment_power_button_delay"
+        android:id="@+id/fragment_speech_delay"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="horizontal">
@@ -23,32 +23,33 @@
             android:textSize="30sp" />
 
         <Spinner
-            android:id="@+id/delay_spinner_power_management_page"
+            android:id="@+id/delay_spinner_speech_assistant_page"
             android:layout_width="500dp"
             android:layout_height="match_parent"
-            android:entries="@array/delay_array"
-           />
-
+            android:entries="@array/delay_array" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/fragment_power_button_display_off"
+        android:id="@+id/fragment_speech_announcement_button"
         style="@style/Theme.InfotAiMOS.Button"
+        android:backgroundTint="@color/landing_yellow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/button_display_off" />
+        android:text="@string/button_speech_announcement" />
 
     <Button
-        android:id="@+id/fragment_power_button_stand_by"
+        android:id="@+id/fragment_ptt_button"
         style="@style/Theme.InfotAiMOS.Button"
+        android:backgroundTint="@color/landing_yellow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/button_stand_by" />
+        android:text="@string/button_ptt" />
 
     <Button
-        android:id="@+id/fragment_power_button_mute_system"
+        android:id="@+id/fragment_ttt_button"
+        style="@style/Theme.InfotAiMOS.Button"
+        android:backgroundTint="@color/landing_yellow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/Theme.InfotAiMOS.Button"
-        android:text="@string/button_mute_system" />
+        android:text="@string/button_ttt" />
 </LinearLayout>

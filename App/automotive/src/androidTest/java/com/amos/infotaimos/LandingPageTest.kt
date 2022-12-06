@@ -8,6 +8,7 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.amos.infotaimos.view.LandingPage
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -66,13 +67,23 @@ class LandingPageTest {
     }
 
     /**
-     * Test navigation to the media page via the nav_graph
+     * Test navigation to the app setting page via the nav_graph
      */
     @Test
     fun testNavigationToAppSettings() {
         val navController = prepareScreen()
         scrollAndClickOn(R.id.cardViewAppSettings)
         assertEquals(navController.currentDestination?.id, R.id.appSettings)
+    }
+
+    /**
+     * Test navigation to the timer page via the nav_graph
+     */
+    @Test
+    fun testNavigationToTimerPage() {
+        val navController = prepareScreen()
+        scrollAndClickOn(R.id.cardViewTimer)
+        assertEquals(navController.currentDestination?.id, R.id.timerPage)
     }
 
     /**
