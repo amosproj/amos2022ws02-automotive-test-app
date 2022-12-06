@@ -7,4 +7,7 @@
     <color name="landing_purple">#9e00ff</color>
     <color name="landing_red">#d50000</color>
     <color name="landing_olive">#d8db00</color>
+    <color name="landing_pink">#E91E63</color>
+    <color name="landing_yellow">#FFB13B</color>
+    <color name="landing_orange">#FF9800</color>
 </resources>

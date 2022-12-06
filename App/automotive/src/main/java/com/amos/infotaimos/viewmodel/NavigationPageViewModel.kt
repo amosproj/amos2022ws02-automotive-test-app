@@ -1,5 +1,6 @@
 package com.amos.infotaimos.viewmodel
 
+
 import android.content.ContentResolver
 import android.content.Context
 import android.media.AudioAttributes
@@ -7,6 +8,7 @@ import android.media.MediaPlayer
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import com.amos.infotaimos.R
+
 import com.amos.infotaimos.model.CarInstanceManager
 import com.amos.infotaimos.model.NavigationService
 
@@ -19,6 +21,7 @@ class NavigationPageViewModel : ViewModel() {
     fun stopNavigation(context: Context, delay: Long) {
         NavigationService.stopNavigation(CarInstanceManager.getCarInstance(context), delay)
     }
+
 
     fun speechAnnouncement(context: Context, delay: Long) {
 

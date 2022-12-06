@@ -7,6 +7,7 @@ import com.amos.infotaimos.ViewBindingFragment
 import com.amos.infotaimos.databinding.FragmentNavigationPageBinding
 import com.amos.infotaimos.viewmodel.NavigationPageViewModel
 
+
 class NavigationPage : ViewBindingFragment<FragmentNavigationPageBinding>() {
     private val viewModel: NavigationPageViewModel by viewModels()
 
