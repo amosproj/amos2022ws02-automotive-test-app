@@ -36,7 +36,11 @@ class NavigationPageTest {
         launchFragmentInContainer<NavigationPage>()
         onView(withId(R.id.stop_navigation_button)).perform(click()).check(matches(isClickable()))
     }
-
+    @Test
+    fun testAnnouncementClickable() {
+        launchFragmentInContainer<NavigationPage>()
+        onView(withId(R.id.simulate_speech_announcment)).perform(click()).check(matches(isClickable()))
+    }
     @Test
     fun startStopNavigation() {
         val context = ApplicationProvider.getApplicationContext<Context>()

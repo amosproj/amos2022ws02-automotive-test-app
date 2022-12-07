@@ -3,9 +3,10 @@ package com.amos.infotaimos.view
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import com.amos.infotaimos.viewmodel.NavigationPageViewModel
 import com.amos.infotaimos.ViewBindingFragment
 import com.amos.infotaimos.databinding.FragmentNavigationPageBinding
+import com.amos.infotaimos.viewmodel.NavigationPageViewModel
+
 
 class NavigationPage : ViewBindingFragment<FragmentNavigationPageBinding>() {
     private val viewModel: NavigationPageViewModel by viewModels()
@@ -14,24 +15,23 @@ class NavigationPage : ViewBindingFragment<FragmentNavigationPageBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.startNavigationButton.setOnClickListener {
-            // get selected Delay
-            val delayString = binding.delaySpinner.selectedItem as String
-            var delay = 0L
-            if (delayString == "30s")
-                delay = 30000L
-            else if (delayString == "1min")
-                delay = 60000L
-            // call startNavigation
-            viewModel.startNavigation(requireContext(), delay)
+            viewModel.startNavigation(requireContext(), getDelay())
         }
         binding.stopNavigationButton.setOnClickListener {
-            val delayString = binding.delaySpinner.selectedItem as String
-            var delay = 0L
-            if (delayString == "30s")
-                delay = 30000L
-            else if (delayString == "1min")
-                delay = 60000L
-            viewModel.stopNavigation(requireContext(), delay)
+            viewModel.stopNavigation(requireContext(), getDelay())
         }
+        binding.simulateSpeechAnnouncment.setOnClickListener {
+            viewModel.speechAnnouncement(requireContext(), getDelay())
+        }
+    }
+
+    private fun getDelay() : Long {
+        val delayString = binding.delaySpinner.selectedItem as String
+        var delay = 0L
+        if (delayString == "30s")
+            delay = 30000L
+        else if (delayString == "1min")
+            delay = 60000L
+        return delay
     }
 }

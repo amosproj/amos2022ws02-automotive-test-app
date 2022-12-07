@@ -56,12 +56,12 @@
         android:textSize="30sp"/>
 
     <Button
-        android:id="@+id/invoice_etc"
+        android:id="@+id/simulate_speech_announcment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:backgroundTint="@color/landing_green"
-        android:text="weitere buttons"
+        android:text="@string/speech_announc"
         android:textSize="30sp"/>
 
 </LinearLayout>
