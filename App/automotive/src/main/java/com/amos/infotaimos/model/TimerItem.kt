@@ -11,7 +11,7 @@ data class TimerItem(
     var description: String="") {
 
     val time: String
-        get() = "${ timeFormatter.format(start) } ${end?.let { " - ${timeFormatter.format(end)}" } ?: ""}"
+        get() = "${ timeFormatter.format(start) }${end?.let { " - ${timeFormatter.format(end)}" } ?: ""}"
     private val duration: String
         get() = end?.let { Duration.between(start, end).let { String.format("%02d:%02d:%02d", it.toHours(), it.toMinutesPart(), it.toSecondsPart()) } } ?: "unfinished"
 

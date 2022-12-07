@@ -2,6 +2,8 @@ package com.amos.infotaimos.model
 
 import android.car.Car
 import android.car.CarAppFocusManager
+import android.media.MediaPlayer
+import android.nfc.Tag
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.MainScope
@@ -15,6 +17,7 @@ object NavigationService {
     val navCallback = NavCallback()
     private var startTask: TimerTask? = null
     private var stopTask: TimerTask? = null
+    private var announcementTask: TimerTask? = null
     val navIndicatorLiveData: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
 
     fun startNavigation(car: Car, delay: Long) {
@@ -80,6 +83,29 @@ object NavigationService {
             CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION
         )
         Log.d(TAG, "Updated Navigation LiveData")
+    }
+
+    fun speechAnnouncement(mediaPlayer: MediaPlayer, delay: Long) {
+
+        Log.d(TAG, "Requested navigation announcement in $delay ms")
+
+        //announcementTask?.cancel()
+        if (announcementTask == null) {
+            announcementTask = Timer().schedule(delay) {
+                Log.d(TAG, "Navigation announcement timer fired")
+                mediaPlayer.start()
+
+                Thread.sleep(3000)
+                mediaPlayer.release()
+                Log.d(TAG, "mediaPlayer released")
+
+                announcementTask = null
+            }
+        }else{
+            Log.d(TAG, "Navigation announcement already scheduled, new announcement will be discarded")
+        }
+
+
     }
 
     class NavCallback : CarAppFocusManager.OnAppFocusOwnershipCallback {

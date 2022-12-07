@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".NavigationPage">
+    tools:context=".view.NavigationPage">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,7 +44,6 @@
                 android:layout_weight="0.6"
                 android:entries="@array/delay_array" />
         </LinearLayout>
-
     </LinearLayout>
 
     <Button
@@ -57,12 +56,12 @@
         android:textSize="30sp"/>
 
     <Button
-        android:id="@+id/invoice_etc"
+        android:id="@+id/simulate_speech_announcment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:backgroundTint="@color/landing_green"
-        android:text="weitere buttons"
+        android:text="@string/speech_announc"
         android:textSize="30sp"/>
 
 </LinearLayout>
