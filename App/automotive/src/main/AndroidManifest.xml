@@ -33,6 +33,14 @@
                 <action android:name="android.intent.action.MEDIA_BUTTON" />
             </intent-filter>
         </service>
+        <service android:enabled="true"
+            android:name=".model.TimerService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.amos.infotaimos.timer.start"/>
+                <action android:name="com.amos.infotaimos.timer.end"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

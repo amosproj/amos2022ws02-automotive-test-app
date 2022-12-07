@@ -2,13 +2,12 @@ package com.amos.infotaimos.model
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.amos.infotaimos.databinding.TimerListItemBinding
 
-class TimerRecyclerViewAdapter() :
+class TimerRecyclerViewAdapter :
     RecyclerView.Adapter<TimerRecyclerViewAdapter.TimerItemViewHolder>() {
 
     private val differ = AsyncListDiffer(this, object : DiffUtil.ItemCallback<TimerItem>() {
@@ -27,14 +26,7 @@ class TimerRecyclerViewAdapter() :
     }
 
     override fun onBindViewHolder(holder: TimerItemViewHolder, position: Int) {
-        val timerItem = differ.currentList[position]
-        holder.bind(timerItem.actionIdAndDuration, timerItem.time, timerItem.description)
-    }
-
-    fun TimerItemViewHolder.bind(actionIdAndDuration: String, time: String, description: String) {
-        this.actionIdAndDuration.text = actionIdAndDuration
-        this.time.text = time
-        this.description.text = description
+        holder.bindValues(differ.currentList[position])
     }
 
     override fun getItemCount(): Int {
@@ -44,8 +36,16 @@ class TimerRecyclerViewAdapter() :
 
     class TimerItemViewHolder(private val itemBinding: TimerListItemBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
-        val time: TextView = itemBinding.time
-        val actionIdAndDuration: TextView = itemBinding.actionIdAndDuration
-        val description: TextView = itemBinding.description
+
+        /**
+         * Function for binding a new timerItem values to view holder
+         * @param timerItem TimerItem object with values
+         */
+        fun bindValues(timerItem: TimerItem) {
+            itemBinding.time.text = timerItem.time
+            itemBinding.actionIdAndDuration.text = timerItem.actionIdAndDuration
+            itemBinding.description.text = timerItem.description
+
+        }
     }
 }

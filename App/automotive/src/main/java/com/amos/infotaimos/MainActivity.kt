@@ -1,5 +1,6 @@
 package com.amos.infotaimos
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -15,6 +16,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.amos.infotaimos.model.MediaService
+import com.amos.infotaimos.model.TimerService
 
 class MainActivity : AppCompatActivity() {
 
@@ -53,6 +56,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         viewModel.navIndicatorLiveData.observe(this, navigationObserver)
+        startService(Intent(this, TimerService::class.java))
     }
 
     fun goToNavigation() {
