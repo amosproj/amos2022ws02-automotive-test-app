@@ -12,7 +12,7 @@ class AppSettingsTest {
     @Test
     fun testLayoutCompleteness() {
         launchFragmentInContainer<AppSettings>()
-        Espresso.onView(ViewMatchers.withId(R.id.tile_vehicle_theme_status_icon))
+        Espresso.onView(ViewMatchers.withId(R.id.app_theme_mode_tile))
             .perform(ViewActions.click())
     }
 }
