@@ -14,5 +14,6 @@ class VehiclePropertiesPageTest {
         launchFragmentInContainer<VehiclePropertiesPage>()
         onView(ViewMatchers.withId(R.id.tile_vehicle_theme_status_icon)).perform(click())
         onView(ViewMatchers.withId(R.id.tile_vehicle_range_icon)).perform(click())
+        onView(ViewMatchers.withId(R.id.tile_vin_icon)).perform(click())
     }
 }

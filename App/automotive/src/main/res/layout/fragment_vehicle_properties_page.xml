@@ -38,6 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <include
+            android:id="@+id/vin_tile"
             layout="@layout/tile_vin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
