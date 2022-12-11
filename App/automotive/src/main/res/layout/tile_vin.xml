@@ -34,18 +34,37 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toTopOf="@id/tile_vin_text"
             android:gravity="end" />
-
         <TextView
             android:id="@+id/tile_vin_text"
-            style="@style/TextAppearance.AppCompat.Headline"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="0 m"
+            style="@style/TextAppearance.AppCompat.Display2"
             app:layout_constraintStart_toEndOf="@id/tile_vin_guideline"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/tile_vin_editable_text"
             android:gravity="end" />
 
+        <EditText
+            android:id="@+id/tile_vin_editable_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:inputType="text"
+            android:hint="Enter vin here"
+            style="@style/TextAppearance.AppCompat.Display1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tile_vin_edit_button"
+            app:layout_constraintStart_toStartOf="@id/tile_vin_header_text" />
+        <Button
+            android:id="@+id/tile_vin_edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.AppCompat.Display1"
+            android:text = "Edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            />
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/tile_vin_guideline"
             android:layout_width="wrap_content"
