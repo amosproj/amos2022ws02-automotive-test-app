@@ -10,7 +10,7 @@ object VinService {
     fun loadData(context: Context) : String {
         try{
             Log.d(TAG, "load vin from disk")
-            return context?.openFileInput("Vin.txt")?.bufferedReader()?.readLine().toString()
+            return context.openFileInput("Vin.txt")?.bufferedReader()?.readLine().toString()
         }
         catch(e : FileNotFoundException){
             Log.d(TAG, "no vin could be found")
@@ -20,7 +20,7 @@ object VinService {
 
     fun saveData(context: Context, s: String) {
         Log.d(TAG, "$s is saved in Vin.txt")
-        context?.openFileOutput("Vin.txt", Context.MODE_PRIVATE).use {
+        context.openFileOutput("Vin.txt", Context.MODE_PRIVATE).use {
             it?.write(s.toByteArray())
         }
     }
