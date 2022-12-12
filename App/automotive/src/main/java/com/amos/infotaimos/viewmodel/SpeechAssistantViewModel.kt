@@ -7,6 +7,6 @@ import com.amos.infotaimos.model.SpeechService
 
 class SpeechAssistantViewModel : ViewModel() {
     fun startPTT (context: Context){
-        SpeechService.startPTT(VoiceInteractionSession(context))
+        SpeechService.startPTT(context)
     }
 }
