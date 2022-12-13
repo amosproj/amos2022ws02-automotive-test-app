@@ -13,7 +13,7 @@ import com.amos.infotaimos.model.SpeechService
 class SpeechAssistantViewModel : ViewModel() {
 
 
-    fun startPTT(context: Context) {
+    fun startSpeechAssistant(context: Context) {
         val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
         val beepUri = Uri.Builder()
             .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
@@ -32,6 +32,6 @@ class SpeechAssistantViewModel : ViewModel() {
             setDataSource(context, beepUri)
             prepare()
         }
-        SpeechService.startPTT(audioManager, mediaPlayer)
+        SpeechService.startSpeechAssistant(audioManager, mediaPlayer)
     }
 }

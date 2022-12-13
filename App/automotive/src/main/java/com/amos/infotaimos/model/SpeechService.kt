@@ -19,7 +19,7 @@ object SpeechService {
     private const val TAG = "SPEECH_SERVICE"
     private var speechTask: TimerTask? = null
 
-    fun startPTT(audioManager: AudioManager, mediaPlayer: MediaPlayer) {
+    fun startSpeechAssistant(audioManager: AudioManager, mediaPlayer: MediaPlayer) {
         Log.d(TAG, "Start Voice Activity")
 
         val audioFocusRequest =
