@@ -16,11 +16,12 @@ class VehiclePropertiesPage : ViewBindingFragment<FragmentVehiclePropertiesPageB
         val permission = viewModel.getBatteryPermission(requireContext(), requireActivity())
         if(permission) {
             viewModel.setPropertyManager(requireContext())
-            val batteryLevel = viewModel.getBatteryLevel()
-            binding.batteryLevelTile.tileBatteryLevelText.text = "$batteryLevel%"
+            viewModel.registerBatteryCallback(binding)
+            binding.batteryLevelTile.tileBatteryLevelText.text = viewModel.getBatteryLevel()
             binding.batteryProgressBar.min = 0
-            binding.batteryProgressBar.max = viewModel.getCapacityWH() as Int
-            binding.batteryProgressBar.progress = viewModel.getBatteryWH() as Int
+            binding.batteryProgressBar.max = viewModel.getCapacityWH().toInt()
+            binding.batteryProgressBar.progress = viewModel.getBatteryWH().toInt()
+            binding.batteryProgressText.text = viewModel.getBatteryText()
         }
         else {
             binding.batteryLevelTile.tileBatteryLevelText.text = "Can't access battery level"
