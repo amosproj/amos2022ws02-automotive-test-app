@@ -18,6 +18,9 @@ class VehiclePropertiesPage : ViewBindingFragment<FragmentVehiclePropertiesPageB
             viewModel.setPropertyManager(requireContext())
             val batteryLevel = viewModel.getBatteryLevel()
             binding.batteryLevelTile.tileBatteryLevelText.text = "$batteryLevel%"
+            binding.batteryProgressBar.min = 0
+            binding.batteryProgressBar.max = viewModel.getCapacityWH() as Int
+            binding.batteryProgressBar.progress = viewModel.getBatteryWH() as Int
         }
         else {
             binding.batteryLevelTile.tileBatteryLevelText.text = "Can't access battery level"
