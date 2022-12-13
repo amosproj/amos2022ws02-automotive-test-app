@@ -56,11 +56,11 @@
         android:id="@+id/fragment_speech_announcement_textView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@color/pale_red"
-        android:gravity="center"
         android:layout_marginTop="100dp"
+        android:background="@color/pale_orange"
+        android:gravity="center"
         android:text="@string/text_speech_announcement"
         android:textColor="@color/black"
         android:textSize="40dp"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 </LinearLayout>
