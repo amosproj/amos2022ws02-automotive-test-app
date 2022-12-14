@@ -32,7 +32,7 @@ class VehiclePropertiesPage : ViewBindingFragment<FragmentVehiclePropertiesPageB
             binding.vinTile.tileVinEditableText.text.clear()
         }
 
-        val permission = viewModel.getBatteryPermission(requireContext(), requireActivity())
+        val permission = viewModel.getBatteryPermission(requireContext(), requireActivity(),view)
         if(permission) {
             viewModel.setPropertyManager(requireContext())
             viewModel.registerBatteryCallback(binding)

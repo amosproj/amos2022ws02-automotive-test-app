@@ -17,6 +17,7 @@ import com.amos.infotaimos.databinding.FragmentVehiclePropertiesPageBinding
 import kotlin.math.roundToInt
 
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.amos.infotaimos.R
@@ -61,11 +62,13 @@ class VehiclePropertiesPageViewModel : ViewModel() {
         ) == PackageManager.PERMISSION_GRANTED
     }
 
-    fun getBatteryPermission(context: Context, activity: Activity): Boolean {
+    fun getBatteryPermission(context: Context, activity: Activity, view: View): Boolean {
         batteryPermission = checkBatteryPermission(context)
         if (!batteryPermission) {
             ActivityCompat.requestPermissions(activity, arrayOf(Car.PERMISSION_ENERGY), 0)
             batteryPermission = checkBatteryPermission(context)
+            if (batteryPermission)
+                view.invalidate()
         }
         return batteryPermission
     }
