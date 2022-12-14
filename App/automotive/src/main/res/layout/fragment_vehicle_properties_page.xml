@@ -2,95 +2,100 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="8dp"
-        tools:context=".view.VehiclePropertiesPage"
-        android:orientation="vertical">
-
+        android:scrollbarSize="15dp">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="8dp"
+            tools:context=".view.VehiclePropertiesPage">
 
-            <include
-                layout="@layout/tile_vehicle_range"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include
+                    layout="@layout/tile_vehicle_range"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Space
+                    android:layout_width="8dp"
+                    android:layout_height="wrap_content" />
+
+                <include
+                    android:id="@+id/vehicle_theme_mode_tile"
+                    layout="@layout/tile_vehicle_theme"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:orientation="vertical">
 
+                <Button
+                    android:id="@+id/battery_low_message_button"
+                    style="@style/Theme.InfotAiMOS.Button"
+                    android:backgroundTint="@color/landing_green"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/button_battery_low_message" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:gravity="center"
+                    android:text="@string/delay"
+                    android:textSize="30sp" />
+
+                <Spinner
+                    android:id="@+id/delay_spinner_vehicle_properties_page"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:entries="@array/delay_array" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.4"
+                    android:gravity="center"
+                    android:text="@string/battery_level"
+                    android:textSize="30sp" />
+
+                <EditText
+                    android:id="@+id/battery_level_edittext"
+                    style="@style/TextAppearance.AppCompat.Display1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:hint="@string/battery_level_percentage"
+                    android:autofillHints="False"
+                    android:inputType="text"
+                    android:minWidth="48dp">
+                </EditText>
+            </LinearLayout>
             <Space
-                android:layout_width="8dp"
-                android:layout_height="wrap_content" />
-
-            <include
-                android:id="@+id/vehicle_theme_mode_tile"
-                layout="@layout/tile_vehicle_theme"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/battery_low_message_button"
-                style="@style/Theme.InfotAiMOS.Button"
-                android:backgroundTint="@color/landing_green"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/button_battery_low_message" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.4"
-                android:gravity="center"
-                android:text="@string/delay"
-                android:textSize="30sp" />
-
-            <Spinner
-                android:id="@+id/delay_spinner_vehicle_properties_page"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:entries="@array/delay_array" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.4"
-                android:gravity="center"
-                android:text="@string/battery_level"
-                android:textSize="30sp" />
-
-            <EditText
-                android:id="@+id/battery_level_edittext"
-                style="@style/TextAppearance.AppCompat.Display1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="end"
-                android:hint="@string/battery_level_percentage"
-                android:autofillHints="False"
-                android:inputType="text"
-                android:minWidth="48dp">
-            </EditText>
-        </LinearLayout>
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="8dp" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <include
-            android:id="@+id/vin_tile"
-            layout="@layout/tile_vin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-    </LinearLayout>
+                android:layout_height="8dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <include
+                    android:id="@+id/vin_tile"
+                    layout="@layout/tile_vin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
 
-    </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
 </layout>
