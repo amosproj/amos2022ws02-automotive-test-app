@@ -76,6 +76,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="end"
                     android:hint="@string/battery_level_percentage"
+                    android:text="@string/battery_level_percentage"
                     android:autofillHints="False"
                     android:inputType="text"
                     android:minWidth="48dp">

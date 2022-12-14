@@ -36,4 +36,5 @@
     <string name="button_battery_low_message">Battery low</string>
     <string name="battery_level">Battery Level</string>
     <string name="battery_level_percentage">20</string>
+    <string name="battery_notification">Battery Level below %s %%, you should charge your car soon</string>
 </resources>

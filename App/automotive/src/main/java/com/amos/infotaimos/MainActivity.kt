@@ -1,6 +1,9 @@
 package com.amos.infotaimos
 
+import android.Manifest.permission.POST_NOTIFICATIONS
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -11,12 +14,14 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.amos.infotaimos.model.MediaService
+import com.amos.infotaimos.model.NotificationManager
 import com.amos.infotaimos.model.TimerService
 
 class MainActivity : AppCompatActivity() {
@@ -32,7 +37,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-    // private val navViewModel: NavigationPageViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +58,13 @@ class MainActivity : AppCompatActivity() {
                     navNotActiveIndicatorMenuItem.isVisible = true
                 }
             }
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (checkSelfPermission(POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(arrayOf(POST_NOTIFICATIONS),REQ_PERM_CODE)
+            }
+        } else {
+            viewModel.setupNotificationChannel(this)
         }
         viewModel.navIndicatorLiveData.observe(this, navigationObserver)
         startService(Intent(this, TimerService::class.java))
@@ -106,5 +117,21 @@ class MainActivity : AppCompatActivity() {
                     }.start()
             }
             .start()
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            val notificationPermissionRequestIndex = permissions.indexOf(POST_NOTIFICATIONS)
+            if ( notificationPermissionRequestIndex != -1 && grantResults[notificationPermissionRequestIndex] == PackageManager.PERMISSION_GRANTED) {
+                viewModel.setupNotificationChannel(this)
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
+    companion object {
+        const val REQ_PERM_CODE = 42
     }
 }
