@@ -7,7 +7,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="8dp"
-        tools:context=".view.VehiclePropertiesPage">
+        tools:context=".view.VehiclePropertiesPage"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,5 +78,19 @@
                 android:minWidth="48dp">
             </EditText>
         </LinearLayout>
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="8dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include
+            android:id="@+id/vin_tile"
+            layout="@layout/tile_vin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
     </LinearLayout>
 </layout>
