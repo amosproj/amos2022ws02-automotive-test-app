@@ -138,11 +138,12 @@
                 android:orientation="horizontal">
 
                 <com.amos.infotaimos.view.LandingPageTile
-                    android:id="@+id/cardTestDrive"
+                    android:id="@+id/cardViewTestDrive"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_margin="8dp"
                     android:layout_weight="1"
+                    android:onClick="@{() -> landingPage.goToTestDriveScreen()}"
                     app:tileColor="@color/landing_light_blue"
                     app:tileIcon="@drawable/road"
                     app:tileText="@string/test_drive" />
