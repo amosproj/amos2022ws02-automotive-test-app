@@ -131,6 +131,22 @@
                     app:tileIcon="@drawable/settings_gear_icon"
                     app:tileText= "@string/app_settings" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:orientation="horizontal">
+
+                <com.amos.infotaimos.view.LandingPageTile
+                    android:id="@+id/cardTestDrive"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1"
+                    app:tileColor="@color/landing_light_blue"
+                    app:tileIcon="@drawable/road"
+                    app:tileText="@string/test_drive" />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </layout>
