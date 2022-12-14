@@ -2,6 +2,7 @@ package com.amos.infotaimos
 
 import android.content.Intent
 import android.view.KeyEvent
+import android.widget.FrameLayout
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.Observer
 import androidx.test.espresso.Espresso.onView
@@ -20,6 +21,15 @@ import java.util.concurrent.CompletableFuture
 import java.util.concurrent.TimeUnit
 
 class WheelPageTest {
+
+    @Test
+    fun squareLayoutIsSquare() {
+        launchFragmentInContainer<WheelPage>()
+        onView(withId(R.id.square_layout)).check(matches(isDisplayed()))
+        onView(withId(R.id.square_layout)).check { view, _ ->
+            assertTrue(view.width == view.height)
+        }
+    }
 
     @Test
     fun testLayoutFunctionality() {

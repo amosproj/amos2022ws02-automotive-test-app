@@ -12,6 +12,25 @@ class VehiclePropertiesPage : ViewBindingFragment<FragmentVehiclePropertiesPageB
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.loadData(requireContext())
+
+        binding.batteryLowMessageButton.setOnClickListener {
+            viewModel.sendNotification(
+                requireContext(),
+                binding.batteryLevelEdittext.text?.toString() ?: "0",
+                getDelay()
+            )
+        }
+
+        viewModel.vin.observe(viewLifecycleOwner) { vin ->
+            binding.vinTile.tileVinText.text = vin
+        }
+
+        binding.vinTile.tileVinEditButton.setOnClickListener {
+            viewModel._vin.value = binding.vinTile.tileVinEditableText.text.toString()
+            viewModel.saveData(requireContext(), binding.vinTile.tileVinText.text.toString())
+            binding.vinTile.tileVinEditableText.text.clear()
+        }
 
         val permission = viewModel.getBatteryPermission(requireContext(), requireActivity())
         if(permission) {
@@ -26,5 +45,15 @@ class VehiclePropertiesPage : ViewBindingFragment<FragmentVehiclePropertiesPageB
         else {
             binding.batteryLevelTile.tileBatteryLevelText.text = "Can't access battery level"
         }
+    }
+
+    private fun getDelay() : Long {
+        val delayString = binding.delaySpinnerVehiclePropertiesPage.selectedItem as String
+        var delay = 0L
+        if (delayString == "30s")
+            delay = 30000L
+        else if (delayString == "1min")
+            delay = 60000L
+        return delay
     }
 }

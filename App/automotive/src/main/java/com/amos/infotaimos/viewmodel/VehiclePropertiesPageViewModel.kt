@@ -14,9 +14,16 @@ import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.amos.infotaimos.databinding.FragmentVehiclePropertiesPageBinding
-
-
 import kotlin.math.roundToInt
+
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.amos.infotaimos.R
+import com.amos.infotaimos.model.NotificationManager
+import com.amos.infotaimos.model.VinService
+import java.util.*
+import kotlin.concurrent.schedule
 
 
 class VehiclePropertiesPageViewModel : ViewModel() {
@@ -25,8 +32,33 @@ class VehiclePropertiesPageViewModel : ViewModel() {
     private lateinit var propertyManager: CarPropertyManager
     private val globalArea = 0
 
+    val _vin: MutableLiveData<String> = MutableLiveData("")
+    val vin: LiveData<String>
+        get() = _vin
+
+    fun loadData(context: Context) {
+        _vin.value = VinService.loadData(context)
+    }
+
+    fun saveData(context: Context, s: String) {
+        VinService.saveData(context, s)
+    }
+
+    fun sendNotification(context: Context, percentage: String, delay: Long) {
+        Log.d("VM", "$percentage $delay")
+        Timer().schedule(delay) {
+            NotificationManager.createNotification(
+                context,
+                context.getString(R.string.battery_notification, percentage)
+            )
+        }
+    }
+
     private fun checkBatteryPermission(context: Context): Boolean {
-        return ContextCompat.checkSelfPermission(context, Car.PERMISSION_ENERGY) == PackageManager.PERMISSION_GRANTED
+        return ContextCompat.checkSelfPermission(
+            context,
+            Car.PERMISSION_ENERGY
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
     fun getBatteryPermission(context: Context, activity: Activity): Boolean {
@@ -40,7 +72,7 @@ class VehiclePropertiesPageViewModel : ViewModel() {
 
     fun setPropertyManager(context: Context) {
         val car: Car = CarInstanceManager.getCarInstance(context)
-        propertyManager =  car.getCarManager(Car.PROPERTY_SERVICE) as CarPropertyManager
+        propertyManager = car.getCarManager(Car.PROPERTY_SERVICE) as CarPropertyManager
     }
 
     fun setBatteryWH(value: Float) {
@@ -52,7 +84,10 @@ class VehiclePropertiesPageViewModel : ViewModel() {
     }
 
     fun getCapacityWH(): Float {
-        return propertyManager.getFloatProperty(VehiclePropertyIds.INFO_EV_BATTERY_CAPACITY, globalArea)
+        return propertyManager.getFloatProperty(
+            VehiclePropertyIds.INFO_EV_BATTERY_CAPACITY,
+            globalArea
+        )
     }
 
     fun getBatteryText(): String {
@@ -67,30 +102,31 @@ class VehiclePropertiesPageViewModel : ViewModel() {
         return "$batteryPercent%"
     }
 
-    // TODO
     fun registerBatteryCallback(fragmentBinding: FragmentVehiclePropertiesPageBinding) {
         if (!registerCallBack) {
             registerCallBack =
                 propertyManager.registerCallback(
-                object : CarPropertyManager.CarPropertyEventCallback {
-                    private val binding: FragmentVehiclePropertiesPageBinding = fragmentBinding
-                    override fun onChangeEvent(p0: CarPropertyValue<*>?) {
-                        //val battery = p0?.value
+                    object : CarPropertyManager.CarPropertyEventCallback {
+                        private val binding: FragmentVehiclePropertiesPageBinding = fragmentBinding
+                        override fun onChangeEvent(p0: CarPropertyValue<*>?) {
+                            //val battery = p0?.value
 
-                        binding.batteryLevelTile.tileBatteryLevelText.text = getBatteryLevel()
-                        binding.batteryProgressBar.progress = getBatteryWH().toInt()
-                        binding.batteryProgressText.text = getBatteryText()
-                    }
+                            binding.batteryLevelTile.tileBatteryLevelText.text = getBatteryLevel()
+                            binding.batteryProgressBar.progress = getBatteryWH().toInt()
+                            binding.batteryProgressText.text = getBatteryText()
+                        }
 
-                    override fun onErrorEvent(p0: Int, p1: Int) {
-                        binding.batteryLevelTile.tileBatteryLevelText.text = "Error"
-                        binding.batteryProgressBar.progress = 0
-                        binding.batteryProgressText.text = "Error"
-                    }
-                },
-                VehiclePropertyIds.EV_BATTERY_LEVEL,
-                CarPropertyManager.SENSOR_RATE_ONCHANGE
-            )
+                        override fun onErrorEvent(p0: Int, p1: Int) {
+                            binding.batteryLevelTile.tileBatteryLevelText.text = "Error"
+                            binding.batteryProgressBar.progress = 0
+                            binding.batteryProgressText.text = "Error"
+                        }
+                    },
+                    VehiclePropertyIds.EV_BATTERY_LEVEL,
+                    CarPropertyManager.SENSOR_RATE_ONCHANGE
+                )
         }
     }
 }
+
+
