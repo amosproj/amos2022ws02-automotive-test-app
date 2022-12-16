@@ -98,4 +98,11 @@ class LandingPage : Fragment() {
     fun goToTimerScreen(){
         findNavController().navigate(R.id.action_landingPage_to_timerPage)
     }
+
+    /**
+     * Navigate to the test drive page via the nav_graph
+     */
+    fun goToTestDriveScreen(){
+        findNavController().navigate(R.id.action_landingPage_to_testDrivePage)
+    }
 }

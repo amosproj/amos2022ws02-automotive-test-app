@@ -87,6 +87,16 @@ class LandingPageTest {
     }
 
     /**
+     * Test navigation to the test drive page via the nav_graph
+     */
+    @Test
+    fun testNavigationToTestDrivePage() {
+        val navController = prepareScreen()
+        scrollAndClickOn(R.id.cardViewTestDrive)
+        assertEquals(navController.currentDestination?.id, R.id.testDrivePage)
+    }
+
+    /**
      * Scrolls and clicks on the element specified by [id]
      * @param id ID of the element to be clicked
      */
