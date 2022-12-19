@@ -6,6 +6,7 @@ import android.media.AudioAttributes
 import android.media.AudioFocusRequest
 import android.media.AudioManager
 import android.media.MediaPlayer
+import android.media.MediaRecorder
 import android.net.Uri
 import android.os.Bundle
 import android.service.voice.VoiceInteractionSession
@@ -39,6 +40,13 @@ class AmosVoiceInteractionSession(context: Context) : VoiceInteractionSession(co
             setDataSource(context, beepUri)
             prepare()
         }
+        val mediaRecorder = MediaRecorder()
+        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.VOICE_RECOGNITION)
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
+        //mediaRecorder.setAudioEncoder()
+        mediaRecorder.setOutputFile("/dev/null")
+        mediaRecorder.prepare()
+
 
         val audioFocusRequest =
             AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE).build()
@@ -47,12 +55,19 @@ class AmosVoiceInteractionSession(context: Context) : VoiceInteractionSession(co
             speechTask = Timer().schedule(0) {
                 val stat = audioManager.requestAudioFocus(audioFocusRequest)
                 if (stat == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+
+                    mediaRecorder.start()
                     Thread.sleep(5000)
+                    mediaRecorder.stop()
+
                     audioManager.abandonAudioFocusRequest(audioFocusRequest)
                 }
                 mediaPlayer.start()
                 Thread.sleep(1500)
+
+                mediaRecorder.release()
                 mediaPlayer.release()
+
                 speechTask = null
             }
         }
