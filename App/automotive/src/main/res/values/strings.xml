@@ -19,6 +19,7 @@
     <string name="media_play">Media Play</string>
     <string name="app_settings">App Settings</string>
     <string name="timer">Timer</string>
+    <string name="test_drive">Test Drive</string>
     <string name="landingpagetile">LandingPageTile</string>
     <string name="description">Description</string>
     <string name="functionality">Functionality</string>
@@ -34,4 +35,8 @@
     <string name="darkmode_enabled">Nightmode enabled</string>
     <string name="button_ttt">Tap-to-talk (TTT)</string>
     <string name="text_speech_announcement">PROCESSING \n Your speech annoucement is beeing processed.</string>
+    <string name="button_battery_low_message">Battery low</string>
+    <string name="battery_level">Battery Level</string>
+    <string name="battery_level_percentage">20</string>
+    <string name="battery_notification">Battery Level below %s %%, you should charge your car soon</string>
 </resources>
