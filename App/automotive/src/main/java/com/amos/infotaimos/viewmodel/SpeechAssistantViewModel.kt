@@ -6,15 +6,17 @@ import android.media.AudioAttributes
 import android.media.AudioManager
 import android.media.MediaPlayer
 import android.net.Uri
+import android.service.voice.VoiceInteractionSession
 import androidx.lifecycle.ViewModel
 import com.amos.infotaimos.R
+import com.amos.infotaimos.model.AmosVoiceInteractionSessionService
 import com.amos.infotaimos.model.SpeechService
 
 class SpeechAssistantViewModel : ViewModel() {
 
 
     fun startPTT(context: Context) {
-        val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        /*val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
         val beepUri = Uri.Builder()
             .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
             .authority(context.resources.getResourcePackageName(R.raw.beep))
@@ -33,5 +35,41 @@ class SpeechAssistantViewModel : ViewModel() {
             prepare()
         }
         SpeechService.startPTT(audioManager, mediaPlayer)
+
+         */
+        AmosVoiceInteractionSessionService(context).onNewSession(null).onShow(
+            null, VoiceInteractionSession.SHOW_WITH_ASSIST
+        )
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
