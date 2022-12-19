@@ -18,11 +18,14 @@ import kotlin.concurrent.schedule
 object SpeechService {
     private const val TAG = "SPEECH_SERVICE"
     private var speechTask: TimerTask? = null
+    private var recordAudioPermissionGranted = false
+    private var voiceInteractionSession : VoiceInteractionSession? = null
 
-    fun startPTT(audioManager: AudioManager, mediaPlayer: MediaPlayer) {
+    //fun startPTT(audioManager: AudioManager, mediaPlayer: MediaPlayer) {
+    fun startPTT(context: Context){
         Log.d(TAG, "Start Voice Activity")
 
-        val audioFocusRequest =
+        /*val audioFocusRequest =
             AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE).build()
 
         if (speechTask == null) {
@@ -38,5 +41,21 @@ object SpeechService {
                 speechTask = null
             }
         }
+         */
+        if(voiceInteractionSession == null){
+            voiceInteractionSession = AmosVoiceInteractionSessionService(context).onNewSession(null)
+        }
+
+        if(recordAudioPermissionGranted) {
+            voiceInteractionSession!!.onShow(
+                null, VoiceInteractionSession.SHOW_WITH_ASSIST
+            )
+        }else
+            Log.w(TAG, "Record Audio permission not granted")
+        }
+
+    fun setupSpeechService(permissionGranted: Boolean){
+        Log.d(TAG, "permission: $permissionGranted")
+        recordAudioPermissionGranted = permissionGranted
     }
 }

@@ -1,6 +1,7 @@
 package com.amos.infotaimos
 
 import android.Manifest.permission.POST_NOTIFICATIONS
+import android.Manifest.permission.RECORD_AUDIO
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -59,9 +60,15 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        if (checkSelfPermission(RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(arrayOf(RECORD_AUDIO), REQ_PERM_CODE)
+        }else
+            viewModel.setupSpeechService(true)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (checkSelfPermission(POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(arrayOf(POST_NOTIFICATIONS),REQ_PERM_CODE)
+                requestPermissions(arrayOf(POST_NOTIFICATIONS), REQ_PERM_CODE)
             }
         } else {
             viewModel.setupNotificationChannel(this)
@@ -122,15 +129,23 @@ class MainActivity : AppCompatActivity() {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
-        grantResults: IntArray) {
+        grantResults: IntArray
+    ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             val notificationPermissionRequestIndex = permissions.indexOf(POST_NOTIFICATIONS)
-            if ( notificationPermissionRequestIndex != -1 && grantResults[notificationPermissionRequestIndex] == PackageManager.PERMISSION_GRANTED) {
+            if (notificationPermissionRequestIndex != -1 && grantResults[notificationPermissionRequestIndex] == PackageManager.PERMISSION_GRANTED) {
                 viewModel.setupNotificationChannel(this)
             }
         }
+        val recordAudioPermissionRequestIndex = permissions.indexOf(RECORD_AUDIO)
+        if (recordAudioPermissionRequestIndex != -1 && grantResults[recordAudioPermissionRequestIndex] == PackageManager.PERMISSION_DENIED) {
+            viewModel.setupSpeechService(true)
+        } else
+            viewModel.setupSpeechService(false)
+
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
+
     companion object {
         const val REQ_PERM_CODE = 42
     }

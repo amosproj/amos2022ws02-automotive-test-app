@@ -43,7 +43,7 @@ class AmosVoiceInteractionSession(context: Context) : VoiceInteractionSession(co
         val mediaRecorder = MediaRecorder()
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.VOICE_RECOGNITION)
         mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
-        //mediaRecorder.setAudioEncoder()
+        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
         mediaRecorder.setOutputFile("/dev/null")
         mediaRecorder.prepare()
 

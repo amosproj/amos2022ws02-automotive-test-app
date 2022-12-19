@@ -37,10 +37,11 @@ class SpeechAssistantViewModel : ViewModel() {
         SpeechService.startPTT(audioManager, mediaPlayer)
 
          */
-        AmosVoiceInteractionSessionService(context).onNewSession(null).onShow(
-            null, VoiceInteractionSession.SHOW_WITH_ASSIST
-        )
+        SpeechService.startPTT(context)
+
+
     }
+
 }
 
 
