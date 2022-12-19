@@ -1,6 +1,5 @@
 package com.amos.infotaimos.viewmodel
 
-
 import android.content.ContentResolver
 import android.content.Context
 import android.media.AudioAttributes
@@ -8,20 +7,37 @@ import android.media.MediaPlayer
 import android.net.Uri
 import androidx.lifecycle.ViewModel
 import com.amos.infotaimos.R
-
 import com.amos.infotaimos.model.CarInstanceManager
 import com.amos.infotaimos.model.NavigationService
 
 class NavigationPageViewModel : ViewModel() {
 
-    fun startNavigation(context: Context, delay: Long) {
-        NavigationService.startNavigation(CarInstanceManager.getCarInstance(context), delay)
+    fun performNavigationAction(context: Context, delay: Long) {
+        val car = CarInstanceManager.getCarInstance(context)
+        NavigationService.apply {
+            if (startTask == null && stopTask == null) {
+                if (navIndicatorLiveData.value == true) {
+                    stopNavigation(car, delay)
+                } else {
+                    startNavigation(car, delay)
+                }
+            } else {
+                if (startTask != null) {
+                    startTask?.cancel()
+                    startTask = null
+                    delayCounter?.cancel()
+                    delayCounter = null
+                }
+                if (stopTask != null) {
+                    stopTask?.cancel()
+                    stopTask = null
+                    delayCounter?.cancel()
+                    delayCounter = null
+                }
+                navIndicatorLiveData.postValue(navIndicatorLiveData.value)
+            }
+        }
     }
-
-    fun stopNavigation(context: Context, delay: Long) {
-        NavigationService.stopNavigation(CarInstanceManager.getCarInstance(context), delay)
-    }
-
 
     fun speechAnnouncement(context: Context, delay: Long) {
 
