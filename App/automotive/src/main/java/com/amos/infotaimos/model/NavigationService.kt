@@ -18,7 +18,7 @@ object NavigationService {
     var startTask: TimerTask? = null
     var stopTask: TimerTask? = null
     private var announcementTask: TimerTask? = null
-    val navIndicatorLiveData: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
+    val navIndicatorLiveData: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     val countdown: MutableLiveData<Long> = MutableLiveData<Long>(0)
     var delayCounter: DelayCounter? = null
 
