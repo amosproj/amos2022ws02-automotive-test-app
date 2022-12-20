@@ -38,4 +38,8 @@
     <string name="battery_level">Battery Level</string>
     <string name="battery_level_percentage">20</string>
     <string name="battery_notification">Battery Level below %s %%, you should charge your car soon</string>
+    <string name="steering_wheel">Steering Wheel</string>
+    <string name="vehicle_properties">Vehicle Properties</string>
+    <string name="power_management">Power Management</string>
+    <string name="speech_assistant">Speech Assistant</string>
 </resources>
