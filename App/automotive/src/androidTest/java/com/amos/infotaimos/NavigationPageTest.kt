@@ -83,8 +83,8 @@ class NavigationPageTest {
             )
         ).perform(click())
         onView(withId(R.id.start_navigation_button)).perform(click())
-        assertTrue(NavigationService.delayCounter != null)
-        assertTrue(NavigationService.startTask != null)
+        assertTrue(NavigationService.countdown.value != 0L)
+        assertTrue(NavigationService.startTaskActive)
         assertFalse(
             carAppFocusManager.isOwningFocus(
                 navCallback,
@@ -92,8 +92,7 @@ class NavigationPageTest {
             )
         )
         onView(withId(R.id.start_navigation_button)).perform(click())
-        assertTrue(NavigationService.delayCounter == null)
-        assertTrue(NavigationService.startTask == null)
+        assertTrue(!NavigationService.startTaskActive)
         assertFalse(
             carAppFocusManager.isOwningFocus(
                 navCallback,
@@ -128,8 +127,8 @@ class NavigationPageTest {
             )
         ).perform(click())
         onView(withId(R.id.start_navigation_button)).perform(click())
-        assertTrue(NavigationService.delayCounter != null)
-        assertTrue(NavigationService.stopTask != null)
+        assertTrue(NavigationService.countdown.value != 0L)
+        assertTrue(NavigationService.stopTaskActive)
         assertTrue(
             carAppFocusManager.isOwningFocus(
                 navCallback,
@@ -137,8 +136,7 @@ class NavigationPageTest {
             )
         )
         onView(withId(R.id.start_navigation_button)).perform(click())
-        assertTrue(NavigationService.delayCounter == null)
-        assertTrue(NavigationService.stopTask == null)
+        assertTrue(!NavigationService.stopTaskActive)
         assertTrue(
             carAppFocusManager.isOwningFocus(
                 navCallback,

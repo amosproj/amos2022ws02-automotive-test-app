@@ -31,10 +31,10 @@ class NavigationPage : ViewBindingFragment<FragmentNavigationPageBinding>() {
             }
 
             countdown.observe(viewLifecycleOwner) {
-                if (startTask != null) {
+                if (startTaskActive) {
                     binding.navigationStatusText.text = "Starting navigation in $it seconds"
                     binding.navigationActionText.text = "Press to cancel"
-                } else if (stopTask != null) {
+                } else if (stopTaskActive) {
                     binding.navigationStatusText.text = "Stopping navigation in $it seconds"
                     binding.navigationActionText.text = "Press to cancel"
                 }

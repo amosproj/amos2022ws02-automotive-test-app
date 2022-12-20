@@ -15,72 +15,46 @@ import kotlin.concurrent.schedule
 object NavigationService {
     private const val TAG = "NAVIGATION_SERVICE"
     val navCallback = NavCallback()
-    var startTask: TimerTask? = null
-    var stopTask: TimerTask? = null
+    private var startTask: CountDownTimer? = null
+    val startTaskActive: Boolean get() = startTask != null
+    val stopTaskActive: Boolean get() = stopTask != null
+    private var stopTask: CountDownTimer? = null
     private var announcementTask: TimerTask? = null
     val navIndicatorLiveData: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     val countdown: MutableLiveData<Long> = MutableLiveData<Long>(0)
-    var delayCounter: DelayCounter? = null
 
-    fun startNavigation(car: Car, delay: Long) {
+    private fun startNavigation(car: Car, delay: Long) {
         val carAppFocusManager = car.getCarManager(Car.APP_FOCUS_SERVICE) as CarAppFocusManager
         Log.d(TAG, "Requested navigation start in $delay ms")
-
         startTask?.cancel()
-        delayCounter = DelayCounter(delay)
-        delayCounter?.start()
-        startTask = Timer().schedule(delay) {
-            Log.d(TAG, "Start navigation timer fired")
-            try {
-                when (
-                    carAppFocusManager.requestAppFocus(
-                        CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION,
-                        navCallback
-                    )
-                ) {
-                    CarAppFocusManager.APP_FOCUS_REQUEST_FAILED -> {
-                        Log.d(TAG, "Requesting navigation focus failed")
-                        MainScope().launch { navIndicatorLiveData.value = false }
-                    }
-                    CarAppFocusManager.APP_FOCUS_REQUEST_SUCCEEDED -> {
-                        Log.d(TAG, "Successfully requested navigation focus")
-                        MainScope().launch { navIndicatorLiveData.value = true }
-                    }
-                }
-            } catch (e: SecurityException) {
-                Log.d(TAG, "Couldnt request focus due to $e")
-            }
-            delayCounter?.cancel()
-            delayCounter = null
-            startTask = null
-        }
+        startTask = StartTask(carAppFocusManager, delay)
+        startTask?.start()
     }
 
-    fun stopNavigation(car: Car, delay: Long) {
+    private fun stopNavigation(car: Car, delay: Long) {
         val carAppFocusManager = car.getCarManager(Car.APP_FOCUS_SERVICE) as CarAppFocusManager
         Log.d(TAG, "Requested navigation stop in $delay ms")
         stopTask?.cancel()
-        delayCounter = DelayCounter(delay)
-        delayCounter?.start()
-        stopTask = Timer().schedule(delay) {
-            Log.d(TAG, "Stop navigation timer fired")
-            if (carAppFocusManager.isOwningFocus(
-                    navCallback,
-                    CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION
-                )
-            ) {
-                carAppFocusManager.abandonAppFocus(
-                    navCallback,
-                    CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION
-                )
-                Log.d(TAG, "Navigation focus released")
-                MainScope().launch { navIndicatorLiveData.value = false }
+        stopTask = StopTask(carAppFocusManager, delay)
+        stopTask?.start()
+    }
+
+    fun performNavigationAction(car: Car, delay: Long) {
+        if (startTask == null && stopTask == null) {
+            if (navIndicatorLiveData.value == true) {
+                stopNavigation(car, delay)
             } else {
-                Log.d(TAG, "App doesnt own navigation focus anymore")
+                startNavigation(car, delay)
             }
-            delayCounter?.cancel()
-            delayCounter = null
-            stopTask = null
+        } else {
+            if (startTaskActive) {
+                startTask?.cancel()
+                startTask = null
+            } else {
+                stopTask?.cancel()
+                stopTask = null
+            }
+            navIndicatorLiveData.postValue(navIndicatorLiveData.value)
         }
     }
 
@@ -96,7 +70,6 @@ object NavigationService {
     fun speechAnnouncement(mediaPlayer: MediaPlayer, delay: Long) {
 
         Log.d(TAG, "Requested navigation announcement in $delay ms")
-
         // announcementTask?.cancel()
         if (announcementTask == null) {
             announcementTask = Timer().schedule(delay) {
@@ -124,13 +97,64 @@ object NavigationService {
         }
     }
 
-    class DelayCounter(val delay: Long) : CountDownTimer(delay, 500) {
-        override fun onFinish() {
-            Log.d(TAG, "Navigation announcement timer finished")
+    class StartTask(private val carAppFocusManager: CarAppFocusManager, val delay: Long): CountDownTimer(delay, 500) {
+        override fun onTick(millisUntilFinished: Long) {
+            Log.d(TAG, "Start navigation timer ticked")
+            countdown.postValue(millisUntilFinished/1000)
         }
 
-        override fun onTick(millisUntilFinished: Long) {
-            countdown.postValue(millisUntilFinished / 1000)
+        override fun onFinish() {
+            Log.d(TAG, "Start navigation timer finished")
+            countdown.postValue(0)
+            try {
+                when (
+                    carAppFocusManager.requestAppFocus(
+                        CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION,
+                        navCallback
+                    )
+                ) {
+                    CarAppFocusManager.APP_FOCUS_REQUEST_FAILED -> {
+                        Log.d(TAG, "Requesting navigation focus failed")
+                        MainScope().launch { navIndicatorLiveData.value = false }
+                    }
+                    CarAppFocusManager.APP_FOCUS_REQUEST_SUCCEEDED -> {
+                        Log.d(TAG, "Successfully requested navigation focus")
+                        MainScope().launch { navIndicatorLiveData.value = true }
+                    }
+                }
+            } catch (e: SecurityException) {
+                Log.d(TAG, "Couldnt request focus due to $e")
+            }
+            startTask = null
         }
     }
+
+    class StopTask(private val carAppFocusManager: CarAppFocusManager, val delay: Long): CountDownTimer(delay, 500) {
+        override fun onTick(millisUntilFinished: Long) {
+            Log.d(TAG, "Stop navigation timer ticked")
+            countdown.postValue(millisUntilFinished/1000)
+        }
+
+        override fun onFinish() {
+            Log.d(TAG, "Stop navigation timer finished")
+            countdown.postValue(0)
+            if (carAppFocusManager.isOwningFocus(
+                    navCallback,
+                    CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION
+                )
+            ) {
+                carAppFocusManager.abandonAppFocus(
+                    navCallback,
+                    CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION
+                )
+                Log.d(TAG, "Navigation focus released")
+                MainScope().launch { navIndicatorLiveData.value = false }
+            } else {
+                Log.d(TAG, "App doesnt own navigation focus anymore")
+            }
+            stopTask = null
+        }
+    }
+
+
 }

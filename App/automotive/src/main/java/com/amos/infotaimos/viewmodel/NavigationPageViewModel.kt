@@ -14,29 +14,7 @@ class NavigationPageViewModel : ViewModel() {
 
     fun performNavigationAction(context: Context, delay: Long) {
         val car = CarInstanceManager.getCarInstance(context)
-        NavigationService.apply {
-            if (startTask == null && stopTask == null) {
-                if (navIndicatorLiveData.value == true) {
-                    stopNavigation(car, delay)
-                } else {
-                    startNavigation(car, delay)
-                }
-            } else {
-                if (startTask != null) {
-                    startTask?.cancel()
-                    startTask = null
-                    delayCounter?.cancel()
-                    delayCounter = null
-                }
-                if (stopTask != null) {
-                    stopTask?.cancel()
-                    stopTask = null
-                    delayCounter?.cancel()
-                    delayCounter = null
-                }
-                navIndicatorLiveData.postValue(navIndicatorLiveData.value)
-            }
-        }
+        NavigationService.performNavigationAction(car, delay)
     }
 
     fun speechAnnouncement(context: Context, delay: Long) {
