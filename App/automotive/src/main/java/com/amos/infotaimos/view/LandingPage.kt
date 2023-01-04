@@ -27,7 +27,7 @@ class LandingPage : ViewBindingFragment<FragmentLandingPageBinding>() {
         if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             binding.fragmentLandingPageTileRecycler.layoutManager = GridLayoutManager(requireContext(),2,GridLayoutManager.HORIZONTAL,false)
         } else {
-            binding.fragmentLandingPageTileRecycler.layoutManager = GridLayoutManager(requireContext(),3)
+            binding.fragmentLandingPageTileRecycler.layoutManager = GridLayoutManager(requireContext(),3,GridLayoutManager.HORIZONTAL,false)
         }
         adapter = LandingPageTileAdapter(LandingPageTileData.APP_TILES) {
             when(it) {
@@ -55,63 +55,63 @@ class LandingPage : ViewBindingFragment<FragmentLandingPageBinding>() {
     /**
      * Navigate to the navigation page via the nav_graph
      */
-    fun goToNavigationScreen() {
+    private fun goToNavigationScreen() {
         findNavController().navigate(R.id.action_landingPage_to_navigationPage)
     }
 
     /**
      * Navigate to the wheel page via the nav_graph
      */
-    fun goToWheelScreen() {
+    private fun goToWheelScreen() {
         findNavController().navigate(R.id.action_landingPage_to_wheelPage)
     }
 
     /**
      * Navigate to the power management page via the nav_graph
      */
-    fun goToPowerManagementScreen() {
+    private fun goToPowerManagementScreen() {
         findNavController().navigate(R.id.action_landingPage_to_powerManagementPage)
     }
 
     /**
      * Navigate to the vehicle properties page via the nav_graph
      */
-    fun goToVehiclePropertiesScreen() {
+    private fun goToVehiclePropertiesScreen() {
         findNavController().navigate(R.id.action_landingPage_to_vehiclePropertiesPage)
     }
 
     /**
      * Navigate to the media page via the nav_graph
      */
-    fun goToMediaPageScreen() {
+    private fun goToMediaPageScreen() {
         findNavController().navigate(R.id.action_landingPage_to_mediaPage)
     }
 
     /**
      * Navigate to the speech assistant page via the nav_graph
      */
-    fun goToSpeechAssistantPageScreen() {
+    private fun goToSpeechAssistantPageScreen() {
         findNavController().navigate(R.id.action_landingPage_to_speechAssistantPage)
     }
 
     /**
      * Navigate to the app settings via the nav_graph
      */
-    fun goToAppSettingsScreen(){
+    private fun goToAppSettingsScreen(){
         findNavController().navigate(R.id.action_landingPage_to_appSettings)
     }
 
     /**
      * Navigate to the timer page via the nav_graph
      */
-    fun goToTimerScreen(){
+    private fun goToTimerScreen(){
         findNavController().navigate(R.id.action_landingPage_to_timerPage)
     }
 
     /**
      * Navigate to the test drive page via the nav_graph
      */
-    fun goToTestDriveScreen(){
+    private fun goToTestDriveScreen(){
         findNavController().navigate(R.id.action_landingPage_to_testDrivePage)
     }
 }
