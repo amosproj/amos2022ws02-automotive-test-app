@@ -74,27 +74,5 @@ class AmosVoiceInteractionSession(context: Context) : VoiceInteractionSession(co
 
     }
 
-    /*fun startPTT(audioManager: AudioManager, mediaPlayer: MediaPlayer) {
-        Log.d(TAG, "Start Voice Activity")
-
-        val audioFocusRequest =
-            AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE).build()
-
-        if (speechTask == null) {
-            speechTask = Timer().schedule(0) {
-                val stat = audioManager.requestAudioFocus(audioFocusRequest)
-                if (stat == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-                    Thread.sleep(5000)
-                    audioManager.abandonAudioFocusRequest(audioFocusRequest)
-                }
-                mediaPlayer.start()
-                Thread.sleep(1500)
-                mediaPlayer.release()
-                speechTask = null
-            }
-        }
-    }
-
-     */
 
 }
