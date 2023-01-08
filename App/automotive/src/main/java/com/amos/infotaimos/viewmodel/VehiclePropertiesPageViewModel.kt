@@ -55,22 +55,11 @@ class VehiclePropertiesPageViewModel : ViewModel() {
         }
     }
 
-    private fun checkBatteryPermission(context: Context): Boolean {
+    fun checkBatteryPermission(context: Context): Boolean {
         return ContextCompat.checkSelfPermission(
             context,
             Car.PERMISSION_ENERGY
         ) == PackageManager.PERMISSION_GRANTED
-    }
-
-    fun getBatteryPermission(context: Context, activity: Activity, view: View): Boolean {
-        batteryPermission = checkBatteryPermission(context)
-        if (!batteryPermission) {
-            ActivityCompat.requestPermissions(activity, arrayOf(Car.PERMISSION_ENERGY), 0)
-            batteryPermission = checkBatteryPermission(context)
-            if (batteryPermission)
-                view.invalidate()
-        }
-        return batteryPermission
     }
 
     fun setPropertyManager(context: Context) {

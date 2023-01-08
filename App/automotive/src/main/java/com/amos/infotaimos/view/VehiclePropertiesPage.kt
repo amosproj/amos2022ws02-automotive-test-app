@@ -32,7 +32,7 @@ class VehiclePropertiesPage : ViewBindingFragment<FragmentVehiclePropertiesPageB
             binding.vinTile.tileVinEditableText.text.clear()
         }
 
-        val permission = viewModel.getBatteryPermission(requireContext(), requireActivity(),view)
+        val permission = viewModel.checkBatteryPermission(requireContext())
         if(permission) {
             viewModel.setPropertyManager(requireContext())
             viewModel.registerBatteryCallback(binding)
@@ -44,6 +44,11 @@ class VehiclePropertiesPage : ViewBindingFragment<FragmentVehiclePropertiesPageB
         }
         else {
             binding.batteryLevelTile.tileBatteryLevelText.text = "Can't access battery level"
+            binding.batteryProgressBar.min = 0
+            binding.batteryProgressBar.max = 0
+            binding.batteryProgressBar.progress = 0
+            binding.batteryProgressText.text = "Can't access battery level"
+
         }
     }
 
