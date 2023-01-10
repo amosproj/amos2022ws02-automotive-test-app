@@ -16,14 +16,15 @@ class SpeechAssistantPage : ViewBindingFragment<FragmentSpeechAssistantPageBindi
         super.onViewCreated(view, savedInstanceState)
 
         binding.fragmentPttButton.setOnClickListener {
-            viewModel.startSpeechAssistant(requireContext())
+            viewModel.startPTT(requireContext())
             binding.fragmentSpeechAnnouncementTextView.visibility = View.VISIBLE
             Timer().schedule(5500) {
                 binding.fragmentSpeechAnnouncementTextView.visibility = View.INVISIBLE
             }
         }
+
         binding.fragmentTttButton.setOnClickListener {
-            viewModel.startSpeechAssistant(requireContext())
+            viewModel.startPTT(requireContext())
             binding.fragmentSpeechAnnouncementTextView.visibility = View.VISIBLE
             Timer().schedule(5500) {
                 binding.fragmentSpeechAnnouncementTextView.visibility = View.INVISIBLE
