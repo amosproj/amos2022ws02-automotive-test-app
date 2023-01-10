@@ -42,4 +42,7 @@
     <string name="vehicle_properties">Vehicle Properties</string>
     <string name="power_management">Power Management</string>
     <string name="speech_assistant">Speech Assistant</string>
+    <string name="tap_to_start">tap to start</string>
+    <string name="tap_to_stop">tap to stop</string>
+    <string name="recording">Recording</string>
 </resources>
