@@ -5,9 +5,12 @@
         android:name="android.hardware.type.automotive"
         android:required="true" />
 
+<<<<<<< HEAD
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
+=======
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+>>>>>>> development
     <application
         android:allowBackup="true"
         android:appCategory="audio"
