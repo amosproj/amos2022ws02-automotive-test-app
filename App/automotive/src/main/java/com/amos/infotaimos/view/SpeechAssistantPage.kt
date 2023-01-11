@@ -22,5 +22,14 @@ class SpeechAssistantPage : ViewBindingFragment<FragmentSpeechAssistantPageBindi
                 binding.fragmentSpeechAnnouncementTextView.visibility = View.INVISIBLE
             }
         }
+
+
+        binding.fragmentTttButton.setOnClickListener {
+            viewModel.startTTT(requireContext())
+            binding.fragmentSpeechAnnouncementTextView.visibility = View.VISIBLE
+            Timer().schedule(5500) {
+                binding.fragmentSpeechAnnouncementTextView.visibility = View.INVISIBLE
+            }
+        }
     }
 }

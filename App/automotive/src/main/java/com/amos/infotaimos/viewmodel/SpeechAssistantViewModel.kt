@@ -11,6 +11,10 @@ class SpeechAssistantViewModel : ViewModel() {
         SpeechService.startPTT(context)
     }
 
+    fun startTTT(context: Context){
+        SpeechService.startTTT(context)
+    }
+
 }
 
 
