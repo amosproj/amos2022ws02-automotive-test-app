@@ -138,7 +138,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         val recordAudioPermissionRequestIndex = permissions.indexOf(RECORD_AUDIO)
-        if (recordAudioPermissionRequestIndex != -1 && grantResults[recordAudioPermissionRequestIndex] == PackageManager.PERMISSION_DENIED) {
+        if (recordAudioPermissionRequestIndex != -1 && grantResults[recordAudioPermissionRequestIndex] == PackageManager.PERMISSION_GRANTED) {
             viewModel.setupSpeechService(true)
         } else
             viewModel.setupSpeechService(false)
