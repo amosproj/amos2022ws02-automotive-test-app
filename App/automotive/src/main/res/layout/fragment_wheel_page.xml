@@ -46,6 +46,17 @@
             app:layout_constraintTop_toTopOf="@id/horizontal_guideline_3" />
 
         <Button
+            android:id="@+id/wheel_button_skip_backward"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:alpha="0.0"
+            android:text="@string/button_skip_backward"
+            app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_4"
+            app:layout_constraintLeft_toLeftOf="@id/vertical_guideline_7"
+            app:layout_constraintRight_toRightOf="@id/vertical_guideline_8"
+            app:layout_constraintTop_toTopOf="@id/horizontal_guideline_3" />
+
+        <Button
             android:id="@+id/wheel_button_voice_control"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -110,6 +121,20 @@
             app:layout_constraintGuide_percent="0.829" />
 
         <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_guideline_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.735" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_guideline_8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.765" />
+
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/horizontal_guideline_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -136,7 +161,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.563" />
-
 
         <ToggleButton
             android:id="@+id/toggleButton"

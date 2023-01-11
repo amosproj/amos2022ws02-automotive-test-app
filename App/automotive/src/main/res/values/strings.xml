@@ -30,11 +30,13 @@
         During a phone call press the button to end the call.</string>
     <string name="skip_forward_button_description">Skip/seek forward button:\nThis button owns two functions.
         Briefly press the button to select the next track or station. For seeking forward, press and hold this button until the desired playback position is reached.</string>
+    <string name="skip_backward_button_description">Skip/seek backward button:\nThis button owns three functions.
+    Briefly press the button once to start the current song from the beginning. Press the button twice to select the previous track or station. For seeking backwards, press and hold this button until the deisred playback position is reached. </string>
     <string name="voice_control_button_description">Voice control button:\nThis is the button for switching voice operation on or off.
         Switch the voice recognition on by briefly pressing the button. To switch the voice recognition system off, press and hold the button.</string>
     <string name="darkmode_enabled">Nightmode enabled</string>
     <string name="button_ttt">Tap-to-talk (TTT)</string>
-    <string name="text_speech_announcement">PROCESSING \n Your speech annoucement is beeing processed.</string>
+    <string name="text_speech_announcement">PROCESSING \n Your speech announcement is being processed.</string>
     <string name="button_battery_low_message">Battery low</string>
     <string name="battery_level">Battery Level</string>
     <string name="battery_level_percentage">20</string>
@@ -46,5 +48,6 @@
     <string name="tap_to_start">tap to start</string>
     <string name="tap_to_stop">tap to stop</string>
     <string name="recording">Recording</string>
+    <string name="button_skip_backward">Skip Backward</string>
 </resources>
 

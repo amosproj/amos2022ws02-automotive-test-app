@@ -40,6 +40,7 @@ class WheelPageTest {
         onView(withId(R.id.wheel_button_skip_forward)).perform(click()).check(matches(isDisplayed()))
         onView(withId(R.id.wheel_button_voice_control)).perform(click()).check(matches(isDisplayed()))
         onView(withId(R.id.wheel_button_play_pause)).perform(click()).check(matches(isDisplayed()))
+        onView(withId(R.id.wheel_button_skip_backward)).perform(click()).check(matches(isDisplayed()))
     }
 
     @Test
@@ -52,6 +53,7 @@ class WheelPageTest {
         onView(withId(R.id.wheel_button_skip_forward)).perform(click()).check(matches(isDisplayed()))
         onView(withId(R.id.wheel_button_voice_control)).perform(click()).check(matches(isDisplayed()))
         onView(withId(R.id.wheel_button_play_pause)).perform(click()).check(matches(isDisplayed()))
+        onView(withId(R.id.wheel_button_skip_backward)).perform(click()).check(matches(isDisplayed()))
         onView(withId(R.id.toggleButton)).perform(click()).check(matches(withText(R.string.description)))
     }
 
@@ -59,6 +61,12 @@ class WheelPageTest {
     fun testSkipForward() {
         launchFragmentInContainer<WheelPage>()
         checkMediaKeyPressed(R.id.wheel_button_skip_forward, KeyEvent.KEYCODE_MEDIA_NEXT)
+    }
+
+    @Test
+    fun testSkipBackward() {
+        launchFragmentInContainer<WheelPage>()
+        checkMediaKeyPressed(R.id.wheel_button_skip_backward, KeyEvent.KEYCODE_MEDIA_PREVIOUS)
     }
 
     @Test
@@ -72,6 +80,12 @@ class WheelPageTest {
     fun testSeekForward() {
         launchFragmentInContainer<WheelPage>()
         checkMediaKeyPressed(R.id.wheel_button_skip_forward, KeyEvent.KEYCODE_MEDIA_FAST_FORWARD)
+    }
+
+    @Test
+    fun testSeekBackward() {
+        launchFragmentInContainer<WheelPage>()
+        checkMediaKeyPressed(R.id.wheel_button_skip_backward, KeyEvent.KEYCODE_MEDIA_REWIND)
     }
 
     /**
@@ -94,7 +108,7 @@ class WheelPageTest {
         InstrumentationRegistry.getInstrumentation().runOnMainSync {
             MediaService.LAST_MEDIA_KEY.observeForever(keyObserver)
         }
-        if (expectedKeyEventCode == KeyEvent.KEYCODE_MEDIA_FAST_FORWARD) {
+        if (expectedKeyEventCode in listOf(KeyEvent.KEYCODE_MEDIA_FAST_FORWARD, KeyEvent.KEYCODE_MEDIA_REWIND)) {
             onView(withId(buttonID)).perform(longClick())
         } else {
             onView(withId(buttonID)).perform(click())
