@@ -31,11 +31,7 @@ class NavigationPageTest {
         launchFragmentInContainer<NavigationPage>()
         onView(withId(R.id.start_navigation_button)).perform(click()).check(matches(isClickable()))
     }
-    @Test
-    fun testStopNavigationClickable() {
-        launchFragmentInContainer<NavigationPage>()
-        onView(withId(R.id.stop_navigation_button)).perform(click()).check(matches(isClickable()))
-    }
+
     @Test
     fun testAnnouncementClickable() {
         launchFragmentInContainer<NavigationPage>()
@@ -60,13 +56,94 @@ class NavigationPageTest {
         )
 
         // test stop with delay 0s
-        onView(withId(R.id.stop_navigation_button)).perform(click())
+        onView(withId(R.id.start_navigation_button)).perform(click())
         assertFalse(
             carAppFocusManager.isOwningFocus(
                 navCallback,
                 CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION
             )
         )
+    }
+
+    @Test
+    fun cancelStartNavigation() {
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        val car = CarInstanceManager.getCarInstance(context)
+        val carAppFocusManager = car.getCarManager(Car.APP_FOCUS_SERVICE) as CarAppFocusManager
+        val navCallback = NavigationService.navCallback
+
+        launchFragmentInContainer<NavigationPage>()
+
+        // test start with delay 30s
+        onView(withId(R.id.delay_spinner)).perform(click())
+        onData(
+            allOf(
+                `is`(instanceOf(String::class.java)),
+                `is`("30s")
+            )
+        ).perform(click())
+        onView(withId(R.id.start_navigation_button)).perform(click())
+        assertTrue(NavigationService.countdown.value != 0L)
+        assertTrue(NavigationService.startTaskActive)
+        assertFalse(
+            carAppFocusManager.isOwningFocus(
+                navCallback,
+                CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION
+            )
+        )
+        onView(withId(R.id.start_navigation_button)).perform(click())
+        assertTrue(!NavigationService.startTaskActive)
+        assertFalse(
+            carAppFocusManager.isOwningFocus(
+                navCallback,
+                CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION
+            )
+        )
+    }
+
+    @Test
+    fun cancelStopNavigation() {
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        val car = CarInstanceManager.getCarInstance(context)
+        val carAppFocusManager = car.getCarManager(Car.APP_FOCUS_SERVICE) as CarAppFocusManager
+        val navCallback = NavigationService.navCallback
+
+        launchFragmentInContainer<NavigationPage>()
+
+        // start navigation
+        onView(withId(R.id.start_navigation_button)).perform(click())
+        assertTrue(
+            carAppFocusManager.isOwningFocus(
+                navCallback,
+                CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION
+            )
+        )
+        // test start with delay 30s
+        onView(withId(R.id.delay_spinner)).perform(click())
+        onData(
+            allOf(
+                `is`(instanceOf(String::class.java)),
+                `is`("30s")
+            )
+        ).perform(click())
+        onView(withId(R.id.start_navigation_button)).perform(click())
+        assertTrue(NavigationService.countdown.value != 0L)
+        assertTrue(NavigationService.stopTaskActive)
+        assertTrue(
+            carAppFocusManager.isOwningFocus(
+                navCallback,
+                CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION
+            )
+        )
+        onView(withId(R.id.start_navigation_button)).perform(click())
+        assertTrue(!NavigationService.stopTaskActive)
+        assertTrue(
+            carAppFocusManager.isOwningFocus(
+                navCallback,
+                CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION
+            )
+        )
+
     }
 
     @Test
@@ -87,7 +164,6 @@ class NavigationPageTest {
             )
         ).perform(click())
         onView(withId(R.id.start_navigation_button)).perform(click())
-
         assertFalse(
             carAppFocusManager.isOwningFocus(
                 navCallback,
@@ -110,7 +186,7 @@ class NavigationPageTest {
         )
 
         // test stop with delay 30s
-        onView(withId(R.id.stop_navigation_button)).perform(click())
+        onView(withId(R.id.start_navigation_button)).perform(click())
         assertTrue(
             carAppFocusManager.isOwningFocus(
                 navCallback,
@@ -174,7 +250,7 @@ class NavigationPageTest {
         )
 
         // test stop with delay 1min
-        onView(withId(R.id.stop_navigation_button)).perform(click())
+        onView(withId(R.id.start_navigation_button)).perform(click())
         assertTrue(
             carAppFocusManager.isOwningFocus(
                 navCallback,
