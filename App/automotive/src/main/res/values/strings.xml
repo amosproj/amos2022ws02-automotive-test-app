@@ -34,6 +34,7 @@
         Switch the voice recognition on by briefly pressing the button. To switch the voice recognition system off, press and hold the button.</string>
     <string name="darkmode_enabled">Nightmode enabled</string>
     <string name="button_ttt">Tap-to-talk (TTT)</string>
+    <string name="text_speech_announcement">PROCESSING \n Your speech annoucement is beeing processed.</string>
     <string name="button_battery_low_message">Battery low</string>
     <string name="battery_level">Battery Level</string>
     <string name="battery_level_percentage">20</string>

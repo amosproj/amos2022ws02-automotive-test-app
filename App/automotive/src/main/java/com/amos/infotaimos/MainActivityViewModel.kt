@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.amos.infotaimos.model.CarInstanceManager
 import com.amos.infotaimos.model.NavigationService
 import com.amos.infotaimos.model.NotificationManager
+import com.amos.infotaimos.model.SpeechService
 
 class MainActivityViewModel(context: Context) : ViewModel() {
 
@@ -16,5 +17,9 @@ class MainActivityViewModel(context: Context) : ViewModel() {
 
     fun setupNotificationChannel(context: Context) {
         NotificationManager.createNotificationChannel(context)
+    }
+
+    fun setupSpeechService(permissionGranted :Boolean){
+        SpeechService.setupSpeechService(permissionGranted)
     }
 }
