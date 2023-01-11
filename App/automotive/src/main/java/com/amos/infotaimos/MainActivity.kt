@@ -2,6 +2,7 @@ package com.amos.infotaimos
 
 import android.Manifest.permission.POST_NOTIFICATIONS
 import android.Manifest.permission.RECORD_AUDIO
+import android.car.Car
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -15,6 +16,7 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
@@ -75,6 +77,14 @@ class MainActivity : AppCompatActivity() {
         }
         viewModel.navIndicatorLiveData.observe(this, navigationObserver)
         startService(Intent(this, TimerService::class.java))
+
+        // get battery read/write permission
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            if (checkSelfPermission(Car.PERMISSION_ENERGY) == PackageManager.PERMISSION_DENIED) {
+                requestPermissions(arrayOf(Car.PERMISSION_ENERGY), REQ_ENERGY_PERM)
+            }
+        }
+
     }
 
     fun goToNavigation() {
@@ -148,5 +158,6 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val REQ_PERM_CODE = 42
+        const val REQ_ENERGY_PERM = 24
     }
 }

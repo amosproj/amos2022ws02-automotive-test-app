@@ -9,6 +9,7 @@ import com.amos.infotaimos.viewmodel.VehiclePropertiesPageViewModel
 
 class VehiclePropertiesPage : ViewBindingFragment<FragmentVehiclePropertiesPageBinding>() {
     private val viewModel: VehiclePropertiesPageViewModel by viewModels()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.loadData(requireContext())
@@ -29,6 +30,25 @@ class VehiclePropertiesPage : ViewBindingFragment<FragmentVehiclePropertiesPageB
             viewModel._vin.value = binding.vinTile.tileVinEditableText.text.toString()
             viewModel.saveData(requireContext(), binding.vinTile.tileVinText.text.toString())
             binding.vinTile.tileVinEditableText.text.clear()
+        }
+
+        val permission = viewModel.checkBatteryPermission(requireContext())
+        if(permission) {
+            viewModel.setPropertyManager(requireContext())
+            viewModel.registerBatteryCallback(binding)
+            binding.batteryLevelTile.tileBatteryLevelText.text = viewModel.getBatteryLevel()
+            binding.batteryProgressBar.min = 0
+            binding.batteryProgressBar.max = viewModel.getCapacityWH().toInt()
+            binding.batteryProgressBar.progress = viewModel.getBatteryWH().toInt()
+            binding.batteryProgressText.text = viewModel.getBatteryText()
+        }
+        else {
+            binding.batteryLevelTile.tileBatteryLevelText.text = "Can't access battery level"
+            binding.batteryProgressBar.min = 0
+            binding.batteryProgressBar.max = 0
+            binding.batteryProgressBar.progress = 0
+            binding.batteryProgressText.text = "Can't access battery level"
+
         }
     }
 
