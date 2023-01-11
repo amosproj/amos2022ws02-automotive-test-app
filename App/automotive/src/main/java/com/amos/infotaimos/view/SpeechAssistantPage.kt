@@ -23,6 +23,7 @@ class SpeechAssistantPage : ViewBindingFragment<FragmentSpeechAssistantPageBindi
             }
         }
 
+
         binding.fragmentTttButton.setOnClickListener {
             viewModel.startTTT(requireContext())
             binding.fragmentSpeechAnnouncementTextView.visibility = View.VISIBLE

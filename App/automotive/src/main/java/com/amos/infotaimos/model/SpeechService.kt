@@ -9,6 +9,7 @@ object SpeechService {
     private const val TAG = "SPEECH_SERVICE"
     private var speechTask: TimerTask? = null
     private var recordAudioPermissionGranted = false
+
     private var voiceInteractionSession: VoiceInteractionSession? = null
 
     fun startPTT(context: Context) {
@@ -43,3 +44,4 @@ object SpeechService {
         recordAudioPermissionGranted = permissionGranted
     }
 }
+
