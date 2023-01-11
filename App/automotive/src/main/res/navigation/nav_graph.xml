@@ -34,6 +34,10 @@
         <action
             android:id="@+id/action_landingPage_to_timerPage"
             app:destination="@id/timerPage"/>
+        <action
+            android:id="@+id/action_landingPage_to_testDrivePage"
+            app:destination="@id/testDrivePage"/>
+
     </fragment>
 
     <fragment
@@ -76,4 +80,9 @@
         android:name="com.amos.infotaimos.view.TimerPage"
         android:label="fragment_timer_page"
         tools:layout="@layout/fragment_timer_page"/>
+    <fragment
+        android:id="@+id/testDrivePage"
+        android:name="com.amos.infotaimos.view.TestDrivePage"
+        android:label="fragment_test_drive_page"
+        tools:layout="@layout/fragment_test_drive"/>
 </navigation>

@@ -3,134 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="landingPage"
             type="com.amos.infotaimos.view.LandingPage" />
     </data>
 
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragment_landing_page_tile_recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbarSize="15dp">
-
-        <LinearLayout
-            android:id="@+id/Navigation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:orientation="horizontal">
-
-                <com.amos.infotaimos.view.LandingPageTile
-                    android:id="@+id/cardViewNavigation"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:onClick="@{() -> landingPage.goToNavigationScreen()}"
-                    app:tileColor="@color/landing_green"
-                    app:tileIcon="@drawable/map_icon"
-                    app:tileText="@string/navigation" />
-
-                <com.amos.infotaimos.view.LandingPageTile
-                    android:id="@+id/cardViewWheel"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:onClick="@{() -> landingPage.goToWheelScreen()}"
-                    app:tileColor="@color/landing_blue"
-                    app:tileIcon="@drawable/steering_wheel_icon"
-                    app:tileText="Steering Wheel" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:orientation="horizontal">
-
-                <com.amos.infotaimos.view.LandingPageTile
-                    android:id="@+id/cardViewMedia"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:onClick="@{() -> landingPage.goToMediaPageScreen()}"
-                    app:tileColor="@color/landing_purple"
-                    app:tileIcon="@drawable/media_play"
-                    app:tileText="Media Play" />
-
-                <com.amos.infotaimos.view.LandingPageTile
-                    android:id="@+id/cardViewVehicleProperties"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:onClick="@{() -> landingPage.goToVehiclePropertiesScreen()}"
-                    app:tileColor="@color/landing_red"
-                    app:tileIcon="@drawable/vehicle_properties_icon"
-                    app:tileText="Vehicle Properties" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:orientation="horizontal">
-
-                <com.amos.infotaimos.view.LandingPageTile
-                    android:id="@+id/cardViewPowerManagement"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:onClick="@{() -> landingPage.goToPowerManagementScreen()}"
-                    app:tileColor="@color/landing_olive"
-                    app:tileIcon="@drawable/power_management_icon"
-                    app:tileText="Power Management" />
-
-                <com.amos.infotaimos.view.LandingPageTile
-                    android:id="@+id/cardViewSpeechAssistant"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:onClick="@{() -> landingPage.goToSpeechAssistantPageScreen()}"
-                    app:tileColor="@color/landing_yellow"
-                    app:tileIcon="@drawable/speech_assistant_icon_24"
-                    app:tileText="Speech Assistant" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:orientation="horizontal">
-
-                <com.amos.infotaimos.view.LandingPageTile
-                    android:id="@+id/cardViewTimer"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:onClick="@{() -> landingPage.goToTimerScreen()}"
-                    app:tileColor="@color/landing_orange"
-                    app:tileIcon="@drawable/timer_icon"
-                    app:tileText="Timer" />
-
-                <com.amos.infotaimos.view.LandingPageTile
-                    android:id="@+id/cardViewAppSettings"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:onClick="@{() -> landingPage.goToAppSettingsScreen()}"
-                    app:tileColor="@color/landing_pink"
-                    app:tileIcon="@drawable/settings_gear_icon"
-                    app:tileText= "@string/app_settings" />
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+        android:padding="4dp"/>
 </layout>

@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clickable="true"
     android:contextClickable="false"
     android:orientation="vertical"
     tools:context=".view.SpeechAssistantPage">
@@ -32,24 +31,37 @@
     <Button
         android:id="@+id/fragment_speech_announcement_button"
         style="@style/Theme.InfotAiMOS.Button"
-        android:backgroundTint="@color/landing_yellow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/landing_yellow"
         android:text="@string/button_speech_announcement" />
 
     <Button
         android:id="@+id/fragment_ptt_button"
         style="@style/Theme.InfotAiMOS.Button"
-        android:backgroundTint="@color/landing_yellow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/landing_yellow"
         android:text="@string/button_ptt" />
 
     <Button
         android:id="@+id/fragment_ttt_button"
         style="@style/Theme.InfotAiMOS.Button"
-        android:backgroundTint="@color/landing_yellow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/landing_yellow"
         android:text="@string/button_ttt" />
+
+    <TextView
+        android:id="@+id/fragment_speech_announcement_textView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="100dp"
+        android:background="@color/pale_orange"
+        android:gravity="center"
+        android:text="@string/text_speech_announcement"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        android:visibility="invisible" />
+
 </LinearLayout>

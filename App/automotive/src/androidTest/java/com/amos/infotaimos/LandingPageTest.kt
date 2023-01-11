@@ -3,11 +3,14 @@ package com.amos.infotaimos
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.navigation.Navigation
 import androidx.navigation.testing.TestNavHostController
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.amos.infotaimos.model.LandingPageTileType
 import com.amos.infotaimos.view.LandingPage
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -22,7 +25,7 @@ class LandingPageTest {
     @Test
     fun testNavigationToNavigationScreen() {
         val navController = prepareScreen()
-        scrollAndClickOn(R.id.cardViewNavigation)
+        scrollAndClickOn(LandingPageTileType.NAVIGATION.getID())
         assertEquals(navController.currentDestination?.id, R.id.navigationPage)
     }
 
@@ -32,7 +35,7 @@ class LandingPageTest {
     @Test
     fun testNavigationToSteeringWheelScreen() {
         val navController = prepareScreen()
-        scrollAndClickOn(R.id.cardViewWheel)
+        scrollAndClickOn(LandingPageTileType.STEERING_WHEEL.getID())
         assertEquals(navController.currentDestination?.id, R.id.wheelPage)
     }
 
@@ -42,7 +45,7 @@ class LandingPageTest {
     @Test
     fun testNavigationToPowerManagementScreen() {
         val navController = prepareScreen()
-        scrollAndClickOn(R.id.cardViewPowerManagement)
+        scrollAndClickOn(LandingPageTileType.POWER_MANAGEMENT.getID())
         assertEquals(navController.currentDestination?.id, R.id.powerManagementPage)
     }
 
@@ -52,7 +55,7 @@ class LandingPageTest {
     @Test
     fun testNavigationToVehiclePropertiesScreen() {
         val navController = prepareScreen()
-        scrollAndClickOn(R.id.cardViewVehicleProperties)
+        scrollAndClickOn(LandingPageTileType.VEHICLE_PROPERTIES.getID())
         assertEquals(navController.currentDestination?.id, R.id.vehiclePropertiesPage)
     }
 
@@ -62,7 +65,7 @@ class LandingPageTest {
     @Test
     fun testNavigationToMediaScreen() {
         val navController = prepareScreen()
-        scrollAndClickOn(R.id.cardViewMedia)
+        scrollAndClickOn(LandingPageTileType.MEDIA_PLAY.getID())
         assertEquals(navController.currentDestination?.id, R.id.mediaPage)
     }
 
@@ -72,7 +75,7 @@ class LandingPageTest {
     @Test
     fun testNavigationToAppSettings() {
         val navController = prepareScreen()
-        scrollAndClickOn(R.id.cardViewAppSettings)
+        scrollAndClickOn(LandingPageTileType.APP_SETTINGS.getID())
         assertEquals(navController.currentDestination?.id, R.id.appSettings)
     }
 
@@ -82,8 +85,18 @@ class LandingPageTest {
     @Test
     fun testNavigationToTimerPage() {
         val navController = prepareScreen()
-        scrollAndClickOn(R.id.cardViewTimer)
+        scrollAndClickOn(LandingPageTileType.TIMER.getID())
         assertEquals(navController.currentDestination?.id, R.id.timerPage)
+    }
+
+    /**
+     * Test navigation to the test drive page via the nav_graph
+     */
+    @Test
+    fun testNavigationToTestDrivePage() {
+        val navController = prepareScreen()
+        scrollAndClickOn(LandingPageTileType.TEST_DRIVE.getID())
+        assertEquals(navController.currentDestination?.id, R.id.testDrivePage)
     }
 
     /**
@@ -91,7 +104,8 @@ class LandingPageTest {
      * @param id ID of the element to be clicked
      */
     private fun scrollAndClickOn(id: Int) {
-        onView(ViewMatchers.withId(id)).perform(ViewActions.scrollTo())
+        onView(ViewMatchers.withId(R.id.fragment_landing_page_tile_recycler))
+            .perform(RecyclerViewActions.scrollTo<RecyclerView.ViewHolder>(ViewMatchers.withId(id)))
         onView(ViewMatchers.withId(id)).perform(ViewActions.click())
     }
 
