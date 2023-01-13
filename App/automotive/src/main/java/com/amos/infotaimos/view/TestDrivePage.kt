@@ -3,14 +3,12 @@ package com.amos.infotaimos.view
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import com.amos.infotaimos.MainActivity
 import com.amos.infotaimos.R
 import com.amos.infotaimos.ViewBindingFragment
 import com.amos.infotaimos.databinding.FragmentTestDriveBinding
-import com.amos.infotaimos.model.TestDriveItem
 import com.amos.infotaimos.model.TestDriveRecyclerViewAdapter
-import com.amos.infotaimos.model.TimerRecyclerViewAdapter
 import com.amos.infotaimos.viewmodel.TestDrivePageViewModel
-import java.time.LocalDate
 import java.time.LocalDateTime
 
 class TestDrivePage : ViewBindingFragment<FragmentTestDriveBinding>() {
@@ -26,6 +24,13 @@ class TestDrivePage : ViewBindingFragment<FragmentTestDriveBinding>() {
         binding.testDriveStartTile.root.setOnClickListener {
             if(viewModel._tapText.value == resources.getString(R.string.tap_to_start)){
                 viewModel._tapText.value = resources.getString(R.string.tap_to_stop)
+                viewModel.setPropertyManager(requireContext())
+                if(viewModel.checkPermission(requireContext())) {
+                    viewModel.record(requireContext(), LocalDateTime.now().toString())
+                }
+                else{
+                    (requireActivity() as? MainActivity)?.displayToast("Missing Permission", 100, 2000)
+                }
             }
             else if(viewModel._tapText.value == resources.getString(R.string.tap_to_stop)){
                 viewModel._tapText.value = resources.getString(R.string.tap_to_start)
