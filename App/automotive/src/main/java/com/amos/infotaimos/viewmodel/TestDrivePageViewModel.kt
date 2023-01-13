@@ -12,6 +12,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.amos.infotaimos.model.CarInstanceManager
 import com.amos.infotaimos.model.RecordingService
+import com.amos.infotaimos.model.TestDriveItem
 import java.time.LocalDateTime
 
 
@@ -20,6 +21,17 @@ class TestDrivePageViewModel : ViewModel() {
     val _tapText: MutableLiveData<String> = MutableLiveData("")
     val tapText: LiveData<String>
         get() = _tapText
+    val events = MutableLiveData< MutableList<TestDriveItem>>()
+
+    init{
+        events.value = ArrayList()
+    }
+
+    fun addNewRecording(timeStamp: LocalDateTime){
+        val item = TestDriveItem(timeStamp.hashCode().toString(), timeStamp.toLocalDate(), timeStamp)
+        events.value?.add(item)
+        events.value = events.value
+    }
 
     fun setPropertyManager(context: Context) {
         val car: Car = CarInstanceManager.getCarInstance(context)
@@ -96,5 +108,9 @@ class TestDrivePageViewModel : ViewModel() {
             VehiclePropertyIds.GEAR_SELECTION,
             CarPropertyManager.SENSOR_RATE_ONCHANGE
         )
+    }
+
+    fun save(context: Context, timeStamp: String){
+        RecordingService.save(context, timeStamp)
     }
 }

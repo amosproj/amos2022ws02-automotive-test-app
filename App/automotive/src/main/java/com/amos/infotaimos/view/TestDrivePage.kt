@@ -8,14 +8,17 @@ import com.amos.infotaimos.R
 import com.amos.infotaimos.ViewBindingFragment
 import com.amos.infotaimos.databinding.FragmentTestDriveBinding
 import com.amos.infotaimos.model.TestDriveRecyclerViewAdapter
+import com.amos.infotaimos.model.TimerRecyclerViewAdapter
 import com.amos.infotaimos.viewmodel.TestDrivePageViewModel
 import java.time.LocalDateTime
+import java.time.LocalTime
 
 class TestDrivePage : ViewBindingFragment<FragmentTestDriveBinding>() {
     private val viewModel: TestDrivePageViewModel by viewModels()
     private lateinit var adapter: TestDriveRecyclerViewAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        var startDate = LocalDateTime.now()
         viewModel._tapText.value = resources.getString(R.string.tap_to_start)
         viewModel.tapText.observe(viewLifecycleOwner) { tapText ->
             binding.testDriveStartTile.tileTestDriveStartTapText.text = tapText
@@ -26,7 +29,8 @@ class TestDrivePage : ViewBindingFragment<FragmentTestDriveBinding>() {
                 viewModel._tapText.value = resources.getString(R.string.tap_to_stop)
                 viewModel.setPropertyManager(requireContext())
                 if(viewModel.checkPermission(requireContext())) {
-                    viewModel.record(requireContext(), LocalDateTime.now().toString())
+                    startDate = LocalDateTime.now()
+                    viewModel.record(requireContext(), startDate.toString())
                 }
                 else{
                     (requireActivity() as? MainActivity)?.displayToast("Missing Permission", 100, 2000)
@@ -34,9 +38,13 @@ class TestDrivePage : ViewBindingFragment<FragmentTestDriveBinding>() {
             }
             else if(viewModel._tapText.value == resources.getString(R.string.tap_to_stop)){
                 viewModel._tapText.value = resources.getString(R.string.tap_to_start)
+                viewModel.addNewRecording(startDate)
             }
         }
         adapter = TestDriveRecyclerViewAdapter()
         binding.testDriveRecyclerView.adapter = adapter
+        viewModel.events.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
     }
 }

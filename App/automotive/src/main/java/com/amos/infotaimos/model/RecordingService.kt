@@ -11,4 +11,11 @@ object RecordingService {
             it?.write(line.toByteArray())
         }
     }
+
+    fun save (context: Context, timeStamp: String){
+        val line = ("Recording").plus(timeStamp).plus(".txt")
+        context.openFileOutput("PastRecords.txt", Context.MODE_PRIVATE).use {
+            it?.write(line.toByteArray())
+        }
+    }
 }
