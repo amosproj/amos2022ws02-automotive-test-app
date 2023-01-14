@@ -84,5 +84,16 @@
         android:id="@+id/testDrivePage"
         android:name="com.amos.infotaimos.view.TestDrivePage"
         android:label="fragment_test_drive_page"
-        tools:layout="@layout/fragment_test_drive"/>
+        tools:layout="@layout/fragment_test_drive">
+         <action
+            android:id="@+id/action_testDrivePage_to_recordDetails"
+            app:destination="@id/testDriveRecordDetails">
+            </action>
+        </fragment>
+    <fragment
+        android:id="@+id/testDriveRecordDetails"
+        android:name="com.amos.infotaimos.view.RecordDetails"
+        android:label="fragment_record_details"
+        tools:layout="@layout/fragment_record_details">
+    </fragment>
 </navigation>

@@ -109,8 +109,4 @@ class TestDrivePageViewModel : ViewModel() {
             CarPropertyManager.SENSOR_RATE_ONCHANGE
         )
     }
-
-    fun save(context: Context, timeStamp: String){
-        RecordingService.save(context, timeStamp)
-    }
 }
