@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.amos.infotaimos.MainActivity
 import com.amos.infotaimos.R
 import com.amos.infotaimos.ViewBindingFragment
@@ -62,6 +63,9 @@ class WheelPage : ViewBindingFragment<FragmentWheelPageBinding>() {
         binding.toggleButton.setOnCheckedChangeListener { buttonView, isChecked ->
             description = isChecked
             Log.d(TAG, "ToggleButton pressed")
+        }
+        binding.sequenceButton.setOnClickListener {
+            findNavController().navigate(R.id.goto_button_sequences)
         }
     }
     companion object {

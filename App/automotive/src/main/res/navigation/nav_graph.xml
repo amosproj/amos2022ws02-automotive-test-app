@@ -49,7 +49,11 @@
         android:id="@+id/wheelPage"
         android:name="com.amos.infotaimos.view.WheelPage"
         android:label="fragment_wheel_page"
-        tools:layout="@layout/fragment_wheel_page" />
+        tools:layout="@layout/fragment_wheel_page" >
+        <action
+            android:id="@+id/goto_button_sequences"
+            app:destination="@id/buttonSequencePage" />
+    </fragment>
     <fragment
         android:id="@+id/powerManagementPage"
         android:name="com.amos.infotaimos.view.PowerManagementPage"
@@ -85,4 +89,9 @@
         android:name="com.amos.infotaimos.view.TestDrivePage"
         android:label="fragment_test_drive_page"
         tools:layout="@layout/fragment_test_drive"/>
+    <fragment
+        android:id="@+id/buttonSequencePage"
+        android:name="com.amos.infotaimos.view.ButtonSequencePage"
+        android:label="fragment_button_sequence"
+        tools:layout="@layout/fragment_button_sequence" />
 </navigation>
