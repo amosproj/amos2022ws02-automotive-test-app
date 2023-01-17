@@ -15,7 +15,7 @@ object RecordingService {
     private const val PREVIOUS_RECORD_FILE = "PreviousRecordList.txt"
 
     fun saveRecordDetail(context: Context, id: String, eventName: String, vehiclePropertyID: Int, value: String, time: LocalDateTime) {
-        val line = id.plus(";").plus(eventName).plus(";").plus(vehiclePropertyID).plus(";").plus(value).plus(";").plus(DateTimeFormatter.ofPattern("HH:mm:ss").format(time)).plus(";\n");
+        val line = id.hashCode().absoluteValue.toString().plus(";").plus(eventName).plus(";").plus(vehiclePropertyID).plus(";").plus(value).plus(";").plus(DateTimeFormatter.ofPattern("HH:mm:ss").format(time)).plus(";\n");
         val file = ("Recording").plus(id).plus(".txt")
         Log.d(TAG, "save $line")
         context.openFileOutput(file, Context.MODE_APPEND).use {
