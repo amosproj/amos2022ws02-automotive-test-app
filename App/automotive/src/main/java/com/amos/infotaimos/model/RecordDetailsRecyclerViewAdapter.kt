@@ -44,6 +44,8 @@ class RecordDetailsRecyclerViewAdapter() :
             itemBinding.id.text = detailRecordsItem.id
             itemBinding.eventName.text = detailRecordsItem.eventName
             itemBinding.vehiclePropertyId.text = detailRecordsItem.vehiclePropertyId
+            itemBinding.value.text = detailRecordsItem.value
+            itemBinding.time.text = detailRecordsItem.time
         }
     }
 }

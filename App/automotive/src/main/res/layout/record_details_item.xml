@@ -40,12 +40,24 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/vehiclePropertyId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="40dp"
+                    android:text="PropertyID"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/id"
+                    app:layout_constraintStart_toEndOf="@+id/id"/>
+
+                <TextView
                     android:id="@+id/eventName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginBottom="15dp"
-                    android:text="12:11"
+                    android:text="Gear_Selection"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@id/vehiclePropertyId"
@@ -53,17 +65,33 @@
                     app:layout_constraintTop_toTopOf="@id/vehiclePropertyId"
                     app:layout_constraintVertical_bias="0.0" />
 
+
                 <TextView
-                    android:id="@+id/vehiclePropertyId"
+                    android:id="@+id/value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="40dp"
-                    android:text="Recording from: 19.12.2022 12:11"
+                     android:layout_marginEnd="20dp"
+                    android:text="Parking"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@id/id"
-                    app:layout_constraintStart_toEndOf="@+id/id"/>
+                    app:layout_constraintBottom_toBottomOf="@id/eventName"
+                    app:layout_constraintEnd_toStartOf="@+id/time"
+                    app:layout_constraintTop_toTopOf="@id/eventName"
+                    app:layout_constraintVertical_bias="0.0"/>
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="12:12"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/value"
+                    app:layout_constraintTop_toTopOf="@id/value"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintVertical_bias="0.0"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>

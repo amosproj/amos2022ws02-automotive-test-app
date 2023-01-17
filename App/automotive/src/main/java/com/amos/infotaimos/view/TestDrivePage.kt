@@ -8,10 +8,8 @@ import com.amos.infotaimos.R
 import com.amos.infotaimos.ViewBindingFragment
 import com.amos.infotaimos.databinding.FragmentTestDriveBinding
 import com.amos.infotaimos.model.TestDriveRecyclerViewAdapter
-import com.amos.infotaimos.model.TimerRecyclerViewAdapter
 import com.amos.infotaimos.viewmodel.TestDrivePageViewModel
 import java.time.LocalDateTime
-import java.time.LocalTime
 
 class TestDrivePage : ViewBindingFragment<FragmentTestDriveBinding>() {
     private val viewModel: TestDrivePageViewModel by viewModels()
@@ -23,7 +21,7 @@ class TestDrivePage : ViewBindingFragment<FragmentTestDriveBinding>() {
         viewModel.tapText.observe(viewLifecycleOwner) { tapText ->
             binding.testDriveStartTile.tileTestDriveStartTapText.text = tapText
         }
-
+        viewModel.loadPreviousRecord(requireContext())
         binding.testDriveStartTile.root.setOnClickListener {
             if(viewModel._tapText.value == resources.getString(R.string.tap_to_start)){
                 viewModel._tapText.value = resources.getString(R.string.tap_to_stop)
@@ -38,7 +36,8 @@ class TestDrivePage : ViewBindingFragment<FragmentTestDriveBinding>() {
             }
             else if(viewModel._tapText.value == resources.getString(R.string.tap_to_stop)){
                 viewModel._tapText.value = resources.getString(R.string.tap_to_start)
-                viewModel.addNewRecording(startDate)
+                viewModel.unrecord();
+                viewModel.addNewRecording(requireContext(), startDate)
             }
         }
         adapter = TestDriveRecyclerViewAdapter()
