@@ -23,13 +23,10 @@ class TestDrivePageViewModel : ViewModel() {
     val _tapText: MutableLiveData<String> = MutableLiveData("")
     val tapText: LiveData<String>
         get() = _tapText
-    val events = Transformations.map(RecordingService.previousRecordList) { events ->
+    val events = Transformations.map(RecordingService.testDriveList) { events ->
         val itemList = mutableListOf<TestDriveItem>()
-        for (eventIndex in 0 until events.size) {
-            val event = events[eventIndex]
-            itemList.add(
-                event
-            )
+        for (event in events){
+            itemList.add(event)
         }
         return@map itemList
     }
@@ -39,11 +36,11 @@ class TestDrivePageViewModel : ViewModel() {
     lateinit var gearSelectionEvent: CarPropertyEventCallback
 
 
-    fun loadPreviousRecord(context: Context){
-        RecordingService.loadPreviousRecords(context)
+    fun loadTestDrive(context: Context){
+        RecordingService.loadTestDrive(context)
     }
-    fun addNewRecording(context: Context, timeStamp: LocalDateTime) {
-        RecordingService.saveRecord(context, timeStamp)
+    fun saveTestDrive(context: Context, timeStamp: LocalDateTime) {
+        RecordingService.saveTestDrive(context, timeStamp)
 
     }
 
@@ -64,16 +61,16 @@ class TestDrivePageViewModel : ViewModel() {
     }
 
     fun record(context: Context, id: String) {
-        fuelLevelEvent = object : CarPropertyManager.CarPropertyEventCallback {
+        fuelLevelEvent = object : CarPropertyEventCallback {
             override fun onChangeEvent(p0: CarPropertyValue<*>?) {
                 val time = LocalDateTime.now()
-                val newValue = propertyManager.getFloatProperty(VehiclePropertyIds.FUEL_LEVEL, 0)
-                RecordingService.saveData(
+                val value = propertyManager.getFloatProperty(VehiclePropertyIds.FUEL_LEVEL, 0)
+                RecordingService.saveRecordDetail(
                     context,
                     id,
                     "FUEL_LEVEL",
                     VehiclePropertyIds.FUEL_LEVEL,
-                    newValue.toString(),
+                    value.toString(),
                     time
                 )
             }
@@ -82,17 +79,17 @@ class TestDrivePageViewModel : ViewModel() {
                 //Called only when an error is detected when setting a property.
             }
         }
-        batteryLevelEvent = object : CarPropertyManager.CarPropertyEventCallback {
+        batteryLevelEvent = object : CarPropertyEventCallback {
             override fun onChangeEvent(p0: CarPropertyValue<*>?) {
                 val time = LocalDateTime.now()
-                val newValue =
+                val value =
                     propertyManager.getFloatProperty(VehiclePropertyIds.EV_BATTERY_LEVEL, 0)
-                RecordingService.saveData(
+                RecordingService.saveRecordDetail(
                     context,
                     id,
                     "EV_BATTERY_LEVEL",
                     VehiclePropertyIds.EV_BATTERY_LEVEL,
-                    newValue.toString(),
+                    value.toString(),
                     time
                 )
             }
@@ -101,18 +98,18 @@ class TestDrivePageViewModel : ViewModel() {
                 //Called only when an error is detected when setting a property.
             }
         }
-        fuelLevelLowEvent = object : CarPropertyManager.CarPropertyEventCallback {
+        fuelLevelLowEvent = object : CarPropertyEventCallback {
             override fun onChangeEvent(p0: CarPropertyValue<*>?) {
-                val newTime = LocalDateTime.now()
-                val newValue =
+                val time = LocalDateTime.now()
+                val value =
                     propertyManager.getBooleanProperty(VehiclePropertyIds.FUEL_LEVEL_LOW, 0)
-                RecordingService.saveData(
+                RecordingService.saveRecordDetail(
                     context,
                     id,
                     "FUEL_LEVEL_LOW",
                     VehiclePropertyIds.FUEL_LEVEL_LOW,
-                    newValue.toString(),
-                    newTime
+                    value.toString(),
+                    time
                 )
             }
 
@@ -120,17 +117,17 @@ class TestDrivePageViewModel : ViewModel() {
                 //Called only when an error is detected when setting a property.
             }
         }
-        gearSelectionEvent = object : CarPropertyManager.CarPropertyEventCallback {
+        gearSelectionEvent = object : CarPropertyEventCallback {
             override fun onChangeEvent(p0: CarPropertyValue<*>?) {
-                val newTime = LocalDateTime.now()
-                val newValue = propertyManager.getIntProperty(VehiclePropertyIds.GEAR_SELECTION, 0)
-                RecordingService.saveData(
+                val time = LocalDateTime.now()
+                val value = propertyManager.getIntProperty(VehiclePropertyIds.GEAR_SELECTION, 0)
+                RecordingService.saveRecordDetail(
                     context,
                     id,
                     "GEAR_SELECTION",
                     VehiclePropertyIds.GEAR_SELECTION,
-                    newValue.toString(),
-                    newTime
+                    value.toString(),
+                    time
                 )
             }
 

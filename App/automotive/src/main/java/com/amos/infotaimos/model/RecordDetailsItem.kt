@@ -1,6 +1,6 @@
 package com.amos.infotaimos.model
 
-data class DetailRecordsItem(
+data class RecordDetailsItem(
     var id: String="",
     var eventName: String,
     var vehiclePropertyId: String,

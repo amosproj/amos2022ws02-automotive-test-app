@@ -9,12 +9,12 @@ import java.time.format.DateTimeFormatter
 import kotlin.math.absoluteValue
 
 object RecordingService {
-    var recordList: MutableLiveData<MutableList<DetailRecordsItem>> = MutableLiveData()
-    var previousRecordList: MutableLiveData<MutableList<TestDriveItem>> = MutableLiveData()
+    var recordDetailsList: MutableLiveData<MutableList<RecordDetailsItem>> = MutableLiveData()
+    var testDriveList: MutableLiveData<MutableList<TestDriveItem>> = MutableLiveData()
     private const val TAG = "SPEECH_SERVICE"
     private const val PREVIOUS_RECORD_FILE = "PreviousRecordList.txt"
 
-    fun saveData(context: Context, id: String, eventName: String, vehiclePropertyID: Int, value: String, time: LocalDateTime) {
+    fun saveRecordDetail(context: Context, id: String, eventName: String, vehiclePropertyID: Int, value: String, time: LocalDateTime) {
         val line = id.plus(";").plus(eventName).plus(";").plus(vehiclePropertyID).plus(";").plus(value).plus(";").plus(DateTimeFormatter.ofPattern("HH:mm:ss").format(time)).plus(";\n");
         val file = ("Recording").plus(id).plus(".txt")
         Log.d(TAG, "save $line")
@@ -23,17 +23,16 @@ object RecordingService {
         }
     }
 
-
-    fun load(context: Context, id: String) {
+    fun loadRecordDetail(context: Context, id: String) {
         try{
             val file = ("Recording").plus(id).plus(".txt")
-            recordList.value = ArrayList()
+            recordDetailsList.value = ArrayList()
             Log.d(TAG, "load $id")
 
             val lineList = context.openFileInput(file).bufferedReader().readLines()
             lineList.forEach{
                     var array = it.split(";")
-                    recordList.value?.add(DetailRecordsItem(array[0], array[1], array[2], array[3], array[4] ))
+                    recordDetailsList.value?.add(RecordDetailsItem(array[0], array[1], array[2], array[3], array[4]))
                 }
         }
         catch(e : FileNotFoundException){
@@ -41,29 +40,31 @@ object RecordingService {
         }
     }
 
-    fun saveRecord(context: Context, id: LocalDateTime){
+    fun saveTestDrive(context: Context, id: LocalDateTime){
         Log.d(TAG, "save $id")
-        context.openFileOutput("$PREVIOUS_RECORD_FILE.txt", Context.MODE_APPEND).use {
+        context.openFileOutput(PREVIOUS_RECORD_FILE, Context.MODE_APPEND).use {
             it?.write(("$id\n").toByteArray())
         }
-        val item =
-            TestDriveItem(id.hashCode().absoluteValue.toString(), id.toLocalDate(), id)
-        previousRecordList.value?.add(item)
-        previousRecordList.value = previousRecordList.value
+        testDriveList.value?.add(createTestDriveItem(id))
+        testDriveList.value = testDriveList.value
     }
-    fun loadPreviousRecords(context: Context) {
+    fun loadTestDrive(context: Context) {
         try {
-            previousRecordList.value = ArrayList()
+            testDriveList.value = ArrayList()
             Log.d(TAG, "load previous records")
-            val lineList = context.openFileInput("$PREVIOUS_RECORD_FILE.txt").bufferedReader().readLines()
+            val lineList = context.openFileInput(PREVIOUS_RECORD_FILE).bufferedReader().readLines()
             lineList.forEach {
-                val timeStamp : LocalDateTime = LocalDateTime.parse(it, DateTimeFormatter.ISO_DATE_TIME)
-                previousRecordList.value?.add(
-                    TestDriveItem(
-                        timeStamp.hashCode().absoluteValue.toString(), timeStamp.toLocalDate(), timeStamp)
+                val id : LocalDateTime = LocalDateTime.parse(it, DateTimeFormatter.ISO_DATE_TIME)
+                testDriveList.value?.add(
+                    createTestDriveItem(id)
                 )
             }
         }
         catch(_: FileNotFoundException){}
+    }
+
+    private fun createTestDriveItem(id: LocalDateTime) : TestDriveItem {
+        return TestDriveItem(
+            id.hashCode().absoluteValue.toString(), id.toLocalDate(), id)
     }
 }

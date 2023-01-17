@@ -21,12 +21,12 @@ class TestDrivePage : ViewBindingFragment<FragmentTestDriveBinding>() {
         viewModel.tapText.observe(viewLifecycleOwner) { tapText ->
             binding.testDriveStartTile.tileTestDriveStartTapText.text = tapText
         }
-        viewModel.loadPreviousRecord(requireContext())
+        viewModel.loadTestDrive(requireContext())
         binding.testDriveStartTile.root.setOnClickListener {
             if(viewModel._tapText.value == resources.getString(R.string.tap_to_start)){
-                viewModel._tapText.value = resources.getString(R.string.tap_to_stop)
-                viewModel.setPropertyManager(requireContext())
                 if(viewModel.checkPermission(requireContext())) {
+                    viewModel._tapText.value = resources.getString(R.string.tap_to_stop)
+                    viewModel.setPropertyManager(requireContext())
                     startDate = LocalDateTime.now()
                     viewModel.record(requireContext(), startDate.toString())
                 }
@@ -37,7 +37,7 @@ class TestDrivePage : ViewBindingFragment<FragmentTestDriveBinding>() {
             else if(viewModel._tapText.value == resources.getString(R.string.tap_to_stop)){
                 viewModel._tapText.value = resources.getString(R.string.tap_to_start)
                 viewModel.unrecord();
-                viewModel.addNewRecording(requireContext(), startDate)
+                viewModel.saveTestDrive(requireContext(), startDate)
             }
         }
         adapter = TestDriveRecyclerViewAdapter()

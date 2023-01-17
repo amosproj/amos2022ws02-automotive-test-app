@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.RecordDetails">
+    tools:context=".view.RecordDetailsPage">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/detail_records_recycler_view"

@@ -8,7 +8,7 @@ import com.amos.infotaimos.databinding.FragmentRecordDetailsBinding
 import com.amos.infotaimos.model.RecordDetailsRecyclerViewAdapter
 import com.amos.infotaimos.viewmodel.RecordDetailsViewModel
 
-class RecordDetails : ViewBindingFragment<FragmentRecordDetailsBinding>() {
+class RecordDetailsPage : ViewBindingFragment<FragmentRecordDetailsBinding>() {
 
     private val viewModel: RecordDetailsViewModel by viewModels()
     private lateinit var adapter: RecordDetailsRecyclerViewAdapter

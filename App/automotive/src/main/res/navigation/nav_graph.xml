@@ -92,7 +92,7 @@
         </fragment>
     <fragment
         android:id="@+id/testDriveRecordDetails"
-        android:name="com.amos.infotaimos.view.RecordDetails"
+        android:name="com.amos.infotaimos.view.RecordDetailsPage"
         android:label="fragment_record_details"
         tools:layout="@layout/fragment_record_details">
     </fragment>
