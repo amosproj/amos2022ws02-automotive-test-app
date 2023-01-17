@@ -16,7 +16,7 @@ class NavigationPage : ViewBindingFragment<FragmentNavigationPageBinding>() {
 
         binding.apply {
             startNavigationButton.setOnClickListener {
-                viewModel.performNavigationAction(requireContext(), getDelay())
+                viewModel.performNavigationAction(getDelay())
             }
 
             simulateSpeechAnnouncment.setOnClickListener {

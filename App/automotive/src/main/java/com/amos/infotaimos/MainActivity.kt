@@ -106,7 +106,8 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.actionbar_main, menu)
         navActiveIndicatorMenuItem = menu.findItem(R.id.navigation_active_indicator)
         navNotActiveIndicatorMenuItem = menu.findItem(R.id.navigation_not_active_indicator)
-        viewModel.updateNavigationLiveData(applicationContext)
+        viewModel.registerCarAppFocusManager(applicationContext)
+        viewModel.updateNavigationLiveData()
 
         return super.onCreateOptionsMenu(menu)
     }
