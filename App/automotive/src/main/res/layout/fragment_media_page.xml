@@ -15,10 +15,10 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:backgroundTint="@color/landing_purple"
             android:layout_margin="4dp"
-            android:layout_weight="0.7">
+            android:layout_weight="3">
 
             <FrameLayout
                 android:id="@+id/toggleMediaBrowseServiceButton"
@@ -72,7 +72,8 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/media_event_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +81,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
-            tools:listitem="@layout/media_event_item" />
+            tools:listitem="@layout/media_event_item"/>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
