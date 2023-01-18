@@ -49,5 +49,7 @@
     <string name="tap_to_stop">tap to stop</string>
     <string name="recording">Recording</string>
     <string name="button_skip_backward">Skip Backward</string>
+    <string name="add_sequence">add sequence</string>
+    <string name="save_sequence">save sequence</string>
 </resources>
 
