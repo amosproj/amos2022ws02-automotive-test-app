@@ -7,12 +7,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.ButtonSequencePage">
 
-    <Button
-        android:id="@+id/clear_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Clear Sequences" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sequenceList"
         android:layout_width="match_parent"

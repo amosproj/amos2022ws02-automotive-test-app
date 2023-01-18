@@ -1,28 +1,32 @@
 package com.amos.infotaimos.model
 
 import android.content.Context
-import android.view.KeyEvent
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
-import java.util.UUID
 
 object ButtonSequenceStoreService {
 
     private var currentButtonSequences: MutableList<ButtonSequence>? = null
-    private var defaultSequence: ButtonSequence = ButtonSequence(
-        UUID.randomUUID().toString(),
-        listOf(
-            KeyEvent.KEYCODE_MEDIA_PLAY,
-            KeyEvent.KEYCODE_MEDIA_NEXT,
-            KeyEvent.KEYCODE_MEDIA_PAUSE
-        )
-    )
 
-    fun saveButtonSequence(context: Context, buttonSequence: ButtonSequence) {
+    fun saveButtonSequence(context: Context, buttonSequence: ButtonSequence, index: Int? = null) {
         if (currentButtonSequences == null) {
             loadButtonSequences(context)
         }
-        currentButtonSequences?.add(buttonSequence)
+        if (index == null)
+            currentButtonSequences?.add(buttonSequence)
+        else
+            currentButtonSequences?.add(index, buttonSequence)
+        val json = getMoshiAdapter().toJson(currentButtonSequences)
+        context.openFileOutput("ButtonSequence.txt", Context.MODE_PRIVATE).use {
+            it?.write(json.toByteArray())
+        }
+    }
+
+    fun deleteButtonSequence(context: Context, buttonSequence: ButtonSequence) {
+        if (currentButtonSequences == null) {
+            loadButtonSequences(context)
+        }
+        currentButtonSequences?.remove(buttonSequence)
         val json = getMoshiAdapter().toJson(currentButtonSequences)
         context.openFileOutput("ButtonSequence.txt", Context.MODE_PRIVATE).use {
             it?.write(json.toByteArray())
@@ -33,17 +37,8 @@ object ButtonSequenceStoreService {
         checkFileExistence(context)
         val json = context.openFileInput("ButtonSequence.txt").bufferedReader().readLine()
         val buttonSequence = getMoshiAdapter().fromJson(json)
-        currentButtonSequences = buttonSequence?.toMutableList() ?: mutableListOf(defaultSequence)
+        currentButtonSequences = buttonSequence?.toMutableList() ?: mutableListOf()
         return currentButtonSequences
-    }
-
-    fun clearButtonSequences(context: Context) {
-        context.openFileOutput("ButtonSequence.txt", Context.MODE_PRIVATE).use {
-            it?.write("[]".toByteArray())
-        }
-        currentButtonSequences = mutableListOf()
-        saveButtonSequence(context, defaultSequence)
-
     }
 
     private fun getMoshiAdapter() = Moshi.Builder().build().adapter<List<ButtonSequence>>(
