@@ -3,10 +3,12 @@ package com.amos.infotaimos.model
 import android.app.Instrumentation
 import android.content.Context
 import android.media.AudioManager
+import android.util.Log
 import android.view.KeyEvent
 
 object KeyEventControl {
     fun handleButtonPress(context: Context, action: Int) {
+        Log.d("KEY_EVENT_CONTROL","Dispatching ${KeyEvent.keyCodeToString(action)} from key ${nameForKeyCode(action)}")
         when (action) {
             KeyEvent.KEYCODE_MEDIA_PLAY, KeyEvent.KEYCODE_MEDIA_PAUSE, KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE, KeyEvent.KEYCODE_MEDIA_NEXT, KeyEvent.KEYCODE_MEDIA_FAST_FORWARD -> {
                 executeMediaButtonPress(
