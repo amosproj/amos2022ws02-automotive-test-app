@@ -55,7 +55,7 @@ object RecordingService {
             val lineList = context.openFileInput(PREVIOUS_RECORD_FILE).bufferedReader().readLines()
             lineList.forEach {
                 val id : LocalDateTime = LocalDateTime.parse(it, DateTimeFormatter.ISO_DATE_TIME)
-                testDriveList.value?.add(
+                testDriveList.value?.add(0,
                     createTestDriveItem(id)
                 )
             }
