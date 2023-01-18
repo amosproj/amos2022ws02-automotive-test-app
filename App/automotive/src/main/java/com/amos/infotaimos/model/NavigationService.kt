@@ -14,6 +14,7 @@ import kotlin.concurrent.schedule
 
 object NavigationService {
     private const val TAG = "NAVIGATION_SERVICE"
+    private lateinit var carAppFocusManager: CarAppFocusManager
     val navCallback = NavCallback()
     private var startTask: CountDownTimer? = null
     val startTaskActive: Boolean get() = startTask != null
@@ -23,28 +24,32 @@ object NavigationService {
     val navIndicatorLiveData: MutableLiveData<Boolean> = MutableLiveData<Boolean>(false)
     val countdown: MutableLiveData<Long> = MutableLiveData<Long>(0)
 
-    private fun startNavigation(car: Car, delay: Long) {
-        val carAppFocusManager = car.getCarManager(Car.APP_FOCUS_SERVICE) as CarAppFocusManager
+    fun registerCarAppFocusManager(car: Car) {
+        if (!::carAppFocusManager.isInitialized) {
+            this.carAppFocusManager = car.getCarManager(Car.APP_FOCUS_SERVICE) as CarAppFocusManager
+        }
+    }
+
+    private fun startNavigation(delay: Long) {
         Log.d(TAG, "Requested navigation start in $delay ms")
         startTask?.cancel()
         startTask = StartTask(carAppFocusManager, delay)
         startTask?.start()
     }
 
-    private fun stopNavigation(car: Car, delay: Long) {
-        val carAppFocusManager = car.getCarManager(Car.APP_FOCUS_SERVICE) as CarAppFocusManager
+    private fun stopNavigation(delay: Long) {
         Log.d(TAG, "Requested navigation stop in $delay ms")
         stopTask?.cancel()
         stopTask = StopTask(carAppFocusManager, delay)
         stopTask?.start()
     }
 
-    fun performNavigationAction(car: Car, delay: Long) {
+    fun performNavigationAction(delay: Long) {
         if (startTask == null && stopTask == null) {
             if (navIndicatorLiveData.value == true) {
-                stopNavigation(car, delay)
+                stopNavigation(delay)
             } else {
-                startNavigation(car, delay)
+                startNavigation(delay)
             }
         } else {
             if (startTaskActive) {
@@ -58,8 +63,7 @@ object NavigationService {
         }
     }
 
-    fun updateNavigationLiveData(car: Car) {
-        val carAppFocusManager = car.getCarManager(Car.APP_FOCUS_SERVICE) as CarAppFocusManager
+    fun updateNavigationLiveData() {
         navIndicatorLiveData.value = carAppFocusManager.isOwningFocus(
             navCallback,
             CarAppFocusManager.APP_FOCUS_TYPE_NAVIGATION
@@ -83,24 +87,31 @@ object NavigationService {
                 announcementTask = null
             }
         } else {
-            Log.d(TAG, "Navigation announcement already scheduled, new announcement will be discarded")
+            Log.d(
+                TAG,
+                "Navigation announcement already scheduled, new announcement will be discarded"
+            )
         }
     }
 
     class NavCallback : CarAppFocusManager.OnAppFocusOwnershipCallback {
         override fun onAppFocusOwnershipLost(appType: Int) {
             Log.d(TAG, "Navigation focus lost")
+            updateNavigationLiveData()
+
         }
 
         override fun onAppFocusOwnershipGranted(appType: Int) {
             Log.d(TAG, "Navigation focus granted")
+            updateNavigationLiveData()
         }
     }
 
-    class StartTask(private val carAppFocusManager: CarAppFocusManager, val delay: Long): CountDownTimer(delay, 500) {
+    class StartTask(private val carAppFocusManager: CarAppFocusManager, val delay: Long) :
+        CountDownTimer(delay, 500) {
         override fun onTick(millisUntilFinished: Long) {
             Log.d(TAG, "Start navigation timer ticked")
-            countdown.postValue(millisUntilFinished/1000)
+            countdown.postValue(millisUntilFinished / 1000)
         }
 
         override fun onFinish() {
@@ -129,10 +140,11 @@ object NavigationService {
         }
     }
 
-    class StopTask(private val carAppFocusManager: CarAppFocusManager, val delay: Long): CountDownTimer(delay, 500) {
+    class StopTask(private val carAppFocusManager: CarAppFocusManager, val delay: Long) :
+        CountDownTimer(delay, 500) {
         override fun onTick(millisUntilFinished: Long) {
             Log.d(TAG, "Stop navigation timer ticked")
-            countdown.postValue(millisUntilFinished/1000)
+            countdown.postValue(millisUntilFinished / 1000)
         }
 
         override fun onFinish() {
