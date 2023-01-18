@@ -11,7 +11,7 @@ import kotlin.math.absoluteValue
 object RecordingService {
     var recordDetailsList: MutableLiveData<MutableList<RecordDetailsItem>> = MutableLiveData()
     var testDriveList: MutableLiveData<MutableList<TestDriveItem>> = MutableLiveData()
-    private const val TAG = "SPEECH_SERVICE"
+    private const val TAG = "RECORD_SERVICE"
     private const val PREVIOUS_RECORD_FILE = "PreviousRecordList.txt"
 
     fun saveRecordDetail(context: Context, id: String, eventName: String, vehiclePropertyID: Int, value: String, time: LocalDateTime) {
