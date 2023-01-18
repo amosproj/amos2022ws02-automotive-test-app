@@ -3,9 +3,12 @@ package com.amos.infotaimos.model
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.amos.infotaimos.R
 import com.amos.infotaimos.databinding.TestDriveItemBinding
 
 class TestDriveRecyclerViewAdapter() :
@@ -28,6 +31,10 @@ class TestDriveRecyclerViewAdapter() :
 
     override fun onBindViewHolder(holder: TestDriveItemViewHolder, position: Int) {
         holder.bindValues(differ.currentList[position])
+        holder.itemView.setOnClickListener{ view ->
+            val id = bundleOf("id" to (differ.currentList[position].startTime).toString() )
+            view.findNavController().navigate(R.id.action_testDrivePage_to_recordDetails, id)
+        }
     }
 
     override fun getItemCount(): Int {

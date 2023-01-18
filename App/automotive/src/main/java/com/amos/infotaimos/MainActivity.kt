@@ -83,6 +83,9 @@ class MainActivity : AppCompatActivity() {
             if (checkSelfPermission(Car.PERMISSION_ENERGY) == PackageManager.PERMISSION_DENIED) {
                 requestPermissions(arrayOf(Car.PERMISSION_ENERGY), REQ_ENERGY_PERM)
             }
+            if (checkSelfPermission(Car.PERMISSION_POWERTRAIN) == PackageManager.PERMISSION_DENIED) {
+                requestPermissions(arrayOf(Car.PERMISSION_POWERTRAIN), REQ_GEAR_PERM)
+            }
         }
 
     }
@@ -106,7 +109,8 @@ class MainActivity : AppCompatActivity() {
         menuInflater.inflate(R.menu.actionbar_main, menu)
         navActiveIndicatorMenuItem = menu.findItem(R.id.navigation_active_indicator)
         navNotActiveIndicatorMenuItem = menu.findItem(R.id.navigation_not_active_indicator)
-        viewModel.updateNavigationLiveData(applicationContext)
+        viewModel.registerCarAppFocusManager(applicationContext)
+        viewModel.updateNavigationLiveData()
 
         return super.onCreateOptionsMenu(menu)
     }
@@ -159,5 +163,6 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val REQ_PERM_CODE = 42
         const val REQ_ENERGY_PERM = 24
+        const val REQ_GEAR_PERM = 34
     }
 }

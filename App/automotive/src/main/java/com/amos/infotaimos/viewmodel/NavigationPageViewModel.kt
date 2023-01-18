@@ -12,9 +12,8 @@ import com.amos.infotaimos.model.NavigationService
 
 class NavigationPageViewModel : ViewModel() {
 
-    fun performNavigationAction(context: Context, delay: Long) {
-        val car = CarInstanceManager.getCarInstance(context)
-        NavigationService.performNavigationAction(car, delay)
+    fun performNavigationAction(delay: Long) {
+        NavigationService.performNavigationAction(delay)
     }
 
     fun speechAnnouncement(context: Context, delay: Long) {

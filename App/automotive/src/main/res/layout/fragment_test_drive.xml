@@ -9,21 +9,35 @@
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:orientation="vertical">
-            <include
-                android:id="@+id/test_drive_start_tile"
-                layout="@layout/tile_test_drive_start"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/test_drive_recycler_view"
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:listitem="@layout/test_drive_item"/>
+                android:orientation="vertical" >
+
+                <include
+                    android:id="@+id/test_drive_start_tile"
+                    layout="@layout/tile_test_drive_start"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/test_drive_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:listitem="@layout/test_drive_item" />
+            </LinearLayout>
+        </ScrollView>
+
     </LinearLayout>
 </layout>

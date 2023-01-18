@@ -11,8 +11,8 @@ class MainActivityViewModel(context: Context) : ViewModel() {
 
     val navIndicatorLiveData = NavigationService.navIndicatorLiveData
 
-    fun updateNavigationLiveData(context: Context) {
-        NavigationService.updateNavigationLiveData(CarInstanceManager.getCarInstance(context))
+    fun updateNavigationLiveData() {
+        NavigationService.updateNavigationLiveData()
     }
 
     fun setupNotificationChannel(context: Context) {
@@ -21,5 +21,9 @@ class MainActivityViewModel(context: Context) : ViewModel() {
 
     fun setupSpeechService(permissionGranted :Boolean){
         SpeechService.setupSpeechService(permissionGranted)
+    }
+
+    fun registerCarAppFocusManager(context: Context) {
+        NavigationService.registerCarAppFocusManager(CarInstanceManager.getCarInstance(context))
     }
 }
