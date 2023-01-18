@@ -7,28 +7,10 @@ import android.util.Log
 import android.view.KeyEvent
 
 object KeyEventControl {
-    const val TAG = "KeyEventControl"
-
-    fun nameForKeyCode(keyCode: Int): String {
-        return when (keyCode) {
-            KeyEvent.KEYCODE_MEDIA_PLAY -> "Play"
-            KeyEvent.KEYCODE_MEDIA_PAUSE -> "Pause"
-            KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE -> "Play/Pause"
-            KeyEvent.KEYCODE_MEDIA_FAST_FORWARD -> "SeekForward"
-            KeyEvent.KEYCODE_MEDIA_NEXT -> "SkipForward"
-            KeyEvent.KEYCODE_MEDIA_STEP_BACKWARD -> "SeekBackward"
-            KeyEvent.KEYCODE_MEDIA_PREVIOUS -> "SkipBackward"
-            KeyEvent.KEYCODE_VOICE_ASSIST -> "VoiceControl"
-            KeyEvent.KEYCODE_MEDIA_PREVIOUS -> "SkipBackward"
-            KeyEvent.KEYCODE_MEDIA_REWIND -> "SeekBackward"
-            else -> "Unknown"
-        }
-    }
-
     fun handleButtonPress(context: Context, action: Int) {
-        Log.d(TAG, "handleButtonPress: ${nameForKeyCode(action)}")
+        Log.d("KEY_EVENT_CONTROL","Dispatching ${KeyEvent.keyCodeToString(action)} from key ${nameForKeyCode(action)}")
         when (action) {
-            KeyEvent.KEYCODE_MEDIA_PLAY, KeyEvent.KEYCODE_MEDIA_PAUSE, KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE, KeyEvent.KEYCODE_MEDIA_NEXT, KeyEvent.KEYCODE_MEDIA_FAST_FORWARD, KeyEvent.KEYCODE_MEDIA_REWIND, KeyEvent.KEYCODE_MEDIA_PREVIOUS -> {
+            KeyEvent.KEYCODE_MEDIA_PLAY, KeyEvent.KEYCODE_MEDIA_PAUSE, KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE, KeyEvent.KEYCODE_MEDIA_NEXT, KeyEvent.KEYCODE_MEDIA_REWIND, KeyEvent.KEYCODE_MEDIA_PREVIOUS, KeyEvent.KEYCODE_MEDIA_FAST_FORWARD -> {
                 executeMediaButtonPress(
                     (context.getSystemService(Context.AUDIO_SERVICE) as AudioManager),
                     action
@@ -55,5 +37,21 @@ object KeyEventControl {
                 inst.sendKeyDownUpSync(keyEvent)
             }
         ).start()
+    }
+
+    fun nameForKeyCode(keyCode: Int): String {
+        return when (keyCode) {
+            KeyEvent.KEYCODE_MEDIA_PLAY -> "Play"
+            KeyEvent.KEYCODE_MEDIA_PAUSE -> "Pause"
+            KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE -> "Play/Pause"
+            KeyEvent.KEYCODE_MEDIA_FAST_FORWARD -> "SeekForward"
+            KeyEvent.KEYCODE_MEDIA_NEXT -> "SkipForward"
+            KeyEvent.KEYCODE_MEDIA_STEP_BACKWARD -> "SeekBackward"
+            KeyEvent.KEYCODE_MEDIA_PREVIOUS -> "SkipBackward"
+            KeyEvent.KEYCODE_VOICE_ASSIST -> "VoiceControl"
+            KeyEvent.KEYCODE_MEDIA_REWIND -> "SeekBackward"
+            KeyEvent.KEYCODE_MEDIA_PREVIOUS -> "SkipBackward"
+            else -> "Unknown"
+        }
     }
 }
