@@ -8,7 +8,7 @@ import android.view.KeyEvent
 object KeyEventControl {
     fun handleButtonPress(context: Context, action: Int) {
         when (action) {
-            KeyEvent.KEYCODE_MEDIA_PLAY, KeyEvent.KEYCODE_MEDIA_PAUSE, KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE, KeyEvent.KEYCODE_MEDIA_NEXT, KeyEvent.KEYCODE_MEDIA_FAST_FORWARD -> {
+            KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE, KeyEvent.KEYCODE_MEDIA_NEXT, KeyEvent.KEYCODE_MEDIA_FAST_FORWARD, KeyEvent.KEYCODE_MEDIA_REWIND, KeyEvent.KEYCODE_MEDIA_PREVIOUS -> {
                 executeMediaButtonPress(
                     (context.getSystemService(Context.AUDIO_SERVICE) as AudioManager),
                     action
@@ -47,6 +47,8 @@ object KeyEventControl {
             KeyEvent.KEYCODE_MEDIA_STEP_BACKWARD -> "SeekBackward"
             KeyEvent.KEYCODE_MEDIA_PREVIOUS -> "SkipBackward"
             KeyEvent.KEYCODE_VOICE_ASSIST -> "VoiceControl"
+            KeyEvent.KEYCODE_MEDIA_PREVIOUS -> "SkipBackward"
+            KeyEvent.KEYCODE_MEDIA_REWIND -> "SeekBackward"
             else -> "Unknown"
         }
     }
