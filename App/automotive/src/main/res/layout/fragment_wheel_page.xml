@@ -175,5 +175,15 @@
             android:textOn="@string/functionality"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/sequenceButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="Sequences"
+            app:layout_constraintEnd_toEndOf="@+id/toggleButton"
+            app:layout_constraintStart_toStartOf="@+id/toggleButton"
+            app:layout_constraintTop_toBottomOf="@+id/toggleButton" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.amos.infotaimos.view.SquareLayout>
