@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.amos.infotaimos.MainActivity
 import com.amos.infotaimos.R
 import com.amos.infotaimos.ViewBindingFragment
@@ -43,6 +44,24 @@ class WheelPage : ViewBindingFragment<FragmentWheelPageBinding>() {
             Log.d(TAG, "SEEK FORWARD pressed")
             true
         }
+        binding.wheelButtonSkipBackward.setOnClickListener {
+            if (!description) {
+                viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_MEDIA_PREVIOUS)
+            } else {
+                (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.skip_backward_button_description), 100, 20000)
+            }
+            Log.d(TAG, "SKIP BACKWARD pressed")
+            true
+        }
+        binding.wheelButtonSkipBackward.setOnLongClickListener {
+            if (!description) {
+                viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_MEDIA_REWIND)
+            } else {
+                (requireActivity() as? MainActivity)?.displayToast(resources.getString(R.string.skip_backward_button_description), 100, 20000)
+            }
+            Log.d(TAG, "SEEK BACKWARD pressed")
+            true
+        }
         binding.wheelButtonVoiceControl.setOnClickListener {
             if (!description) {
                 viewModel.handleButtonPress(requireContext(), KeyEvent.KEYCODE_VOICE_ASSIST)
@@ -62,6 +81,9 @@ class WheelPage : ViewBindingFragment<FragmentWheelPageBinding>() {
         binding.toggleButton.setOnCheckedChangeListener { buttonView, isChecked ->
             description = isChecked
             Log.d(TAG, "ToggleButton pressed")
+        }
+        binding.sequenceButton.setOnClickListener {
+            findNavController().navigate(R.id.goto_button_sequences)
         }
     }
     companion object {

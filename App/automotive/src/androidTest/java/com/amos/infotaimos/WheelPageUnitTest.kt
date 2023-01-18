@@ -40,6 +40,12 @@ class WheelPageUnitTest {
         clickable(R.id.wheel_button_skip_forward)
     }
 
+    @Test
+    fun testSkipBackwardButtonClickable() {
+        prepareScreen()
+        clickable(R.id.wheel_button_skip_backward)
+    }
+
     private fun clickable(id: Int) {
         onView(ViewMatchers.withId(id)).perform(ViewActions.click()).check(matches(ViewMatchers.isClickable()))
     }
