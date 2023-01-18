@@ -45,7 +45,7 @@ object RecordingService {
         context.openFileOutput(PREVIOUS_RECORD_FILE, Context.MODE_APPEND).use {
             it?.write(("$id\n").toByteArray())
         }
-        testDriveList.value?.add(createTestDriveItem(id))
+        testDriveList.value?.add(0, createTestDriveItem(id))
         testDriveList.value = testDriveList.value
     }
     fun loadTestDrive(context: Context) {
