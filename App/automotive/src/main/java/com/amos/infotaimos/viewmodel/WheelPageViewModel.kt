@@ -16,10 +16,10 @@ class WheelPageViewModel : ViewModel() {
     }
 
     fun stopRecording(context: Context) {
-        ButtonSequenceStoreService.saveButtonSequence(
-            context,
-            ButtonSequence(UUID.randomUUID().toString(), currentSequence)
-        )
+        if(currentSequence.isNotEmpty()) {
+            val sequence = ButtonSequence(UUID.randomUUID().toString(), currentSequence)
+            ButtonSequenceStoreService.saveButtonSequence(context, sequence)
+        }
     }
 
     fun handleButtonPress(context: Context, action: Int) {
