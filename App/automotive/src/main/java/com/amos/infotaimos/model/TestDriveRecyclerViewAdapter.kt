@@ -1,13 +1,16 @@
 package com.amos.infotaimos.model
 
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.amos.infotaimos.MainActivity
 import com.amos.infotaimos.R
 import com.amos.infotaimos.databinding.TestDriveItemBinding
 
@@ -54,4 +57,25 @@ class TestDriveRecyclerViewAdapter() :
             itemBinding.startTime.text = testDriveItem.time
         }
     }
+    class SwipeToDeleteCallback(val adapter: TestDriveRecyclerViewAdapter, var context: Context) :
+        ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+
+        override fun onMove(
+            recyclerView: RecyclerView,
+            viewHolder: RecyclerView.ViewHolder,
+            target: RecyclerView.ViewHolder
+        ): Boolean {
+            return false
+        }
+
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            val position = viewHolder.adapterPosition
+            val item = adapter.differ.currentList[position]
+
+            val activity = context as MainActivity
+            activity.displayToast( "Test drive was removed from list.", 100, 20000)
+            RecordingService.deleteTestDrive(context, item.startTime.toString())
+        }
+    }
+
 }
