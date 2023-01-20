@@ -5,7 +5,6 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types
-import java.io.FileNotFoundException
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.math.absoluteValue
@@ -17,30 +16,24 @@ object RecordingService {
     private const val PREVIOUS_RECORD_FILE = "PreviousRecordList.txt"
 
     fun saveRecordDetail(context: Context, id: String, eventName: String, vehiclePropertyID: Int, value: String, time: LocalDateTime) {
-        //val line = getMoshiAdapter().toJson(listOf(TestDrive(id.hashCode().absoluteValue.toString(), eventName, vehiclePropertyID, value, time)))
-        val line = id.hashCode().absoluteValue.toString().plus(";").plus(eventName).plus(";").plus(vehiclePropertyID).plus(";").plus(value).plus(";").plus(DateTimeFormatter.ofPattern("HH:mm:ss").format(time)).plus(";\n");
+        loadRecordDetail(context, id)
+        recordDetailsList.value?.add(RecordDetailsItem(id.hashCode().absoluteValue.toString(), eventName, vehiclePropertyID.toString(), value, time.toString()))
         val file = ("Recording").plus(id).plus(".txt")
-        Log.d(TAG, "save $line")
-        context.openFileOutput(file, Context.MODE_APPEND).use {
-            it?.write(line.toByteArray())
+        val json = getMoshiAdapterRecordDetails().toJson(recordDetailsList.value)
+        context.openFileOutput(file, Context.MODE_PRIVATE).use {
+            it?.write(json.toByteArray())
         }
     }
 
     fun loadRecordDetail(context: Context, id: String) {
-        try{
-            val file = ("Recording").plus(id).plus(".txt")
-            recordDetailsList.value = ArrayList()
-            Log.d(TAG, "load $id")
+        val file = ("Recording").plus(id).plus(".txt")
+        checkFileExistence(context, file)
+        recordDetailsList.value = ArrayList()
+        Log.d(TAG, "load $id")
 
-            val lineList = context.openFileInput(file).bufferedReader().readLines()
-            lineList.forEach{
-                    var array = it.split(";")
-                    recordDetailsList.value?.add(RecordDetailsItem(array[0], array[1], array[2], array[3], array[4]))
-                }
-        }
-        catch(e : FileNotFoundException){
-
-        }
+        val json = context.openFileInput (file).bufferedReader().readLine()
+        val details = getMoshiAdapterRecordDetails().fromJson(json)
+        recordDetailsList.value = details?.toMutableList() ?: mutableListOf()
     }
 
     fun saveTestDrive(context: Context, id: LocalDateTime, position: Int){
@@ -60,7 +53,6 @@ object RecordingService {
             val json = context.openFileInput(PREVIOUS_RECORD_FILE).bufferedReader().readLine()
             val records = getMoshiAdapter().fromJson(json)
             testDriveList.value = records?.toMutableList() ?: mutableListOf()
-
     }
 
     fun deleteTestDrive(context: Context, id: String){
@@ -84,6 +76,13 @@ object RecordingService {
         Types.newParameterizedType(
             List::class.java,
             String::class.java
+        )
+    )
+
+    private fun getMoshiAdapterRecordDetails() = Moshi.Builder().build().adapter<List<RecordDetailsItem>>(
+        Types.newParameterizedType(
+            List::class.java,
+            RecordDetailsItem::class.java
         )
     )
 
