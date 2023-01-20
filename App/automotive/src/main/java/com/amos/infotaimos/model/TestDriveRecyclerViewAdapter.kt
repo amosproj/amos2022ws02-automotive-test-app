@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.amos.infotaimos.MainActivity
 import com.amos.infotaimos.R
 import com.amos.infotaimos.databinding.TestDriveItemBinding
+import com.google.android.material.snackbar.Snackbar
 
 class TestDriveRecyclerViewAdapter() :
     RecyclerView.Adapter<TestDriveRecyclerViewAdapter.TestDriveItemViewHolder>() {
@@ -72,10 +73,16 @@ class TestDriveRecyclerViewAdapter() :
             val position = viewHolder.adapterPosition
             val item = adapter.differ.currentList[position]
 
+            val details = RecordingService.deleteTestDrive(context, item.startTime.toString())
             val activity = context as MainActivity
-            activity.displayToast( "Test drive was removed from list.", 100, 20000)
-            RecordingService.deleteTestDrive(context, item.startTime.toString())
+            val snackbar = Snackbar.make(activity.findViewById(R.id.main_activity_layout), "Test drive was removed from the list.", Snackbar.LENGTH_LONG)
+            snackbar.setAction("UNDO") {
+                RecordingService.saveRecordDetailComplete(context, details, item.startTime.toString())
+                RecordingService.saveTestDrive(context, item.startTime, position)
+            }
+            snackbar.show()
         }
+
     }
 
 }

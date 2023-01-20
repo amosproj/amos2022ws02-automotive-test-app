@@ -36,6 +36,14 @@ object RecordingService {
         recordDetailsList.value = details?.toMutableList() ?: mutableListOf()
     }
 
+    fun saveRecordDetailComplete(context: Context, list: List<RecordDetailsItem>?, id: String){
+        val file = ("Recording").plus(id).plus(".txt")
+        val json = getMoshiAdapterRecordDetails().toJson(list)
+        context.openFileOutput(file, Context.MODE_PRIVATE).use {
+            it?.write(json.toByteArray())
+        }
+    }
+
     fun saveTestDrive(context: Context, id: LocalDateTime, position: Int){
         loadTestDrive(context)
         Log.d(TAG, "save $id")
@@ -55,15 +63,17 @@ object RecordingService {
             testDriveList.value = records?.toMutableList() ?: mutableListOf()
     }
 
-    fun deleteTestDrive(context: Context, id: String){
+    fun deleteTestDrive(context: Context, id: String): List<RecordDetailsItem>?{
         testDriveList.value?.remove(id)
         val json = getMoshiAdapter().toJson(testDriveList.value)
         context.openFileOutput(PREVIOUS_RECORD_FILE, Context.MODE_PRIVATE).use {
             it?.write(json.toByteArray())
         }
         val file = ("Recording").plus(id).plus(".txt")
-        context.deleteFile(file)
+        val jsonDetails = context.openFileInput (file).bufferedReader().readLine()
+        val details = getMoshiAdapterRecordDetails().fromJson(jsonDetails)
         testDriveList.value = testDriveList.value
+        return details
     }
 
     fun createTestDriveItem(id: String) : TestDriveItem {
