@@ -16,15 +16,11 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.amos.infotaimos.model.MediaService
-import com.amos.infotaimos.model.NotificationManager
 import com.amos.infotaimos.model.TimerService
 
 class MainActivity : AppCompatActivity() {

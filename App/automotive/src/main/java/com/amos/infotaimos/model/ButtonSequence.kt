@@ -1,5 +1,6 @@
 package com.amos.infotaimos.model
 
-import java.util.UUID
+import com.squareup.moshi.JsonClass
 
-data class ButtonSequence(val id: UUID, val sequence: List<Int>)
+@JsonClass(generateAdapter = true)
+data class ButtonSequence(val id: String, val sequence: List<Int>)

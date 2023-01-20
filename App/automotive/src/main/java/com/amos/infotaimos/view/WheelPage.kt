@@ -82,6 +82,17 @@ class WheelPage : ViewBindingFragment<FragmentWheelPageBinding>() {
             description = isChecked
             Log.d(TAG, "ToggleButton pressed")
         }
+        binding.recordSequenceButton.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked) {
+                viewModel.startRecording()
+                Log.d(TAG, "Recording started")
+                (requireActivity() as? MainActivity)?.displayToast("Recording started", 100, 3000)
+            } else {
+                viewModel.stopRecording(requireContext())
+                Log.d(TAG, "Recording stopped")
+                (requireActivity() as? MainActivity)?.displayToast("Recording ended", 100, 3000)
+            }
+        }
         binding.sequenceButton.setOnClickListener {
             findNavController().navigate(R.id.goto_button_sequences)
         }

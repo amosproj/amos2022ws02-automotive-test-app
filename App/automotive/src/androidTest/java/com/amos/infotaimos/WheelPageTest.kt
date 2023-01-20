@@ -2,18 +2,24 @@ package com.amos.infotaimos
 
 import android.content.Intent
 import android.view.KeyEvent
-import android.widget.FrameLayout
+import android.view.View
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.NoMatchingViewException
+import androidx.test.espresso.ViewAssertion
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.longClick
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.platform.app.InstrumentationRegistry
+
 import com.amos.infotaimos.model.MediaService
+import com.amos.infotaimos.view.ButtonSequencePage
 import com.amos.infotaimos.view.WheelPage
 import junit.framework.Assert.assertTrue
 import org.junit.Test
@@ -86,6 +92,53 @@ class WheelPageTest {
     fun testSeekBackward() {
         launchFragmentInContainer<WheelPage>()
         checkMediaKeyPressed(R.id.wheel_button_skip_backward, KeyEvent.KEYCODE_MEDIA_REWIND)
+    }
+
+    @Test
+    fun testSequenceToggleButton() {
+        launchFragmentInContainer<WheelPage>()
+        onView(withId(R.id.recordSequenceButton)).check(matches(isDisplayed()))
+        onView(withId(R.id.recordSequenceButton)).check(matches(withText(R.string.add_sequence)))
+        onView(withId(R.id.recordSequenceButton)).perform(click())
+        onView(withId(R.id.recordSequenceButton)).check(matches(withText(R.string.save_sequence)))
+    }
+
+    @Test
+    fun testSavingOfSequence() {
+        launchFragmentInContainer<ButtonSequencePage>()
+        var count = 0
+        onView(withId(R.id.sequenceList)).check { view, _ ->
+            count = (view as RecyclerView).childCount
+        }
+        launchFragmentInContainer<WheelPage>()
+        onView(withId(R.id.recordSequenceButton)).perform(click())
+        onView(withId(R.id.wheel_button_play_pause)).perform(click()).check(matches(isDisplayed()))
+        onView(withId(R.id.wheel_button_skip_forward)).perform(click())
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.wheel_button_voice_control)).perform(click())
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.recordSequenceButton)).perform(click())
+        launchFragmentInContainer<ButtonSequencePage>()
+        onView(withId(R.id.sequenceList)).check(matches(hasDescendant(isDisplayed())))
+        onView(withId(R.id.sequenceList)).check { view, _ ->
+            assertTrue((view as RecyclerView).childCount == count + 1)
+        }
+    }
+
+    @Test
+    fun testEmptySequence() {
+        launchFragmentInContainer<ButtonSequencePage>()
+        var count = 0
+        onView(withId(R.id.sequenceList)).check { view, _ ->
+            count = (view as RecyclerView).childCount
+        }
+        launchFragmentInContainer<WheelPage>()
+        onView(withId(R.id.recordSequenceButton)).perform(click())
+        onView(withId(R.id.recordSequenceButton)).perform(click())
+        launchFragmentInContainer<ButtonSequencePage>()
+        onView(withId(R.id.sequenceList)).check { view, _ ->
+            assertTrue((view as RecyclerView).childCount == count)
+        }
     }
 
     /**
