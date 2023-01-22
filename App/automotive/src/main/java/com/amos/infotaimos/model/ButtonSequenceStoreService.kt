@@ -17,7 +17,7 @@ object ButtonSequenceStoreService {
         else
             currentButtonSequences?.add(index, buttonSequence)
         val json = getMoshiAdapter().toJson(currentButtonSequences)
-        context.openFileOutput("ButtonSequence.txt", Context.MODE_PRIVATE).use {
+        context.openFileOutput("ButtonSequence.json", Context.MODE_PRIVATE).use {
             it?.write(json.toByteArray())
         }
     }
@@ -28,14 +28,14 @@ object ButtonSequenceStoreService {
         }
         currentButtonSequences?.remove(buttonSequence)
         val json = getMoshiAdapter().toJson(currentButtonSequences)
-        context.openFileOutput("ButtonSequence.txt", Context.MODE_PRIVATE).use {
+        context.openFileOutput("ButtonSequence.json", Context.MODE_PRIVATE).use {
             it?.write(json.toByteArray())
         }
     }
 
     fun loadButtonSequences(context: Context): MutableList<ButtonSequence>? {
         checkFileExistence(context)
-        val json = context.openFileInput("ButtonSequence.txt").bufferedReader().readLine()
+        val json = context.openFileInput("ButtonSequence.json").bufferedReader().readLine()
         val buttonSequence = getMoshiAdapter().fromJson(json)
         currentButtonSequences = buttonSequence?.toMutableList() ?: mutableListOf()
         return currentButtonSequences
@@ -50,9 +50,9 @@ object ButtonSequenceStoreService {
 
     private fun checkFileExistence(context: Context) {
         try {
-            context.openFileInput("ButtonSequence.txt")
+            context.openFileInput("ButtonSequence.json")
         } catch (e: Exception) {
-            context.openFileOutput("ButtonSequence.txt", Context.MODE_PRIVATE).use {
+            context.openFileOutput("ButtonSequence.json", Context.MODE_PRIVATE).use {
                 it?.write("[]".toByteArray())
             }
         }

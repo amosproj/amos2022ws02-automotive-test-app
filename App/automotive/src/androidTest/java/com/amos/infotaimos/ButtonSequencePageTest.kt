@@ -1,4 +1,4 @@
-package com.amos.infotaimos.view
+package com.amos.infotaimos
 
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.recyclerview.widget.RecyclerView
@@ -10,7 +10,8 @@ import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Test
-import com.amos.infotaimos.R
+import com.amos.infotaimos.view.ButtonSequencePage
+import com.amos.infotaimos.view.WheelPage
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
