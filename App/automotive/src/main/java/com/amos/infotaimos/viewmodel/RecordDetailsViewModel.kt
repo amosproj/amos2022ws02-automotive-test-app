@@ -18,4 +18,8 @@ class RecordDetailsViewModel : ViewModel() {
     fun initialise(context: Context, id: String){
         RecordingService.loadRecordDetail(context, id)
     }
+
+    fun exportTestDrive(context: Context, list: List<RecordDetailsItem>) {
+        RecordingService.exportTestDrive(context, list)
+    }
 }
