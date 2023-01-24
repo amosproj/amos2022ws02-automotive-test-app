@@ -13,5 +13,7 @@ class RecordDetailsTest {
         launchFragmentInContainer<RecordDetailsPage>()
         Espresso.onView(ViewMatchers.withId(R.id.detail_records_recycler_view))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        Espresso.onView(ViewMatchers.withId(R.id.button_export))
+            .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
     }
 }
