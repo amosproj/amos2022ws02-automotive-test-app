@@ -77,6 +77,7 @@ object RecordingService {
             resolver.openOutputStream(uri).use {
                 it?.write(json.toByteArray())
             }
+            Log.d(TAG,"Exported Log")
         }
 
         // Use this to check if file was written
