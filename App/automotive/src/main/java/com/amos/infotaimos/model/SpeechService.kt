@@ -6,7 +6,8 @@ import android.util.Log
 
 object SpeechService {
     private const val TAG = "SPEECH_SERVICE"
-    private var used: Boolean = false
+    private var usedTTT: Boolean = false
+    private var usedPTT: Boolean = false
     private var recordAudioPermissionGranted = false
 
     private var voiceInteractionSession: VoiceInteractionSession? = null
@@ -43,12 +44,19 @@ object SpeechService {
         recordAudioPermissionGranted = permissionGranted
     }
 
-    fun getUsed() : Boolean{
-        return used;
+    fun getUsedPTT() : Boolean{
+        return usedPTT;
     }
 
-    fun setUsed(newUsed: Boolean){
-        used = newUsed;
+    fun setUsedPTT(newUsed: Boolean){
+        usedPTT = newUsed;
+    }
+    fun getUsedTTT() : Boolean{
+        return usedTTT;
+    }
+
+    fun setUsedTTT(newUsed: Boolean){
+        usedTTT = newUsed;
     }
 }
 

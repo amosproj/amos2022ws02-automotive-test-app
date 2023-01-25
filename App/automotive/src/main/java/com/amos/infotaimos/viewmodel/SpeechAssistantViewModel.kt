@@ -14,14 +14,14 @@ class SpeechAssistantViewModel : ViewModel() {
     private val TAG  = "SPEECH ASSISTANT";
 
     fun startPTT(context: Context, delay: Long) {
-        if(!SpeechService.getUsed()){
-            SpeechService.setUsed(true)
+        if(!SpeechService.getUsedPTT()){
+            SpeechService.setUsedPTT(true)
             viewModelScope.launch {
                 delay(delay)
                 active.value = true;
                 SpeechService.startPTT(context)
                 active.value = false
-                SpeechService.setUsed(false)
+                SpeechService.setUsedPTT(false)
             }
         }
         else{
@@ -30,14 +30,14 @@ class SpeechAssistantViewModel : ViewModel() {
     }
 
     fun startTTT(context: Context, delay: Long){
-        if(!SpeechService.getUsed()){
-            SpeechService.setUsed(true)
+        if(!SpeechService.getUsedTTT()){
+            SpeechService.setUsedTTT(true)
             viewModelScope.launch {
                 delay(delay)
                 active.value = true;
                 SpeechService.startTTT(context)
                 active.value = false
-                SpeechService.setUsed(false)
+                SpeechService.setUsedTTT(false)
             }
         }
         else{
