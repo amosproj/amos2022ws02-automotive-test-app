@@ -18,4 +18,8 @@ class RecordDetailsViewModel : ViewModel() {
     fun initialise(context: Context, id: String){
         RecordingService.loadRecordDetail(context, id)
     }
+
+    fun exportTestDrive(context: Context) {
+        RecordingService.exportTestDrive(context, events.value!!)
+    }
 }
