@@ -19,8 +19,6 @@ class RecordDetailsRecyclerViewAdapter() :
 
     fun submitList(list: List<RecordDetailsItem>) = differ.submitList(list.toList())
 
-    fun currentList() : List<RecordDetailsItem> = differ.currentList
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecordDetailsveItemViewHolder {
         val itemBinding =
             RecordDetailsItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)

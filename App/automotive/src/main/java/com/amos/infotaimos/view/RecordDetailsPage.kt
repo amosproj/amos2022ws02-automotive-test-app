@@ -26,7 +26,7 @@ class RecordDetailsPage : ViewBindingFragment<FragmentRecordDetailsBinding>() {
         }
 
         binding.buttonExport.setOnClickListener{
-            viewModel.exportTestDrive(requireContext(), adapter.currentList())
+            viewModel.exportTestDrive(requireContext())
         }
     }
 }
