@@ -16,20 +16,32 @@ class SpeechAssistantPage : ViewBindingFragment<FragmentSpeechAssistantPageBindi
         super.onViewCreated(view, savedInstanceState)
 
         binding.fragmentPttButton.setOnClickListener {
-            viewModel.startPTT(requireContext())
-            binding.fragmentSpeechAnnouncementTextView.visibility = View.VISIBLE
-            Timer().schedule(5500) {
-                binding.fragmentSpeechAnnouncementTextView.visibility = View.INVISIBLE
-            }
+            viewModel.startPTT(requireContext(),getDelay())
         }
-
 
         binding.fragmentTttButton.setOnClickListener {
-            viewModel.startTTT(requireContext())
-            binding.fragmentSpeechAnnouncementTextView.visibility = View.VISIBLE
-            Timer().schedule(5500) {
-                binding.fragmentSpeechAnnouncementTextView.visibility = View.INVISIBLE
+            viewModel.startTTT(requireContext(), getDelay())
+        }
+
+        viewModel.active.observe(viewLifecycleOwner){
+            if(it){
+                binding.fragmentSpeechAnnouncementTextView.visibility = View.VISIBLE
+            }
+            else{
+                Timer().schedule(5500) {
+                    binding.fragmentSpeechAnnouncementTextView.visibility = View.INVISIBLE
+                }
             }
         }
+    }
+
+    private fun getDelay(): Long {
+        val delayString = binding.delaySpinnerSpeechAssistantPage.selectedItem as String
+        var delay = 0L
+        if (delayString == "30s")
+            delay = 30000L
+        else if (delayString == "1min")
+            delay = 60000L
+        return delay
     }
 }

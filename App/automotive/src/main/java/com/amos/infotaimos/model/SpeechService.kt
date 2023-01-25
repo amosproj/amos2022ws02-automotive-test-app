@@ -3,11 +3,10 @@ package com.amos.infotaimos.model
 import android.content.Context
 import android.service.voice.VoiceInteractionSession
 import android.util.Log
-import java.util.*
 
 object SpeechService {
     private const val TAG = "SPEECH_SERVICE"
-    private var speechTask: TimerTask? = null
+    private var used: Boolean = false
     private var recordAudioPermissionGranted = false
 
     private var voiceInteractionSession: VoiceInteractionSession? = null
@@ -42,6 +41,14 @@ object SpeechService {
     fun setupSpeechService(permissionGranted: Boolean) {
         Log.d(TAG, "permission: $permissionGranted")
         recordAudioPermissionGranted = permissionGranted
+    }
+
+    fun getUsed() : Boolean{
+        return used;
+    }
+
+    fun setUsed(newUsed: Boolean){
+        used = newUsed;
     }
 }
 
