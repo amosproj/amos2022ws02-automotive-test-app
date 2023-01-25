@@ -7,7 +7,7 @@ import com.amos.infotaimos.model.NavigationService
 import com.amos.infotaimos.model.NotificationManager
 import com.amos.infotaimos.model.SpeechService
 
-class MainActivityViewModel(context: Context) : ViewModel() {
+class MainActivityViewModel(context: Context, var firePopup: Boolean) : ViewModel() {
 
     val navIndicatorLiveData = NavigationService.navIndicatorLiveData
 
@@ -25,5 +25,9 @@ class MainActivityViewModel(context: Context) : ViewModel() {
 
     fun registerCarAppFocusManager(context: Context) {
         NavigationService.registerCarAppFocusManager(CarInstanceManager.getCarInstance(context))
+    }
+
+    fun resetPopupFlag() {
+        firePopup = false
     }
 }

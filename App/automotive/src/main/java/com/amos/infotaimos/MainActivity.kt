@@ -14,6 +14,7 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.Observer
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: MainActivityViewModel by viewModels {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                return MainActivityViewModel(applicationContext) as T
+                return MainActivityViewModel(applicationContext, intent.getStringExtra("FirePopup").toBoolean()) as T
             }
         }
     }
@@ -83,7 +84,17 @@ class MainActivity : AppCompatActivity() {
                 requestPermissions(arrayOf(Car.PERMISSION_POWERTRAIN), REQ_GEAR_PERM)
             }
         }
+    }
 
+    override fun onStart() {
+        super.onStart()
+        if (viewModel.firePopup) {
+            AlertDialog.Builder(this)
+                .setTitle("ADB POPUP")
+                .setMessage("ADB Start Command detected")
+                .setPositiveButton(android.R.string.ok) { _,_ -> viewModel.resetPopupFlag() }
+                .show()
+        }
     }
 
     fun goToNavigation() {
