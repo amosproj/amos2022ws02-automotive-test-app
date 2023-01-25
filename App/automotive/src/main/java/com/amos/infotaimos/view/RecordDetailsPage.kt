@@ -24,5 +24,9 @@ class RecordDetailsPage : ViewBindingFragment<FragmentRecordDetailsBinding>() {
         viewModel.events.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
+
+        binding.buttonExport.setOnClickListener{
+            viewModel.exportTestDrive(requireContext())
+        }
     }
 }

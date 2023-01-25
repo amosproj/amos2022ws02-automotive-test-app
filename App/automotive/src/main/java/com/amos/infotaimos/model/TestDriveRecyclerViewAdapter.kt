@@ -1,15 +1,19 @@
 package com.amos.infotaimos.model
 
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.amos.infotaimos.MainActivity
 import com.amos.infotaimos.R
 import com.amos.infotaimos.databinding.TestDriveItemBinding
+import com.google.android.material.snackbar.Snackbar
 
 class TestDriveRecyclerViewAdapter() :
     RecyclerView.Adapter<TestDriveRecyclerViewAdapter.TestDriveItemViewHolder>() {
@@ -54,4 +58,31 @@ class TestDriveRecyclerViewAdapter() :
             itemBinding.startTime.text = testDriveItem.time
         }
     }
+    class SwipeToDeleteCallback(val adapter: TestDriveRecyclerViewAdapter, var context: Context) :
+        ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+
+        override fun onMove(
+            recyclerView: RecyclerView,
+            viewHolder: RecyclerView.ViewHolder,
+            target: RecyclerView.ViewHolder
+        ): Boolean {
+            return false
+        }
+
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            val position = viewHolder.adapterPosition
+            val item = adapter.differ.currentList[position]
+
+            val details = RecordingService.deleteTestDrive(context, item.startTime.toString())
+            val activity = context as MainActivity
+            val snackbar = Snackbar.make(activity.findViewById(R.id.main_activity_layout), "Test drive was removed from the list.", Snackbar.LENGTH_LONG)
+            snackbar.setAction("UNDO") {
+                RecordingService.saveRecordDetailComplete(context, details, item.startTime.toString())
+                RecordingService.saveTestDrive(context, item.startTime, position)
+            }
+            snackbar.show()
+        }
+
+    }
+
 }

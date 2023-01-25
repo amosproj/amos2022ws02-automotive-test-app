@@ -3,6 +3,7 @@ package com.amos.infotaimos.view
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.amos.infotaimos.MainActivity
 import com.amos.infotaimos.R
 import com.amos.infotaimos.ViewBindingFragment
@@ -45,5 +46,7 @@ class TestDrivePage : ViewBindingFragment<FragmentTestDriveBinding>() {
         viewModel.events.observe(viewLifecycleOwner) {
             adapter.submitList(it)
         }
+        val itemTouchHelper = ItemTouchHelper(TestDriveRecyclerViewAdapter.SwipeToDeleteCallback(adapter, requireContext()))
+        itemTouchHelper.attachToRecyclerView(binding.testDriveRecyclerView)
     }
 }

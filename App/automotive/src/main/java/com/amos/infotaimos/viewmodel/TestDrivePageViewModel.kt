@@ -17,7 +17,6 @@ import com.amos.infotaimos.model.RecordingService
 import com.amos.infotaimos.model.TestDriveItem
 import java.time.LocalDateTime
 
-
 class TestDrivePageViewModel : ViewModel() {
     private lateinit var propertyManager: CarPropertyManager
     val _tapText: MutableLiveData<String> = MutableLiveData("")
@@ -26,7 +25,7 @@ class TestDrivePageViewModel : ViewModel() {
     val events = Transformations.map(RecordingService.testDriveList) { events ->
         val itemList = mutableListOf<TestDriveItem>()
         for (event in events){
-            itemList.add(event)
+            itemList.add(RecordingService.createTestDriveItem(event))
         }
         return@map itemList
     }
@@ -40,8 +39,7 @@ class TestDrivePageViewModel : ViewModel() {
         RecordingService.loadTestDrive(context)
     }
     fun saveTestDrive(context: Context, timeStamp: LocalDateTime) {
-        RecordingService.saveTestDrive(context, timeStamp)
-
+        RecordingService.saveTestDrive(context, timeStamp, 0)
     }
 
     fun setPropertyManager(context: Context) {
