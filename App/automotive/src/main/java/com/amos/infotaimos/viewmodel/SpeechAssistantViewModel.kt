@@ -6,15 +6,13 @@ import com.amos.infotaimos.model.SpeechService
 
 class SpeechAssistantViewModel : ViewModel() {
 
-
-    fun startPTT(context: Context) {
-        SpeechService.startPTT(context)
+    fun startPTT(context: Context, delay: Long) {
+        SpeechService.startPTT(context, delay)
     }
 
-    fun startTTT(context: Context){
-        SpeechService.startTTT(context)
+    fun startTTT(context: Context, delay: Long){
+        SpeechService.startTTT(context, delay)
     }
-
 }
 
 

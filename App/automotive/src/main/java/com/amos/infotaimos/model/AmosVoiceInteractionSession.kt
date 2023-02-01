@@ -52,9 +52,13 @@ class AmosVoiceInteractionSession(context: Context) : VoiceInteractionSession(co
             AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE).build()
 
         if (speechTask == null) {
-            speechTask = Timer().schedule(0) {
+            Log.d(TAG, "Start Voice Activity")
+
+            val delay = args!!.getLong("delay")
+            speechTask = Timer().schedule(delay) {
                 val stat = audioManager.requestAudioFocus(audioFocusRequest)
                 if (stat == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+                    Log.d(TAG, "Start Recording")
 
                     mediaRecorder.start()
                     Thread.sleep(5000)
@@ -70,6 +74,9 @@ class AmosVoiceInteractionSession(context: Context) : VoiceInteractionSession(co
 
                 speechTask = null
             }
+        }
+        else {
+            Log.d(TAG, "Speech Assistant is already in use")
         }
 
     }
