@@ -50,6 +50,7 @@ class VehiclePropertiesPage : ViewBindingFragment<FragmentVehiclePropertiesPageB
             binding.batteryProgressText.text = "Can't access battery level"
 
         }
+
     }
 
     private fun getDelay() : Long {
