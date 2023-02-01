@@ -17,9 +17,6 @@
             android:id="@+id/action_landingPage_to_wheelPage"
             app:destination="@id/wheelPage" />
         <action
-            android:id="@+id/action_landingPage_to_powerManagementPage"
-            app:destination="@id/powerManagementPage" />
-        <action
             android:id="@+id/action_landingPage_to_vehiclePropertiesPage"
             app:destination="@id/vehiclePropertiesPage" />
         <action
@@ -54,11 +51,6 @@
             android:id="@+id/goto_button_sequences"
             app:destination="@id/buttonSequencePage" />
     </fragment>
-    <fragment
-        android:id="@+id/powerManagementPage"
-        android:name="com.amos.infotaimos.view.PowerManagementPage"
-        android:label="fragment_power_management_page"
-        tools:layout="@layout/fragment_power_management_page" />
     <fragment
         android:id="@+id/vehiclePropertiesPage"
         android:name="com.amos.infotaimos.view.VehiclePropertiesPage"

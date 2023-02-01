@@ -35,7 +35,6 @@ class LandingPage : ViewBindingFragment<FragmentLandingPageBinding>() {
                 LandingPageTileType.STEERING_WHEEL -> goToWheelScreen()
                 LandingPageTileType.MEDIA_PLAY -> goToMediaPageScreen()
                 LandingPageTileType.VEHICLE_PROPERTIES -> goToVehiclePropertiesScreen()
-                LandingPageTileType.POWER_MANAGEMENT -> goToPowerManagementScreen()
                 LandingPageTileType.SPEECH_ASSISTANT -> goToSpeechAssistantPageScreen()
                 LandingPageTileType.TIMER -> goToTimerScreen()
                 LandingPageTileType.APP_SETTINGS -> goToAppSettingsScreen()
@@ -64,13 +63,6 @@ class LandingPage : ViewBindingFragment<FragmentLandingPageBinding>() {
      */
     private fun goToWheelScreen() {
         findNavController().navigate(R.id.action_landingPage_to_wheelPage)
-    }
-
-    /**
-     * Navigate to the power management page via the nav_graph
-     */
-    private fun goToPowerManagementScreen() {
-        findNavController().navigate(R.id.action_landingPage_to_powerManagementPage)
     }
 
     /**
