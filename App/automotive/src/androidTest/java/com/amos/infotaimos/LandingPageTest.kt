@@ -50,16 +50,6 @@ class LandingPageTest {
     }
 
     /**
-     * Test navigation to the media page via the nav_graph
-     */
-    @Test
-    fun testNavigationToMediaScreen() {
-        val navController = prepareScreen()
-        scrollAndClickOn(LandingPageTileType.MEDIA_PLAY.getID())
-        assertEquals(navController.currentDestination?.id, R.id.mediaPage)
-    }
-
-    /**
      * Test navigation to the app setting page via the nav_graph
      */
     @Test

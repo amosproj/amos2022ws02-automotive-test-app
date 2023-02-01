@@ -33,7 +33,6 @@ class LandingPage : ViewBindingFragment<FragmentLandingPageBinding>() {
             when(it) {
                 LandingPageTileType.NAVIGATION -> goToNavigationScreen()
                 LandingPageTileType.STEERING_WHEEL -> goToWheelScreen()
-                LandingPageTileType.MEDIA_PLAY -> goToMediaPageScreen()
                 LandingPageTileType.VEHICLE_PROPERTIES -> goToVehiclePropertiesScreen()
                 LandingPageTileType.SPEECH_ASSISTANT -> goToSpeechAssistantPageScreen()
                 LandingPageTileType.TIMER -> goToTimerScreen()
@@ -70,13 +69,6 @@ class LandingPage : ViewBindingFragment<FragmentLandingPageBinding>() {
      */
     private fun goToVehiclePropertiesScreen() {
         findNavController().navigate(R.id.action_landingPage_to_vehiclePropertiesPage)
-    }
-
-    /**
-     * Navigate to the media page via the nav_graph
-     */
-    private fun goToMediaPageScreen() {
-        findNavController().navigate(R.id.action_landingPage_to_mediaPage)
     }
 
     /**
