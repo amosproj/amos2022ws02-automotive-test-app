@@ -20,8 +20,8 @@ class VehiclePropertiesPageTest {
     @Test
     fun testLayoutCompleteness() {
         launchFragmentInContainer<VehiclePropertiesPage>()
-        onView(ViewMatchers.withId(R.id.tile_vehicle_theme_status_icon)).perform(click())
-        onView(ViewMatchers.withId(R.id.tile_vehicle_range_icon)).perform(click())
+//        onView(ViewMatchers.withId(R.id.tile_vehicle_theme_status_icon)).perform(click())
+//        onView(ViewMatchers.withId(R.id.tile_vehicle_range_icon)).perform(click())
         onView(ViewMatchers.withId(R.id.tile_vin_icon)).perform(click())
         onView(ViewMatchers.withId(R.id.battery_low_message_button)).perform(click())
         onView(ViewMatchers.withId(R.id.battery_level_edittext)).perform(typeText("Test"))

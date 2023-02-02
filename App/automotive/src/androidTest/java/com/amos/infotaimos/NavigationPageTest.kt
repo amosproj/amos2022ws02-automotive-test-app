@@ -70,6 +70,7 @@ class NavigationPageTest {
         val context = ApplicationProvider.getApplicationContext<Context>()
         val car = CarInstanceManager.getCarInstance(context)
         val carAppFocusManager = car.getCarManager(Car.APP_FOCUS_SERVICE) as CarAppFocusManager
+        NavigationService.registerCarAppFocusManager(car)
         val navCallback = NavigationService.navCallback
 
         launchFragmentInContainer<NavigationPage>()
@@ -106,6 +107,7 @@ class NavigationPageTest {
         val context = ApplicationProvider.getApplicationContext<Context>()
         val car = CarInstanceManager.getCarInstance(context)
         val carAppFocusManager = car.getCarManager(Car.APP_FOCUS_SERVICE) as CarAppFocusManager
+        NavigationService.registerCarAppFocusManager(car)
         val navCallback = NavigationService.navCallback
 
         launchFragmentInContainer<NavigationPage>()
