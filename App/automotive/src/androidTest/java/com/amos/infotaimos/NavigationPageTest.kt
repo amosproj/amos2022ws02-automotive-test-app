@@ -46,6 +46,11 @@ class NavigationPageTest {
 
         launchFragmentInContainer<NavigationPage>()
 
+        //make sure navigation is not active
+        if(NavigationService.navIndicatorLiveData.value == true){
+            onView(withId(R.id.start_navigation_button)).perform(click())
+        }
+
         // test start with delay 0s
         onView(withId(R.id.start_navigation_button)).perform(click())
         assertTrue(
@@ -74,6 +79,11 @@ class NavigationPageTest {
         val navCallback = NavigationService.navCallback
 
         launchFragmentInContainer<NavigationPage>()
+
+        //make sure navigation is not active
+        if(NavigationService.navIndicatorLiveData.value == true){
+            onView(withId(R.id.start_navigation_button)).perform(click())
+        }
 
         // test start with delay 30s
         onView(withId(R.id.delay_spinner)).perform(click())
@@ -112,6 +122,10 @@ class NavigationPageTest {
 
         launchFragmentInContainer<NavigationPage>()
 
+        //make sure navigation is not active
+        if(NavigationService.navIndicatorLiveData.value == true){
+            onView(withId(R.id.start_navigation_button)).perform(click())
+        }
         // start navigation
         onView(withId(R.id.start_navigation_button)).perform(click())
         assertTrue(
@@ -156,6 +170,11 @@ class NavigationPageTest {
         val navCallback = NavigationService.navCallback
 
         launchFragmentInContainer<NavigationPage>()
+
+        //make sure navigation is not active
+        if(NavigationService.navIndicatorLiveData.value == true){
+            onView(withId(R.id.start_navigation_button)).perform(click())
+        }
 
         // test start with delay 30s
         onView(withId(R.id.delay_spinner)).perform(click())
@@ -219,6 +238,11 @@ class NavigationPageTest {
 
         launchFragmentInContainer<NavigationPage>()
 
+        //make sure navigation is not active
+        if(NavigationService.navIndicatorLiveData.value == true){
+            onView(withId(R.id.start_navigation_button)).perform(click())
+        }
+        
         // test start with delay 1min
         onView(withId(R.id.delay_spinner)).perform(click())
         onData(
