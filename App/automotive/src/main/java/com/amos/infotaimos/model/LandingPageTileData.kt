@@ -5,7 +5,6 @@ import com.amos.infotaimos.R
 enum class LandingPageTileType {
     NAVIGATION,
     STEERING_WHEEL,
-    MEDIA_PLAY,
     VEHICLE_PROPERTIES,
     SPEECH_ASSISTANT,
     TIMER,
@@ -16,7 +15,6 @@ enum class LandingPageTileType {
         return when(this) {
             NAVIGATION -> 42
             STEERING_WHEEL -> 43
-            MEDIA_PLAY -> 44
             VEHICLE_PROPERTIES -> 45
             SPEECH_ASSISTANT -> 47
             TIMER -> 48
@@ -31,7 +29,6 @@ data class LandingPageTileData(val type: LandingPageTileType) {
         return when (type) {
             LandingPageTileType.NAVIGATION -> R.string.navigation
             LandingPageTileType.STEERING_WHEEL -> R.string.steering_wheel
-            LandingPageTileType.MEDIA_PLAY -> R.string.media_play
             LandingPageTileType.VEHICLE_PROPERTIES -> R.string.vehicle_properties
             LandingPageTileType.SPEECH_ASSISTANT -> R.string.speech_assistant
             LandingPageTileType.TIMER -> R.string.timer
@@ -44,7 +41,6 @@ data class LandingPageTileData(val type: LandingPageTileType) {
         return when(type) {
             LandingPageTileType.NAVIGATION -> R.drawable.map_icon
             LandingPageTileType.STEERING_WHEEL -> R.drawable.steering_wheel_icon
-            LandingPageTileType.MEDIA_PLAY -> R.drawable.media_play
             LandingPageTileType.VEHICLE_PROPERTIES -> R.drawable.vehicle_properties_icon
             LandingPageTileType.SPEECH_ASSISTANT -> R.drawable.speech_assistant_icon_24
             LandingPageTileType.TIMER -> R.drawable.timer_icon
@@ -57,7 +53,6 @@ data class LandingPageTileData(val type: LandingPageTileType) {
         return when(type) {
             LandingPageTileType.NAVIGATION -> R.color.landing_green
             LandingPageTileType.STEERING_WHEEL -> R.color.landing_blue
-            LandingPageTileType.MEDIA_PLAY -> R.color.landing_purple
             LandingPageTileType.VEHICLE_PROPERTIES -> R.color.landing_red
             LandingPageTileType.SPEECH_ASSISTANT -> R.color.landing_yellow
             LandingPageTileType.TIMER -> R.color.landing_orange
