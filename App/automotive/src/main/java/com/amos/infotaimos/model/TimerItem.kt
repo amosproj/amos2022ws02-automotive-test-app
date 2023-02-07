@@ -13,7 +13,7 @@ data class TimerItem(
     val time: String
         get() = "${ timeFormatter.format(start) }${end?.let { " - ${timeFormatter.format(end)}" } ?: ""}"
     private val duration: String
-        get() = end?.let { Duration.between(start, end).let { String.format("%02d:%02d:%02d", it.toHours(), it.toMinutesPart(), it.toSecondsPart()) } } ?: "unfinished"
+        get() = end?.let { Duration.between(start, end).let { String.format("%02d:%02d:%02d", it.toHours(), it.toMinutes() - it.toHours()*60, it.seconds - it.toHours()*3600 - it.toMinutes() * 60) } } ?: "unfinished"
 
     val actionIdAndDuration: String
         get() = "$actionId - $duration"

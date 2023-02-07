@@ -1,205 +1,220 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.amos.infotaimos.view.SquareLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/square_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
+    <com.amos.infotaimos.view.SquareLayout
+        android:id="@+id/square_layout"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:layout_alignWithParentIfMissing="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        android:orientation="vertical"
-        tools:conext=".view.WheelPage">
-
-
-        <ImageView
-            android:id="@+id/imageView"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/steering_wheel" />
 
-        <Button
-            android:id="@+id/wheel_button_phone"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:alpha="0.0"
-            android:text="@string/button_phone"
-            app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_2"
-            app:layout_constraintLeft_toLeftOf="@id/vertical_guideline_3"
-            app:layout_constraintRight_toRightOf="@id/vertical_guideline_4"
-            app:layout_constraintTop_toTopOf="@id/horizontal_guideline_1" />
-
-        <Button
-            android:id="@+id/wheel_button_skip_forward"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:alpha="0.0"
-            android:text="@string/button_skip_forward"
-            app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_4"
-            app:layout_constraintLeft_toLeftOf="@id/vertical_guideline_5"
-            app:layout_constraintRight_toRightOf="@id/vertical_guideline_6"
-            app:layout_constraintTop_toTopOf="@id/horizontal_guideline_3" />
-
-        <Button
-            android:id="@+id/wheel_button_skip_backward"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:alpha="0.0"
-            android:text="@string/button_skip_backward"
-            app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_4"
-            app:layout_constraintLeft_toLeftOf="@id/vertical_guideline_7"
-            app:layout_constraintRight_toRightOf="@id/vertical_guideline_8"
-            app:layout_constraintTop_toTopOf="@id/horizontal_guideline_3" />
-
-        <Button
-            android:id="@+id/wheel_button_voice_control"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:alpha="0.0"
-            android:text="@string/button_voice_control"
-            app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_2"
-            app:layout_constraintLeft_toLeftOf="@id/vertical_guideline_4"
-            app:layout_constraintRight_toRightOf="@id/vertical_guideline_6"
-            app:layout_constraintTop_toTopOf="@id/horizontal_guideline_1" />
-
-        <Button
-            android:id="@+id/wheel_button_play_pause"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:alpha="0.0"
-            android:text="@string/button_play_pause"
-            app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_2"
-            app:layout_constraintLeft_toLeftOf="@id/vertical_guideline_1"
-            app:layout_constraintRight_toRightOf="@id/vertical_guideline_2"
-            app:layout_constraintTop_toTopOf="@id/horizontal_guideline_1" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/vertical_guideline_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.26" />
+            tools:conext=".view.WheelPage">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/vertical_guideline_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.307" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/vertical_guideline_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.691" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/steering_wheel" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/vertical_guideline_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.745" />
+            <Button
+                android:id="@+id/wheel_button_phone"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:alpha="0.0"
+                android:text="@string/button_phone"
+                app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_2"
+                app:layout_constraintLeft_toLeftOf="@id/vertical_guideline_3"
+                app:layout_constraintRight_toRightOf="@id/vertical_guideline_4"
+                app:layout_constraintTop_toTopOf="@id/horizontal_guideline_1" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/vertical_guideline_5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.797" />
+            <Button
+                android:id="@+id/wheel_button_skip_forward"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:alpha="0.0"
+                android:text="@string/button_skip_forward"
+                app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_4"
+                app:layout_constraintLeft_toLeftOf="@id/vertical_guideline_5"
+                app:layout_constraintRight_toRightOf="@id/vertical_guideline_6"
+                app:layout_constraintTop_toTopOf="@id/horizontal_guideline_3" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/vertical_guideline_6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.829" />
+            <Button
+                android:id="@+id/wheel_button_skip_backward"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:alpha="0.0"
+                android:text="@string/button_skip_backward"
+                app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_4"
+                app:layout_constraintLeft_toLeftOf="@id/vertical_guideline_7"
+                app:layout_constraintRight_toRightOf="@id/vertical_guideline_8"
+                app:layout_constraintTop_toTopOf="@id/horizontal_guideline_3" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/vertical_guideline_7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.735" />
+            <Button
+                android:id="@+id/wheel_button_voice_control"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:alpha="0.0"
+                android:text="@string/button_voice_control"
+                app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_2"
+                app:layout_constraintLeft_toLeftOf="@id/vertical_guideline_4"
+                app:layout_constraintRight_toRightOf="@id/vertical_guideline_6"
+                app:layout_constraintTop_toTopOf="@id/horizontal_guideline_1" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/vertical_guideline_8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.765" />
+            <Button
+                android:id="@+id/wheel_button_play_pause"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:alpha="0.0"
+                android:text="@string/button_play_pause"
+                app:layout_constraintBottom_toBottomOf="@id/horizontal_guideline_2"
+                app:layout_constraintLeft_toLeftOf="@id/vertical_guideline_1"
+                app:layout_constraintRight_toRightOf="@id/vertical_guideline_2"
+                app:layout_constraintTop_toTopOf="@id/horizontal_guideline_1" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/horizontal_guideline_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.442" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vertical_guideline_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.26" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/horizontal_guideline_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.495" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vertical_guideline_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.307" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/horizontal_guideline_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.50" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vertical_guideline_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.691" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/horizontal_guideline_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.563" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vertical_guideline_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.745" />
 
-        <ToggleButton
-            android:id="@+id/toggleButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:checked="false"
-            android:text="ToggleButton"
-            android:textColorHint="?android:attr/textColorHint"
-            android:textOff="@string/description"
-            android:textOn="@string/functionality"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vertical_guideline_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.797" />
 
-        <Button
-            android:id="@+id/sequenceButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:checked="false"
-            android:text="Sequences"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vertical_guideline_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.829" />
 
-        <ToggleButton
-            android:id="@+id/recordSequenceButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:checked="false"
-            android:textColorHint="?android:attr/textColorHint"
-            android:textOff="@string/add_sequence"
-            android:textOn="@string/save_sequence"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</com.amos.infotaimos.view.SquareLayout>
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vertical_guideline_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.735" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/vertical_guideline_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.765" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/horizontal_guideline_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.442" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/horizontal_guideline_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.495" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/horizontal_guideline_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.50" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/horizontal_guideline_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.563" />
+
+            <ToggleButton
+                android:id="@+id/toggleButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:checked="false"
+                android:text="ToggleButton"
+                android:textColorHint="?android:attr/textColorHint"
+                android:textOff="@string/description"
+                android:textOn="@string/functionality"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.9"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/sequenceButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:checked="false"
+                android:text="Sequences"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ToggleButton
+                android:id="@+id/recordSequenceButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:checked="false"
+                android:textColorHint="?android:attr/textColorHint"
+                android:textOff="@string/add_sequence"
+                android:textOn="@string/save_sequence"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.amos.infotaimos.view.SquareLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

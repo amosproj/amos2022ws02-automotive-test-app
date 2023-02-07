@@ -29,14 +29,6 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/fragment_speech_announcement_button"
-        style="@style/Theme.InfotAiMOS.Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/landing_yellow"
-        android:text="@string/button_speech_announcement" />
-
-    <Button
         android:id="@+id/fragment_ptt_button"
         style="@style/Theme.InfotAiMOS.Button"
         android:layout_width="match_parent"
