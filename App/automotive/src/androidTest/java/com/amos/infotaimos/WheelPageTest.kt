@@ -159,6 +159,7 @@ class WheelPageTest {
             }
         }
         InstrumentationRegistry.getInstrumentation().runOnMainSync {
+            MediaService.LAST_MEDIA_KEY.value = null
             MediaService.LAST_MEDIA_KEY.observeForever(keyObserver)
         }
         if (expectedKeyEventCode in listOf(KeyEvent.KEYCODE_MEDIA_FAST_FORWARD, KeyEvent.KEYCODE_MEDIA_REWIND)) {
