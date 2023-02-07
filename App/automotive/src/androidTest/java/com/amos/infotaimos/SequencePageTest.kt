@@ -14,6 +14,7 @@ import com.amos.infotaimos.model.ButtonSequence
 import com.amos.infotaimos.model.ButtonSequenceRecyclerViewAdapter
 import com.amos.infotaimos.model.MediaService
 import com.amos.infotaimos.view.ButtonSequencePage
+import com.amos.infotaimos.view.WheelPage
 import junit.framework.Assert.assertTrue
 import org.junit.Test
 import java.util.concurrent.CompletableFuture
@@ -29,6 +30,14 @@ class SequencePageTest {
 
     @Test
     fun testFirstSequence() {
+        launchFragmentInContainer<WheelPage>()
+        onView(withId(R.id.recordSequenceButton)).perform(click())
+        onView(withId(R.id.wheel_button_play_pause)).perform(click()).check(matches(isDisplayed()))
+        onView(withId(R.id.wheel_button_skip_forward)).perform(click())
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.wheel_button_voice_control)).perform(click())
+            .check(matches(isDisplayed()))
+        onView(withId(R.id.recordSequenceButton)).perform(click())
         launchFragmentInContainer<ButtonSequencePage>()
         checkSequenceExecuted(0, ButtonSequencePage.sequences.first())
     }
