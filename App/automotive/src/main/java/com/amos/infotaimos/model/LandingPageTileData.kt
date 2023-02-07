@@ -5,9 +5,7 @@ import com.amos.infotaimos.R
 enum class LandingPageTileType {
     NAVIGATION,
     STEERING_WHEEL,
-    MEDIA_PLAY,
     VEHICLE_PROPERTIES,
-    POWER_MANAGEMENT,
     SPEECH_ASSISTANT,
     TIMER,
     APP_SETTINGS,
@@ -17,9 +15,7 @@ enum class LandingPageTileType {
         return when(this) {
             NAVIGATION -> 42
             STEERING_WHEEL -> 43
-            MEDIA_PLAY -> 44
             VEHICLE_PROPERTIES -> 45
-            POWER_MANAGEMENT -> 46
             SPEECH_ASSISTANT -> 47
             TIMER -> 48
             APP_SETTINGS -> 49
@@ -33,9 +29,7 @@ data class LandingPageTileData(val type: LandingPageTileType) {
         return when (type) {
             LandingPageTileType.NAVIGATION -> R.string.navigation
             LandingPageTileType.STEERING_WHEEL -> R.string.steering_wheel
-            LandingPageTileType.MEDIA_PLAY -> R.string.media_play
             LandingPageTileType.VEHICLE_PROPERTIES -> R.string.vehicle_properties
-            LandingPageTileType.POWER_MANAGEMENT -> R.string.power_management
             LandingPageTileType.SPEECH_ASSISTANT -> R.string.speech_assistant
             LandingPageTileType.TIMER -> R.string.timer
             LandingPageTileType.APP_SETTINGS -> R.string.app_settings
@@ -47,9 +41,7 @@ data class LandingPageTileData(val type: LandingPageTileType) {
         return when(type) {
             LandingPageTileType.NAVIGATION -> R.drawable.map_icon
             LandingPageTileType.STEERING_WHEEL -> R.drawable.steering_wheel_icon
-            LandingPageTileType.MEDIA_PLAY -> R.drawable.media_play
             LandingPageTileType.VEHICLE_PROPERTIES -> R.drawable.vehicle_properties_icon
-            LandingPageTileType.POWER_MANAGEMENT -> R.drawable.power_management_icon
             LandingPageTileType.SPEECH_ASSISTANT -> R.drawable.speech_assistant_icon_24
             LandingPageTileType.TIMER -> R.drawable.timer_icon
             LandingPageTileType.APP_SETTINGS -> R.drawable.settings_gear_icon
@@ -61,9 +53,7 @@ data class LandingPageTileData(val type: LandingPageTileType) {
         return when(type) {
             LandingPageTileType.NAVIGATION -> R.color.landing_green
             LandingPageTileType.STEERING_WHEEL -> R.color.landing_blue
-            LandingPageTileType.MEDIA_PLAY -> R.color.landing_purple
             LandingPageTileType.VEHICLE_PROPERTIES -> R.color.landing_red
-            LandingPageTileType.POWER_MANAGEMENT -> R.color.landing_olive
             LandingPageTileType.SPEECH_ASSISTANT -> R.color.landing_yellow
             LandingPageTileType.TIMER -> R.color.landing_orange
             LandingPageTileType.APP_SETTINGS -> R.color.landing_pink

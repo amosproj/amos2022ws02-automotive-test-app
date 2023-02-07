@@ -40,16 +40,6 @@ class LandingPageTest {
     }
 
     /**
-     * Test navigation to the power management page via the nav_graph
-     */
-    @Test
-    fun testNavigationToPowerManagementScreen() {
-        val navController = prepareScreen()
-        scrollAndClickOn(LandingPageTileType.POWER_MANAGEMENT.getID())
-        assertEquals(navController.currentDestination?.id, R.id.powerManagementPage)
-    }
-
-    /**
      * Test navigation to the vehicle properties page via the nav_graph
      */
     @Test
@@ -57,16 +47,6 @@ class LandingPageTest {
         val navController = prepareScreen()
         scrollAndClickOn(LandingPageTileType.VEHICLE_PROPERTIES.getID())
         assertEquals(navController.currentDestination?.id, R.id.vehiclePropertiesPage)
-    }
-
-    /**
-     * Test navigation to the media page via the nav_graph
-     */
-    @Test
-    fun testNavigationToMediaScreen() {
-        val navController = prepareScreen()
-        scrollAndClickOn(LandingPageTileType.MEDIA_PLAY.getID())
-        assertEquals(navController.currentDestination?.id, R.id.mediaPage)
     }
 
     /**

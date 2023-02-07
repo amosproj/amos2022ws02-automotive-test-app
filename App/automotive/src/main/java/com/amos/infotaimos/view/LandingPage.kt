@@ -33,9 +33,7 @@ class LandingPage : ViewBindingFragment<FragmentLandingPageBinding>() {
             when(it) {
                 LandingPageTileType.NAVIGATION -> goToNavigationScreen()
                 LandingPageTileType.STEERING_WHEEL -> goToWheelScreen()
-                LandingPageTileType.MEDIA_PLAY -> goToMediaPageScreen()
                 LandingPageTileType.VEHICLE_PROPERTIES -> goToVehiclePropertiesScreen()
-                LandingPageTileType.POWER_MANAGEMENT -> goToPowerManagementScreen()
                 LandingPageTileType.SPEECH_ASSISTANT -> goToSpeechAssistantPageScreen()
                 LandingPageTileType.TIMER -> goToTimerScreen()
                 LandingPageTileType.APP_SETTINGS -> goToAppSettingsScreen()
@@ -67,24 +65,10 @@ class LandingPage : ViewBindingFragment<FragmentLandingPageBinding>() {
     }
 
     /**
-     * Navigate to the power management page via the nav_graph
-     */
-    private fun goToPowerManagementScreen() {
-        findNavController().navigate(R.id.action_landingPage_to_powerManagementPage)
-    }
-
-    /**
      * Navigate to the vehicle properties page via the nav_graph
      */
     private fun goToVehiclePropertiesScreen() {
         findNavController().navigate(R.id.action_landingPage_to_vehiclePropertiesPage)
-    }
-
-    /**
-     * Navigate to the media page via the nav_graph
-     */
-    private fun goToMediaPageScreen() {
-        findNavController().navigate(R.id.action_landingPage_to_mediaPage)
     }
 
     /**
